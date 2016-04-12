@@ -3,26 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data;
+package i_o;
 
-import org.xml.sax.*;
-import org.w3c.dom.*;
-import javax.xml.parsers.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+
 /**
- *
+ *This Class Creates a DOM tree Object File from an xml file 
  * @author User
  */
-public class MenuPizzeReader{
+public class MyXmlParser {
     
-    public void readFile(){
-        
-        Document xmlMenu = getDocument("./databases/MenuPizze.xml");
-        
-        System.out.println("Root "+xmlMenu.getDocumentElement().getNodeName());
-    }
     
     // Reads an XML file into a DOM document
-    private static Document getDocument(String docString) {
+    public static Document getDocument(String docString) {
 	         
 	try {
             // API used to convert XML into a DOM object tree
@@ -43,5 +39,4 @@ public class MenuPizzeReader{
 	}
 	return null;
     }
-  
 }

@@ -1,5 +1,7 @@
 
-import data.MenuPizzeReader;
+import data.Pizza;
+import i_o.MenuPizzeReader;
+import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,9 +18,14 @@ public class TestMenuPizzeReader {
    
     public static void main(String[] args) {
         
-         MenuPizzeReader reader = new MenuPizzeReader();
+        ArrayList<Pizza> pizze = new ArrayList<Pizza>();
+        
+        MenuPizzeReader reader = new MenuPizzeReader();
          
-         reader.readFile();
+        pizze = reader.readFile();
          
+        for (Pizza pizza : pizze) {
+            System.out.println(pizza.toString());
+        }
     }
 }

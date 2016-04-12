@@ -11,8 +11,8 @@ package data;
  */
 abstract class Product {
 
-    private double price;
     private String name;
+    private double price;
 
     public Product(String name, double price) {
         this.name = name;
@@ -33,7 +33,8 @@ abstract class Product {
 
     @Override
     public String toString() {
-        return this.getName() +" "+ this.getPrice() + "\n";
+        return this.getName() + "\t"
+                + this.getPrice() + "\n";
     }
 
 }

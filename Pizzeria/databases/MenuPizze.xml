@@ -4,35 +4,43 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<!DOCTYPE menu_pizze [ 
+<!ELEMENT menu_pizze (pizza)+>
+<!ELEMENT pizza (nome, prezzo, ingredienti+)>
+<!ELEMENT nome (#PCDATA)>
+<!ELEMENT prezzo (#PCDATA)>
+<!ELEMENT ingredienti (nome+)>
+]>
 
 
 <menu_pizze>
-    <pizza>
+    <pizza> 
         <nome>Margherita</nome>
-        <prezzo prezzo="4.0" />
+        <prezzo>4.0</prezzo>
         <ingredienti>
-            <ing name="Pomodoro" />
-            <ing name="Mozzarella" />
+            <nome>Pomodoro</nome>
+            <nome>Mozzarella</nome>
         </ingredienti>
     </pizza>
-    <pizza>
-        <nome>"Marinara"</nome>
-        <prezzo prezzo="3.5" />
+    <pizza> 
+        <nome>Marinara</nome>
+        <prezzo>3.5</prezzo>
         <ingredienti>
-            <ing name="Pomodoro" />
-            <ing name="Origano" />
+            <nome>Pomodoro</nome>
+            <nome>Origano</nome>
         </ingredienti>
     </pizza>
-    <pizza>
-        <nome>"Capricciosa"</nome>
-        <prezzo prezzo="5.5" />
+    <pizza> 
+        <nome>Capricciosa</nome>
+        <prezzo>5.5</prezzo>
         <ingredienti>
-            <ing name="Pomodoro" />
-            <ing name="Mozzarella" />
-            <ing name="Carciofi" />
-            <ing name="Capperi" />
-            <ing name="Prosciutto Cotto" />
-            <ing name="Funghi" />
+            <nome>Pomodoro</nome>
+            <nome>Mozzarella</nome>
+            <nome>Funghi</nome>
+            <nome>Prosciutto Cotto</nome>
+            <nome>Carciofi</nome>
+            <nome>Olive Nere</nome>
+            <nome>Capperi</nome>
         </ingredienti>
     </pizza>
 </menu_pizze>

@@ -39,9 +39,9 @@ public class Client {
 
     @Override
     public String toString() {
-        return " Name: "+this.name+" " +" Surname: "+ this.getSurname()+" Address "+this.getAddress()+"\n";
+        return "Name: " + this.name + "\t"
+                + "Surname: " + this.getSurname() + "\t"
+                + "Address " + this.getAddress() + "\n";
     }
-    
-    
 
 }

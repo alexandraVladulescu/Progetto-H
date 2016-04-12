@@ -5,10 +5,26 @@
  */
 package data;
 
+import i_o.MenuPizzeReader;
+import java.util.ArrayList;
+
 /**
  *
  * @author User
  */
 public class MenuPizze {
+    
+    private MenuPizzeReader menuReader;
+    private ArrayList<Pizza> pizze;
+
+    public MenuPizze() {
+        
+        menuReader = new MenuPizzeReader();
+        pizze = new ArrayList<Pizza>();
+    }
+    
+    private void fillMenu(){
+        //pizze = menuReader.readFile();
+    } 
     
 }

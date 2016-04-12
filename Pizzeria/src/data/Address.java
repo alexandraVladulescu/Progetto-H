@@ -21,7 +21,7 @@ public class Address {
         this.houseNumber = houseNumeber;
         this.localityName = localityName;
         this.setInformations(" Nessuna ");
-        
+
     }
 
     public String getLocalityName() {
@@ -44,7 +44,6 @@ public class Address {
         return informations;
     }
 
-  
     public void setInformations(String informations) {
         this.informations = informations;
     }
@@ -55,8 +54,12 @@ public class Address {
 
     @Override
     public String toString() {
-        return "  "+this.getAddress()+"  " +this.houseNumber+" "+this.getLocalityName() + " "+"\n"+"INFORMAZIONI AGGIUNTIVE\n"+this.informations+"\n";
-        
+        return this.getAddress() + "\t"
+                + this.houseNumber + "\t"
+                + this.getLocalityName() + "\t" + "\n"
+                + "INFORMAZIONI AGGIUNTIVE\n"
+                + this.informations + "\n";
+
     }
 
 }
