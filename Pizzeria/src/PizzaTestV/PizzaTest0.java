@@ -16,8 +16,7 @@ import data.Pizzeria;
  */
 public class PizzaTest0 {
 
-    public static void main(String[] args) {
-        Pizzeria pizzeria = new Pizzeria("L'ORO DI NAPOLI");
+    public static void main(String[] args) { Pizzeria pizzeria = new Pizzeria("L'ORO DI NAPOLI");
         System.out.println("CREO OGGETTI PIZZA\n");
 
         Pizza margherita = new Pizza("Margherita", 4.5);
