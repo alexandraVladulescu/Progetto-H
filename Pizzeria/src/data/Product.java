@@ -9,12 +9,12 @@ package data;
  *
  * @author Francesco
  */
-abstract class Prodotto {
+abstract class Product {
 
     private double price;
     private String name;
 
-    public Prodotto(String name, double price) {
+    public Product(String name, double price) {
         this.name = name;
         this.price = price;
     }

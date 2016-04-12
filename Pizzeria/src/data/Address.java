@@ -14,7 +14,6 @@ public class Address {
     private String addressName;
     private String houseNumber;
     private String localityName;
-    private int cap;
     private String informations; // esempio scala/citofono
 
     public Address(String localityName, String addressName, String houseNumeber) {
@@ -45,14 +44,7 @@ public class Address {
         return informations;
     }
 
-    public int getCap() {
-        return cap;
-    }
-
-    public void setCap(int cap) {
-        this.cap = cap;
-    }
-
+  
     public void setInformations(String informations) {
         this.informations = informations;
     }
@@ -63,7 +55,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return "  "+this.getAddress()+"  " +this.houseNumber+" "+this.getLocalityName() + " "+this.getCap()+"\n"+"INFORMAZIONI AGGIUNTIVE\n"+this.informations+"\n";
+        return "  "+this.getAddress()+"  " +this.houseNumber+" "+this.getLocalityName() + " "+"\n"+"INFORMAZIONI AGGIUNTIVE\n"+this.informations+"\n";
         
     }
 

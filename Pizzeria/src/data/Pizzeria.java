@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Pizzeria {
 
-    ArrayList<Prodotto> productList;
+    ArrayList<Product> productList;
     ArrayList<Client> clientList;
     ArrayList<Comanda> comandaList;
     String name;
@@ -22,7 +22,7 @@ public class Pizzeria {
 
     public Pizzeria(String name) {
         this.name = name;
-        productList = new ArrayList<Prodotto>();
+        productList = new ArrayList<Product>();
         clientList = new ArrayList<Client>();
         comandaList = new ArrayList<Comanda>();
 
@@ -32,7 +32,7 @@ public class Pizzeria {
         this.currentComanda.setClient(c);
     }
 
-    public void addProduct(Prodotto p) {
+    public void addProduct(Product p) {
         this.productList.add(p);
     }
 
@@ -58,7 +58,7 @@ public class Pizzeria {
         this.currentComanda = currentComanda;
     }
 
-    public void addOrder(Prodotto p) {
+    public void addOrder(Product p) {
         this.currentComanda.addOrder(p);
     }
 

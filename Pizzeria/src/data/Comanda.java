@@ -15,8 +15,8 @@ import java.util.GregorianCalendar;
  */
 public class Comanda {
 
-    private ArrayList<Prodotto> ordersList = new ArrayList<Prodotto>();
-    private double totalPrice;
+    private ArrayList<Product> ordersList = new ArrayList<Product>();
+   // private double totalPrice;
     private Calendar deliveryTime = new GregorianCalendar();
 //    private String name;
 //    private String surname;
@@ -24,32 +24,36 @@ public class Comanda {
     private Client client;
 
     public Comanda() {
-            this.totalPrice = 0.0;
+          //  this.totalPrice = 0.0;
     }
 
-    public void addOrder(Prodotto p) {
+    public void addOrder(Product p) {
         this.ordersList.add(p);
-        this.setTotalPrice(this.getTotalPrice() + p.getPrice());
     }
 
     @Override
     public String toString() {
         return "CLIENT >> " + this.client.toString() + "" + "OraDiConsegna " + this.deliveryTime + "\n"
                 + "Ordini : \n" + this.getOrderedProducts()+"\n "+
-                "Total : "+this.getTotalPrice();
+                "Total : "+this.calculateTotalPrice();
     }
 
     public String getOrderedProducts() {
         int index = 0;
         String s = "";
-        for (Prodotto ordersList1 : ordersList) {
+        for (Product ordersList1 : ordersList) {
             index++;
             s +=  index + ". " + ordersList1 + "\n";
         }
         return s;
     }
 
-    public double getTotalPrice() {
+    public double calculateTotalPrice() {
+        double totalPrice = 0.0;
+        for (Product ordersList1 : ordersList) {
+            totalPrice += ordersList1.getPrice();
+            
+        }
         return totalPrice;
     }
 
@@ -57,9 +61,7 @@ public class Comanda {
         return deliveryTime;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
+    
 
     public void setDeliveryTime(Calendar data) {
         this.deliveryTime = data;
