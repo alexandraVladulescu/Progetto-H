@@ -16,43 +16,39 @@ import java.util.GregorianCalendar;
 public class Comanda {
 
     private ArrayList<Product> ordersList = new ArrayList<Product>();
-   // private double totalPrice;
-    private Calendar deliveryTime = new GregorianCalendar();
-//    private String name;
-//    private String surname;
-//    private String indirizzo;
     private Client client;
+    private Calendar deliveryTime = new GregorianCalendar();
 
     public Comanda() {
-          //  this.totalPrice = 0.0;
     }
 
-    public void addOrder(Product p) {
+    public void addProduct(Product p) {
         this.ordersList.add(p);
     }
 
     @Override
     public String toString() {
-        return "CLIENT >> " + this.client.toString() + "" + "OraDiConsegna " + this.deliveryTime + "\n"
-                + "Ordini : \n" + this.getOrderedProducts()+"\n "+
-                "Total : "+this.calculateTotalPrice();
+        return "CLIENT >> " + this.client.toString() + "\t"
+                + "OraDiConsegna " + this.deliveryTime + "\n"
+                + "Ordini : \n" + this.getOrderedProducts() + "\n "
+                + "Total : " + this.calculateTotalPrice();
     }
 
     public String getOrderedProducts() {
         int index = 0;
         String s = "";
-        for (Product ordersList1 : ordersList) {
+        for (Product p : ordersList) {
             index++;
-            s +=  index + ". " + ordersList1 + "\n";
+            s += index + ".\t" + p.toString() + "\n";
         }
         return s;
     }
 
     public double calculateTotalPrice() {
         double totalPrice = 0.0;
-        for (Product ordersList1 : ordersList) {
-            totalPrice += ordersList1.getPrice();
-            
+        for (Product p : ordersList) {
+            totalPrice += p.getPrice();
+
         }
         return totalPrice;
     }
@@ -60,8 +56,6 @@ public class Comanda {
     public Calendar getDeliveryTime() {
         return deliveryTime;
     }
-
-    
 
     public void setDeliveryTime(Calendar data) {
         this.deliveryTime = data;
