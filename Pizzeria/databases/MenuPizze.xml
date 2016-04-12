@@ -10,26 +10,30 @@ and open the template in the editor.
     <pizza>
         <nome>Margherita</nome>
         <prezzo prezzo="4.0" />
-        <ingrediente>
-            Pomodoro
-        </ingrediente>
-        <ingrediente>
-            Mozzarella
-        </ingrediente>
+        <ingredienti>
+            <ing name="Pomodoro" />
+            <ing name="Mozzarella" />
+        </ingredienti>
     </pizza>
     <pizza>
         <nome>"Marinara"</nome>
         <prezzo prezzo="3.5" />
-        <ingrediente>
-            Pomodoro
-        </ingrediente>
-        <ingrediente>
-            Origano
-        </ingrediente>
+        <ingredienti>
+            <ing name="Pomodoro" />
+            <ing name="Origano" />
+        </ingredienti>
     </pizza>
     <pizza>
         <nome>"Capricciosa"</nome>
         <prezzo prezzo="5.5" />
+        <ingredienti>
+            <ing name="Pomodoro" />
+            <ing name="Mozzarella" />
+            <ing name="Carciofi" />
+            <ing name="Capperi" />
+            <ing name="Prosciutto Cotto" />
+            <ing name="Funghi" />
+        </ingredienti>
     </pizza>
 </menu_pizze>
 
