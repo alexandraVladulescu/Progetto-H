@@ -33,14 +33,18 @@ public class MenuPizze {
         }
     }
 
-    public Pizza getPizzaByName(String name) {
+    public Pizza getPizzaByName(String name) throws PizzaNotFoundInMenuException {
+        Pizza p = null;
         for (Pizza pizza : pizze) {
             if (pizza.getName().equals(name)) {
-                return pizza;
+                //return pizza;
+                p = pizza;
             }
         }
-        System.err.println("No such pizza in the menù");
-        return null;
+        if (p == null) {
+            throw new PizzaNotFoundInMenuException("PizzaNotFound");
+        }
+        return p;
     }
 
 }

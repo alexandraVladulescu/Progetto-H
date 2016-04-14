@@ -31,7 +31,7 @@ public class Pizzeria {
         this.currentComanda = currentComanda;
     }
     
-    public void addPizza(String nome){
+    public void addPizza(String nome) throws PizzaNotFoundInMenuException{
         Pizza p=menuPizze.getPizzaByName(nome);
         if(p!=null){
             currentComanda.addProduct(p);
