@@ -42,7 +42,7 @@ public class MenuPizze {
             }
         }
         if (p == null) {
-            throw new PizzaNotFoundInMenuException("PizzaNotFound");
+            throw new PizzaNotFoundInMenuException("PIZZA NOT FOUND EXCEPTION");
         }
         return p;
     }
