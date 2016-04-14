@@ -8,4 +8,6 @@ import java.util.ArrayList;
  */
 public class ComandeManager {
     ArrayList<Comanda> comande;
+    
+    
 }
