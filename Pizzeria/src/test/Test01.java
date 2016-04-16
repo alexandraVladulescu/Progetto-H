@@ -11,6 +11,7 @@ import data.Comanda;
 import data.Pizza;
 import data.PizzaNotFoundInMenuException;
 import data.Pizzeria;
+import java.io.IOException;
 
 /**
  *
@@ -18,7 +19,7 @@ import data.Pizzeria;
  */
 public class Test01 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Pizzeria p = new Pizzeria();
         Client client = new Client("Mario", "Rossi", new Address("Lll", "ooo", "528"));
 

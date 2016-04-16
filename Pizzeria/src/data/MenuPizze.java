@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package data;
-
-import i_o.MenuPizzeReader;
+import i_o.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -14,23 +14,31 @@ import java.util.ArrayList;
  */
 public class MenuPizze {
 
-    private MenuPizzeReader menuReader;
+    AcquireMenu acquireMenu;
+    
+    // private MenuPizzeReader menuReader;
     private ArrayList<Pizza> pizze;
 
     public MenuPizze() {
-
-        menuReader = new MenuPizzeReader();
-        pizze = new ArrayList<Pizza>();
+        
+        acquireMenu = new AcquireXmlMenu();
+        //   menuReader = new MenuPizzeReader();
+        pizze = new ArrayList<>();
     }
+// ./databases/pizze.txt
+    //./databases/MenuPizze.xml
+    public void loadMenu() throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
+        acquireMenu.parseFile("./databases/MenuPizze.xml", "pizza");
+        ArrayList<Product> temp = new ArrayList<>();
+        temp = acquireMenu.getMenu();
+        for (Product temp1 : temp) {
+            pizze.add((Pizza) temp1);
 
-    public void loadMenu() {
-        pizze = menuReader.readFile();
-    }
-
-    public void printAllPizzas() {
-        for (Pizza pizza : pizze) {
-            System.out.println(pizza.toString());
         }
+    }
+
+    public ArrayList<Pizza> printAllPizzas() {
+        return pizze;
     }
 
     public Pizza getPizzaByName(String name) throws PizzaNotFoundInMenuException {

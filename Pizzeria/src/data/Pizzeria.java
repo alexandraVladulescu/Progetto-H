@@ -1,5 +1,6 @@
 package data;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +16,7 @@ public class Pizzeria {
     private Comanda currentComanda;
     private MenuPizze menuPizze;
 
-    public Pizzeria() {
+    public Pizzeria() throws IOException {
         
         loadMenus();
         currentComanda = new Comanda();
@@ -42,7 +43,7 @@ public class Pizzeria {
         return currentComanda;
     }
     
-    private void loadMenus(){
+    private void loadMenus() throws IOException{
         //Carico il Menù delle pizze
         menuPizze = new MenuPizze();
         menuPizze.loadMenu();
