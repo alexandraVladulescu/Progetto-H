@@ -49,13 +49,17 @@ public class Pizzeria {
         menuPizze.loadMenu(new XmlMenuLoader());
     }
 
-    public String getMenuPizze() {
+    public String printMenuPizze() {
         return "" + this.menuPizze.printAllPizzas() + "\n";
     }
 
 //    public void addComanda(Comanda c) {
 //        comandaList.add(c);
 //    }
+
+    public MenuPizze getMenuPizze() {
+        return menuPizze;
+    }
 
     public void confirmComanda() {
         comandeManager.addComanda(currentComanda);

@@ -43,5 +43,52 @@ and open the template in the editor.
             <nome>Capperi</nome>
         </ingredienti>
     </pizza>
+    <pizza> 
+        <nome>Funghi</nome>
+        <prezzo>5.5</prezzo>
+        <ingredienti>
+            <nome>Pomodoro</nome>
+            <nome>Mozzarella</nome>
+            <nome>Funghi</nome>
+        </ingredienti>
+    </pizza>
+    <pizza> 
+        <nome>Prosciutto e Funghi</nome>
+        <prezzo>6</prezzo>
+        <ingredienti>
+            <nome>Pomodoro</nome>
+            <nome>Mozzarella</nome>
+            <nome>Funghi</nome>
+            <nome>Prosciutto Cotto</nome>
+        </ingredienti>
+    </pizza>
+    <pizza> 
+        <nome>Pata Pizza</nome>
+        <prezzo>6</prezzo>
+        <ingredienti>
+            <nome>Pomodoro</nome>
+            <nome>Mozzarella</nome>
+            <nome>Patatine Fritte</nome>
+        </ingredienti>
+    </pizza>
+    <pizza> 
+        <nome>Viennese</nome>
+        <prezzo>5.5</prezzo>
+        <ingredienti>
+            <nome>Pomodoro</nome>
+            <nome>Mozzarella</nome>
+            <nome>Wurstel</nome>
+        </ingredienti>
+    </pizza>
+    <pizza> 
+        <nome>Bismark</nome>
+        <prezzo>7</prezzo>
+        <ingredienti>
+            <nome>Pomodoro</nome>
+            <nome>Mozzarella</nome>
+            <nome>Prosciutto Cotto</nome>
+            <nome>Uovo</nome>
+        </ingredienti>
+    </pizza>
 </menu_pizze>
 

@@ -25,7 +25,7 @@ public class TestPrimoCasoDUsoEstensioni {
         System.out.println("ISTANZIO PIZZERIA E CARICO I MENU PRESENTI \n");
         Pizzeria p = new Pizzeria();
         p.loadMenues();
-        System.out.println("\t MENU \t" + p.getMenuPizze() + "\t \n");
+        System.out.println("\t MENU \t" + p.printMenuPizze() + "\t \n");
 
         System.out.println(" IL CLIENTE CHIAMA \n");
         System.out.println("SETTO COMANDA CORRENTE VUOTA \n");
