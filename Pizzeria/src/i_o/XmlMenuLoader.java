@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package i_o;
+
 import data.*;
 
 import java.io.FileNotFoundException;
@@ -12,23 +13,23 @@ import java.io.FileNotFoundException;
  *
  * @author Francesco
  */
-public class AcquireTxtMenu extends AcquireMenu{
+public class XmlMenuLoader extends MenuLoader {
 
-    public AcquireTxtMenu() {
-        super();
-    }
     @Override
-     public FileProductReader getFileProductReader(String type) throws FileNotFoundException {
-         FileProductReader fileProductReader ;
+   
+       public ProductReaderFactory getFileProductReader(String type) throws FileNotFoundException {
+         ProductReaderFactory fileProductReader ;
         switch (type) {
             case "pizza":
-                fileProductReader = new PizzaTxtReader();
+                fileProductReader = new PizzeXmlReader();
                 break;
             case "drink":
-                fileProductReader = new DrinkTxtReader();
+                fileProductReader = new DrinkXmlReader();
                 break;
             default : fileProductReader = null;
         }
         return fileProductReader;
     }
-}
+    }
+    
+

@@ -27,8 +27,8 @@ public class MenuPizze {
     }
 // ./databases/pizze.txt
     //./databases/MenuPizze.xml
-    public void loadMenu(AcquireMenu acquireMenu) throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
-        acquireMenu.parseFile("pizza");
+    public void loadMenu(MenuLoader acquireMenu) throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
+        acquireMenu.fillProductList("pizza");
         ArrayList<Product> temp = new ArrayList<>();
         temp = acquireMenu.getMenu();
         for (Product temp1 : temp) {

@@ -14,28 +14,28 @@ import java.util.ArrayList;
  *
  * @author Francesco
  */
-public abstract class AcquireMenu {
+public abstract class MenuLoader {
 
-    ArrayList<Product> list = new ArrayList<>();
+    ArrayList<Product> productList = new ArrayList<>();
 
-    public AcquireMenu() {
+    public MenuLoader() {
 
     }
 
-    public void parseFile(String type) throws FileNotFoundException, IOException {
+    public void fillProductList(String type) throws FileNotFoundException, IOException {
 
-        FileProductReader fileProductReader;
+        ProductReaderFactory fileProductReader;
         Product product;
         fileProductReader = getFileProductReader(type);
         while (fileProductReader.hasNextProduct()) {
-            list.add(fileProductReader.getNextProduct());
+            productList.add(fileProductReader.getNextProduct());
         }
     }
 
     public ArrayList<Product> getMenu() {
-        return list;
+        return productList;
     }
 
-    abstract FileProductReader getFileProductReader(String type) throws FileNotFoundException;
+    abstract ProductReaderFactory getFileProductReader(String type) throws FileNotFoundException;
 
 }

@@ -42,7 +42,7 @@ public class Pizzeria {
     public void loadMenues() throws IOException {
         //Carico il Menù delle pizze
         menuPizze = new MenuPizze();
-        menuPizze.loadMenu(new AcquireXmlMenu());
+        menuPizze.loadMenu(new XmlMenuLoader());
     }
 
     public String getMenuPizze() {
