@@ -5,6 +5,7 @@
  */
 package gui;
 
+import data.Pizzeria;
 import java.awt.Color;
 import javax.swing.JPanel;
 
@@ -14,7 +15,11 @@ import javax.swing.JPanel;
  */
 public class ComandaPanel extends JPanel {
 
-    public ComandaPanel() {
+    private Pizzeria pizzeria;
+    
+    public ComandaPanel(Pizzeria pizzeria) {
+        
+        this.pizzeria = pizzeria;
         
         setBackground(Color.cyan);
         setVisible(true);

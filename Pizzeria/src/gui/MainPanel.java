@@ -30,8 +30,10 @@ public class MainPanel extends JPanel{
         try {
             pizzeria = new Pizzeria();
             
-            prPanel = new ProductPanel();
-            cmPanel = new ComandaPanel();
+            pizzeria.loadMenues();
+            
+            prPanel = new ProductPanel(pizzeria);
+            cmPanel = new ComandaPanel(pizzeria);
             
             setLayout(new BorderLayout());
             setBackground(java.awt.Color.BLACK);

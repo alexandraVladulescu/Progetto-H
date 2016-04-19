@@ -32,7 +32,7 @@ public class AcquireMenuTest {
         System.out.println("Test istanziando Pizzeria\n");
         Pizzeria pizzeria = new Pizzeria();
         pizzeria.loadMenues();
-        System.out.println(pizzeria.getMenuPizze());
+        System.out.println(pizzeria.printMenuPizze());
 
     }
 }

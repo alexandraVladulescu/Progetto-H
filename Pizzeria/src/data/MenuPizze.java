@@ -54,5 +54,13 @@ public class MenuPizze {
         }
         return p;
     }
+    
+    public int getMenuSize(){
+        return pizze.size();
+    }
+
+    public ArrayList<Pizza> getPizze() {
+        return pizze;
+    }
 
 }
