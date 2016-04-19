@@ -9,7 +9,7 @@ package data;
  *
  * @author Francesco
  */
-abstract class Product {
+abstract public class Product {
 
     private String name;
     private double price;

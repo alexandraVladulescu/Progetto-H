@@ -5,6 +5,7 @@
  */
 package data;
 
+import exceptions.ProductNotFoundException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -69,4 +70,23 @@ public class Comanda {
         this.client = client;
     }
 
+    public void removeProduct(String nomeProdcut) throws ProductNotFoundException {
+        Product prodottoTrovato = this.searchProdcutByName(nomeProdcut);
+        this.ordersList.remove(prodottoTrovato);
+    }
+
+    private Product searchProdcutByName(String nameProduct) throws ProductNotFoundException {
+        Product p = null;
+        for (Product ord : ordersList) {
+            if (ord.getName().equals(nameProduct)) {
+                p = ord;
+                break; //fa schifo
+
+            }
+        }
+        if (p == null) {
+            throw new ProductNotFoundException("\t NESSUN PRODOTTO TROVATO INERENTE A : \t" + nameProduct);
+        }
+        return p;
+    }
 }
