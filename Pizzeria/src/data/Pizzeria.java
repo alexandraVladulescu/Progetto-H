@@ -1,5 +1,8 @@
 package data;
 
+import exceptions.ProductNotFoundException;
+import exceptions.ComandaNotFoundException;
+import exceptions.PizzaNotFoundInMenuException;
 import i_o.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,18 +13,18 @@ import java.util.ArrayList;
  */
 public class Pizzeria {
 
-    ClientsManager clientManager;
-    ComandeManager comandeManager;
-    ProductsManager productsManager;
+    private ClientsManager clientManager;
+    private ComandeManager comandeManager;
+    private ProductsManager productsManager;
 
-    private ArrayList<Comanda> comandaList;
+ 
     private Comanda currentComanda;
     private MenuPizze menuPizze;
 
     public Pizzeria() throws IOException {
         comandeManager = new ComandeManager();
         currentComanda = new Comanda();
-        comandaList = new ArrayList<>();
+       
     }
 
     public void setCurrentComanda(Comanda currentComanda) {
@@ -49,9 +52,9 @@ public class Pizzeria {
         return "" + this.menuPizze.printAllPizzas() + "\n";
     }
 
-    public void addComanda(Comanda c) {
-        comandaList.add(c);
-    }
+//    public void addComanda(Comanda c) {
+//        comandaList.add(c);
+//    }
 
     public void confirmComanda() {
         comandeManager.addComanda(currentComanda);
