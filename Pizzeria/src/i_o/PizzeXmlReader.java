@@ -24,9 +24,9 @@ public class PizzeXmlReader implements FileProductReader {
     private NodeList pizzaList;
     private int indexList;
 //./databases/MenuPizze.xml
-    public PizzeXmlReader(String path) {
+    public PizzeXmlReader() {
 
-        xmlMenu = MyXmlParser.getDocument(path);
+        xmlMenu = MyXmlParser.getDocument("./databases/MenuPizze.xml");
          this.pizzaList = xmlMenu.getElementsByTagName("pizza");// HO LA STRUTTURA NODELIST
         indexList = 0;
     }

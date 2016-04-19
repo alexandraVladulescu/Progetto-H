@@ -14,21 +14,21 @@ import java.util.ArrayList;
  */
 public class MenuPizze {
 
-    AcquireMenu acquireMenu;
+    //AcquireMenu acquireMenu;
     
     // private MenuPizzeReader menuReader;
     private ArrayList<Pizza> pizze;
 
     public MenuPizze() {
         
-        acquireMenu = new AcquireXmlMenu();
+        //acquireMenu = new AcquireXmlMenu();
         //   menuReader = new MenuPizzeReader();
         pizze = new ArrayList<>();
     }
 // ./databases/pizze.txt
     //./databases/MenuPizze.xml
-    public void loadMenu() throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
-        acquireMenu.parseFile("./databases/MenuPizze.xml", "pizza");
+    public void loadMenu(AcquireMenu acquireMenu) throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
+        acquireMenu.parseFile("pizza");
         ArrayList<Product> temp = new ArrayList<>();
         temp = acquireMenu.getMenu();
         for (Product temp1 : temp) {

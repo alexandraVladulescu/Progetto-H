@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 class DrinkXmlReader implements FileProductReader {
 
-    public DrinkXmlReader(String path) {
+    public DrinkXmlReader() {
     }
 
     @Override

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package i_o;
+
 import data.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,18 +16,17 @@ import java.util.ArrayList;
  */
 public abstract class AcquireMenu {
 
-  
     ArrayList<Product> list = new ArrayList<>();
 
     public AcquireMenu() {
-        
+
     }
 
-    public void parseFile(String path, String type) throws FileNotFoundException, IOException {
+    public void parseFile(String type) throws FileNotFoundException, IOException {
 
         FileProductReader fileProductReader;
         Product product;
-        fileProductReader = getFileProductReader(path, type);
+        fileProductReader = getFileProductReader(type);
         while (fileProductReader.hasNextProduct()) {
             list.add(fileProductReader.getNextProduct());
         }
@@ -35,6 +35,7 @@ public abstract class AcquireMenu {
     public ArrayList<Product> getMenu() {
         return list;
     }
-    abstract FileProductReader getFileProductReader(String path,String type) throws FileNotFoundException;
+
+    abstract FileProductReader getFileProductReader(String type) throws FileNotFoundException;
 
 }

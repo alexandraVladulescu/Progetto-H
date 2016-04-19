@@ -17,14 +17,14 @@ public class AcquireXmlMenu extends AcquireMenu {
 
     @Override
    
-       public FileProductReader getFileProductReader(String path, String type) throws FileNotFoundException {
+       public FileProductReader getFileProductReader(String type) throws FileNotFoundException {
          FileProductReader fileProductReader ;
         switch (type) {
             case "pizza":
-                fileProductReader = new PizzeXmlReader(path);
+                fileProductReader = new PizzeXmlReader();
                 break;
             case "drink":
-                fileProductReader = new DrinkXmlReader(path);
+                fileProductReader = new DrinkXmlReader();
                 break;
             default : fileProductReader = null;
         }

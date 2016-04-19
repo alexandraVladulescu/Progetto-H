@@ -18,14 +18,14 @@ public class AcquireTxtMenu extends AcquireMenu{
         super();
     }
     @Override
-     public FileProductReader getFileProductReader(String path, String type) throws FileNotFoundException {
+     public FileProductReader getFileProductReader(String type) throws FileNotFoundException {
          FileProductReader fileProductReader ;
         switch (type) {
             case "pizza":
-                fileProductReader = new PizzaTxtReader(path);
+                fileProductReader = new PizzaTxtReader();
                 break;
             case "drink":
-                fileProductReader = new DrinkTxtReader(path);
+                fileProductReader = new DrinkTxtReader();
                 break;
             default : fileProductReader = null;
         }

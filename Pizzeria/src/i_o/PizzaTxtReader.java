@@ -19,10 +19,10 @@ public class PizzaTxtReader implements FileProductReader {
 
     private FileReader f;
     private BufferedReader buffer;
-    String line = "";
+     private String line = "";
 
-    public PizzaTxtReader(String path) throws FileNotFoundException {
-        f = new FileReader(path);
+    public PizzaTxtReader() throws FileNotFoundException {
+        f = new FileReader("./databases/pizze.txt");
         buffer = new BufferedReader(f);
 
     }
@@ -48,7 +48,7 @@ public class PizzaTxtReader implements FileProductReader {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setLine(String line) {
+    private void setLine(String line) {
         this.line = line;
     }
 

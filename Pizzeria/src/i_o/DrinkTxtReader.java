@@ -12,7 +12,7 @@ import data.*;
  */
 public class DrinkTxtReader implements FileProductReader {
 
-    public DrinkTxtReader(String path) {
+    public DrinkTxtReader() {
     }
 
     @Override
