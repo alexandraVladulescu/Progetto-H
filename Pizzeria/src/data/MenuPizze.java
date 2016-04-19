@@ -27,10 +27,10 @@ public class MenuPizze {
     }
 // ./databases/pizze.txt
     //./databases/MenuPizze.xml
-    public void loadMenu(MenuLoader acquireMenu) throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
-        acquireMenu.fillProductList("pizza");
+    public void loadMenu(MenuLoader loader) throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
+        loader.fillProductList("pizza");
         ArrayList<Product> temp = new ArrayList<>();
-        temp = acquireMenu.getMenu();
+        temp = loader.getMenu();
         for (Product temp1 : temp) {
             pizze.add((Pizza) temp1);
 
