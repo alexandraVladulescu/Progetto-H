@@ -6,6 +6,7 @@
 package test;
 
 import data.MenuPizze;
+import data.Pizzeria;
 import i_o.AcquireTxtMenu;
 import i_o.AcquireXmlMenu;
 import java.io.IOException;
@@ -15,19 +16,23 @@ import java.io.IOException;
  * @author Francesco
  */
 public class AcquireMenuTest {
+
     // ./databases/pizze.txt
     // ./databases/MenuPizze.xml
+
     public static void main(String[] args) throws IOException {
-      MenuPizze menuPizze = new MenuPizze();
-      menuPizze.loadMenu(new AcquireTxtMenu(),"./databases/pizze.txt");
+        System.out.println("Test istanziando un menuPizze dal Main \n");
+        MenuPizze menuPizze = new MenuPizze();
+        menuPizze.loadMenu(new AcquireTxtMenu());
         System.out.println(menuPizze.printAllPizzas());
-        
-          menuPizze.loadMenu(new AcquireXmlMenu(),"./databases/MenuPizze.xml");
+
+        menuPizze.loadMenu(new AcquireXmlMenu());
         System.out.println(menuPizze.printAllPizzas());
-        
-        
-        
-        
-        
+
+        System.out.println("Test istanziando Pizzeria\n");
+        Pizzeria pizzeria = new Pizzeria();
+        pizzeria.loadMenus();
+        System.out.println(pizzeria.getMenuPizze());
+
     }
 }
