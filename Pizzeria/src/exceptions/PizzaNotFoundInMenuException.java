@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data;
+package exceptions;
 
 /**
  *
  * @author Francesco
  */
-public class ProductNotFoundException extends Exception {
+public class PizzaNotFoundInMenuException extends Exception {
 
-    public ProductNotFoundException(String message) {
+    public PizzaNotFoundInMenuException(String message) {
         super(message);
+        printStackTrace();
     }
-
+    
 }

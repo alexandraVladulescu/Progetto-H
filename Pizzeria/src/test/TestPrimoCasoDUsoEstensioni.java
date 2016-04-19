@@ -8,10 +8,10 @@ package test;
 import data.Address;
 import data.Client;
 import data.Comanda;
-import data.ComandaNotFoundException;
-import data.PizzaNotFoundInMenuException;
+import exceptions.ComandaNotFoundException;
+import exceptions.PizzaNotFoundInMenuException;
 import data.Pizzeria;
-import data.ProductNotFoundException;
+import exceptions.ProductNotFoundException;
 import java.io.IOException;
 
 /**

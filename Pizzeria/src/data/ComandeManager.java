@@ -1,5 +1,6 @@
 package data;
 
+import exceptions.ComandaNotFoundException;
 import java.util.ArrayList;
 
 /**

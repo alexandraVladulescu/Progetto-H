@@ -8,7 +8,7 @@ package test;
 import data.Address;
 import data.Client;
 import data.Comanda;
-import data.PizzaNotFoundInMenuException;
+import exceptions.PizzaNotFoundInMenuException;
 import data.Pizzeria;
 import java.io.IOException;
 
@@ -20,7 +20,7 @@ public class TestPizzeria {
     public static void main(String[] args) throws IOException {
         Pizzeria pizzeria = new Pizzeria();
         pizzeria.loadMenues();
-        pizzeria.addComanda(new Comanda());
+        pizzeria.setCurrentComanda(new Comanda());
         Client client = new Client("Mario", "Rossi", new Address("Lll", "ooo", "528"));
         pizzeria.setClientToComanda(client);
         

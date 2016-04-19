@@ -9,7 +9,7 @@ import data.Address;
 import data.Client;
 import data.Comanda;
 import data.Pizza;
-import data.PizzaNotFoundInMenuException;
+import exceptions.PizzaNotFoundInMenuException;
 import data.Pizzeria;
 import java.io.IOException;
 
