@@ -5,15 +5,23 @@
  */
 package data;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Francesco
  */
 public class Pizza extends Product {
 
+    private ArrayList<Ingredient> ingredients;
+    
     public Pizza(String name, double price) {
         super(name, price);
 
+    }
+    
+    public void addIngredient(Ingredient ingredient){
+        ingredients.add(ingredient);
     }
 
     

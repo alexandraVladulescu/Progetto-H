@@ -15,6 +15,7 @@ public class Pizzeria {
 
     private ClientsManager clientManager;
     private ComandeManager comandeManager;
+    private IngredientsManager ingredientsManager;
     private ProductsManager productsManager;
 
  
