@@ -13,6 +13,7 @@ public class PizzaNotFoundInMenuException extends Exception {
 
     public PizzaNotFoundInMenuException(String message) {
         super(message);
+        printStackTrace();
     }
     
 }

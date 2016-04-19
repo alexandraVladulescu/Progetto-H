@@ -18,7 +18,7 @@ import org.w3c.dom.*;
  *
  * @author User
  */
-public class PizzeXmlReader implements FileProductReader {
+public class PizzeXmlReader implements ProductReaderFactory {
 
     private Document xmlMenu;
     private NodeList pizzaList;
@@ -27,7 +27,7 @@ public class PizzeXmlReader implements FileProductReader {
     public PizzeXmlReader() {
 
         xmlMenu = MyXmlParser.getDocument("./databases/MenuPizze.xml");
-         this.pizzaList = xmlMenu.getElementsByTagName("pizza");// HO LA STRUTTURA NODELIST
+        this.pizzaList = xmlMenu.getElementsByTagName("pizza");// HO LA STRUTTURA NODELIST
         indexList = 0;
     }
 
@@ -42,6 +42,7 @@ public class PizzeXmlReader implements FileProductReader {
         String price = attrpizza.item(1).getFirstChild().getNodeValue().trim();
 
         indexList++;
+        
         return new Pizza(name, Double.valueOf(price));
     }
 
@@ -54,30 +55,5 @@ public class PizzeXmlReader implements FileProductReader {
             return false;
         }
     }
-                            
-//    public ArrayList<Pizza> readFile() {
-//
-//        ArrayList<Pizza> pizze = new ArrayList<Pizza>();
-//
-//        xmlMenu = MyXmlParser.getDocument("./databases/MenuPizze.xml");
-//
-//        NodeList pizzaList = xmlMenu.getElementsByTagName("pizza");
-//
-//        for (int i = 0; i < pizzaList.getLength(); i++) {
-//
-//            Node pizza = pizzaList.item(i);
-//            //Livello <pizza><all children>
-//            NodeList attrpizza = pizza.getChildNodes();
-//
-//            String name = attrpizza.item(0).getFirstChild().getNodeValue().trim();
-//
-//            String price = attrpizza.item(1).getFirstChild().getNodeValue().trim();
-//
-//            pizze.add(new Pizza(name, Double.valueOf(price)));
-//
-//            //TODO: gestione ingredienti
-//        }
-//        return pizze;
-//    }
 
 }

@@ -15,11 +15,11 @@ import java.util.ArrayList;
  *
  * @author Francesco
  */
-public class PizzaTxtReader implements FileProductReader {
+public class PizzaTxtReader implements ProductReaderFactory {
 
     private FileReader f;
     private BufferedReader buffer;
-     private String line = "";
+    private String line = "";
 
     public PizzaTxtReader() throws FileNotFoundException {
         f = new FileReader("./databases/pizze.txt");

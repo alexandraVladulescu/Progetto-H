@@ -11,7 +11,7 @@ import java.io.IOException;
  *
  * @author Francesco
  */
-class DrinkXmlReader implements FileProductReader {
+class DrinkXmlReader implements ProductReaderFactory {
 
     public DrinkXmlReader() {
     }

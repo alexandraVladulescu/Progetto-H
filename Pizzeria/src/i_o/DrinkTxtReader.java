@@ -10,7 +10,7 @@ import data.*;
  *
  * @author Francesco
  */
-public class DrinkTxtReader implements FileProductReader {
+public class DrinkTxtReader implements ProductReaderFactory {
 
     public DrinkTxtReader() {
     }

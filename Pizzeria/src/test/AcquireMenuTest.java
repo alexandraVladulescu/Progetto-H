@@ -7,8 +7,8 @@ package test;
 
 import data.MenuPizze;
 import data.Pizzeria;
-import i_o.AcquireTxtMenu;
-import i_o.AcquireXmlMenu;
+import i_o.TxtMenuLoader;
+import i_o.XmlMenuLoader;
 import java.io.IOException;
 
 /**
@@ -23,10 +23,10 @@ public class AcquireMenuTest {
     public static void main(String[] args) throws IOException {
         System.out.println("Test istanziando un menuPizze dal Main \n");
         MenuPizze menuPizze = new MenuPizze();
-        menuPizze.loadMenu(new AcquireTxtMenu());
+        menuPizze.loadMenu(new TxtMenuLoader());
         System.out.println(menuPizze.printAllPizzas());
 
-        menuPizze.loadMenu(new AcquireXmlMenu());
+        menuPizze.loadMenu(new XmlMenuLoader());
         System.out.println(menuPizze.printAllPizzas());
 
         System.out.println("Test istanziando Pizzeria\n");

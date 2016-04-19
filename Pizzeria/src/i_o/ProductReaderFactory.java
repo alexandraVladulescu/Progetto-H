@@ -11,7 +11,8 @@ import java.io.IOException;
  *
  * @author Francesco
  */
-public interface FileProductReader {
+public interface ProductReaderFactory {
+    
     abstract Product getNextProduct() throws IOException;
     abstract boolean hasNextProduct() throws IOException;
     
