@@ -8,33 +8,31 @@ package test;
 import data.Address;
 import data.Client;
 import data.Comanda;
-import data.Pizza;
 import data.PizzaNotFoundInMenuException;
 import data.Pizzeria;
+import java.io.IOException;
 
 /**
  *
- * @author User
+ * @author Francesco
  */
-public class Test01 {
-
-    public static void main(String[] args) {
-        Pizzeria p = new Pizzeria();
+public class TestPizzeria {
+    public static void main(String[] args) throws IOException {
+        Pizzeria pizzeria = new Pizzeria();
+        pizzeria.loadMenues();
+        pizzeria.addComanda(new Comanda());
         Client client = new Client("Mario", "Rossi", new Address("Lll", "ooo", "528"));
-
-        p.createComanda(new Comanda());
-        try {
-
-            p.addPizza("Margherita");
-            p.addPizza("Capricciosa");
-            p.addPizza("Gozza");
+        pizzeria.setClientToComanda(client);
+        
+         try {
+                System.out.println("AGGIUNGO PRODOTTI ALLA COMANDA CORRENTE \n");
+            pizzeria.addPizza("Margherita");
+            pizzeria.addPizza("Capricciosa");
 
         } catch (PizzaNotFoundInMenuException e) {
             System.out.println(e.getMessage());
         }
-        p.getCurrentComanda().setClient(client);
-        System.out.println(p.getCurrentComanda().toString());
-
+        
+        
     }
-
 }
