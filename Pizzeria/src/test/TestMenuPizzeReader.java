@@ -1,6 +1,10 @@
 
 import data.Pizza;
-import i_o.MenuPizzeReader;
+import data.Product;
+import i_o.MenuLoader;
+
+import i_o.XmlMenuLoader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /*
@@ -16,15 +20,16 @@ import java.util.ArrayList;
 public class TestMenuPizzeReader {
 
    
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException  {
+        XmlMenuLoader xmlMenuLoader = new XmlMenuLoader();
+        ArrayList<Product> pizze = new ArrayList<>();
         
-        ArrayList<Pizza> pizze = new ArrayList<Pizza>();
-        
-        MenuPizzeReader reader = new MenuPizzeReader();
+    
          
-        pizze = reader.readFile();
-         
-        for (Pizza pizza : pizze) {
+//        pizze = reader.readFile();
+        xmlMenuLoader.fillProductList("pizza");
+         pizze = xmlMenuLoader.getMenu();
+        for (Product pizza : pizze) {
             System.out.println(pizza.toString());
         }
     }
