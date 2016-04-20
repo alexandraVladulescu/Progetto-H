@@ -11,6 +11,7 @@ import data.Comanda;
 import data.Pizza;
 import exceptions.PizzaNotFoundInMenuException;
 import data.Pizzeria;
+import i_o_V1.FormatType;
 import java.io.IOException;
 
 /**
@@ -24,7 +25,7 @@ public class TestPrimoCasoDUso {
         
         System.out.println("ISTANZIO PIZZERIA E CARICO I MENU PRESENTI \n");
         Pizzeria p = new Pizzeria();
-        p.loadMenues();
+        p.loadMenuPizza("./databases/MenuPizze.xml", FormatType.XML);
         
         System.out.println(" IL CLIENTE CHIAMA \n");
         System.out.println("SETTO COMANDA CORRENTE VUOTA \n");

@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package data;
+
 import exceptions.PizzaNotFoundInMenuException;
 import i_o.*;
+import i_o_V1.FormatType;
+import i_o_V1.MenuPizzaLoader;
+import i_o_V1.PizzaReaderFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,26 +20,23 @@ import java.util.ArrayList;
 public class MenuPizze {
 
     //AcquireMenu acquireMenu;
-    
     // private MenuPizzeReader menuReader;
     private ArrayList<Pizza> pizze;
 
     public MenuPizze() {
-        
-        //acquireMenu = new AcquireXmlMenu();
-        //   menuReader = new MenuPizzeReader();
+
         pizze = new ArrayList<>();
     }
 // ./databases/pizze.txt
     //./databases/MenuPizze.xml
-    public void loadMenu(MenuLoader loader) throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
-        loader.fillProductList("pizza");
-        ArrayList<Product> temp = new ArrayList<>();
-        temp = loader.getMenu();
-        for (Product temp1 : temp) {
-            pizze.add((Pizza) temp1);
 
+    public void loadMenu(String path, FormatType type) throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
+        MenuPizzaLoader menuPizzaLoader = new MenuPizzaLoader();
+        PizzaReaderFactory Reader = menuPizzaLoader.getFilePizzaReader(path, type);
+        while (Reader.hasNextProduct()) {
+            pizze.add(Reader.getNextProduct());
         }
+
     }
 
     public ArrayList<Pizza> printAllPizzas() {
@@ -55,8 +56,8 @@ public class MenuPizze {
         }
         return p;
     }
-    
-    public int getMenuSize(){
+
+    public int getMenuSize() {
         return pizze.size();
     }
 

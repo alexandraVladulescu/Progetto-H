@@ -12,6 +12,7 @@ import exceptions.ComandaNotFoundException;
 import exceptions.PizzaNotFoundInMenuException;
 import data.Pizzeria;
 import exceptions.ProductNotFoundException;
+import i_o_V1.FormatType;
 import java.io.IOException;
 
 /**
@@ -24,7 +25,7 @@ public class TestPrimoCasoDUsoEstensioni {
 
         System.out.println("ISTANZIO PIZZERIA E CARICO I MENU PRESENTI \n");
         Pizzeria p = new Pizzeria();
-        p.loadMenues();
+        p.loadMenuPizza("./databases/MenuPizze.xml", FormatType.XML);
         System.out.println("\t MENU \t" + p.printMenuPizze() + "\t \n");
 
         System.out.println(" IL CLIENTE CHIAMA \n");

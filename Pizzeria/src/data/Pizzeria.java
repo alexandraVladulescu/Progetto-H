@@ -4,6 +4,7 @@ import exceptions.ProductNotFoundException;
 import exceptions.ComandaNotFoundException;
 import exceptions.PizzaNotFoundInMenuException;
 import i_o.*;
+import i_o_V1.FormatType;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -43,10 +44,10 @@ public class Pizzeria {
         return currentComanda.toString();
     }
 
-    public void loadMenues() throws IOException {
+    public void loadMenuPizza(String path,FormatType type) throws IOException {
         //Carico il Menù delle pizze
         menuPizze = new MenuPizze();
-        menuPizze.loadMenu(new XmlMenuLoader());
+        menuPizze.loadMenu(path,type);
     }
 
     public String printMenuPizze() {

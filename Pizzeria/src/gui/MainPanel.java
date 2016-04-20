@@ -6,6 +6,7 @@
 package gui;
 
 import data.Pizzeria;
+import i_o_V1.FormatType;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -30,7 +31,7 @@ public class MainPanel extends JPanel{
         try {
             pizzeria = new Pizzeria();
             
-            pizzeria.loadMenues();
+             pizzeria.loadMenuPizza("./databases/MenuPizze.xml", FormatType.XML);
             
             prPanel = new ProductPanel(pizzeria);
             cmPanel = new ComandaPanel(pizzeria);

@@ -9,13 +9,14 @@ import data.MenuPizze;
 import data.Pizzeria;
 import i_o.TxtMenuLoader;
 import i_o.XmlMenuLoader;
+import i_o_V1.FormatType;
 import java.io.IOException;
 
 /**
  *
  * @author Francesco
  */
-public class AcquireMenuTest {
+public class LoaderMenuTest {
 
     // ./databases/pizze.txt
     // ./databases/MenuPizze.xml
@@ -23,16 +24,13 @@ public class AcquireMenuTest {
     public static void main(String[] args) throws IOException {
         System.out.println("Test istanziando un menuPizze dal Main \n");
         MenuPizze menuPizze = new MenuPizze();
-        menuPizze.loadMenu(new TxtMenuLoader());
+        menuPizze.loadMenu("./databases/MenuPizze.xml", FormatType.XML);
         System.out.println(menuPizze.printAllPizzas());
 
-        menuPizze.loadMenu(new XmlMenuLoader());
+        menuPizze.loadMenu("./databases/pizze.txt", FormatType.TXT);
         System.out.println(menuPizze.printAllPizzas());
 
-        System.out.println("Test istanziando Pizzeria\n");
-        Pizzeria pizzeria = new Pizzeria();
-        pizzeria.loadMenues();
-        System.out.println(pizzeria.printMenuPizze());
+       
 
     }
 }

@@ -1,3 +1,5 @@
+package test;
+
 
 import data.Pizza;
 import data.Product;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
  */
 public class TestMenuPizzeReader {
 
+    // ./databases/pizze.txt
+    // ./databases/MenuPizze.xml
    
     public static void main(String[] args) throws IOException  {
         XmlMenuLoader xmlMenuLoader = new XmlMenuLoader();
