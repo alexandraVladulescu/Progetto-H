@@ -18,7 +18,7 @@ public class MainFrame {
         MainPanel panel = new MainPanel();
         
         JFrame fr = new JFrame("Pizzeria");
-        fr.setSize(500, 500);
+        fr.setSize(600, 600);
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fr.add(panel);
         fr.setVisible(true);

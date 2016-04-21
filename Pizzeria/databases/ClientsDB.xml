@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE clienti [ 
+<!ELEMENT menu_pizze (cliente)+>
+<!ELEMENT cliente (nome, cognome, telefono, indirizzo)>
+<!ELEMENT nome (#PCDATA)>
+<!ELEMENT cognome (#PCDATA)>
+<!ELEMENT telefono (#PCDATA)>
+<!ELEMENT indirizzo (città, via, numero_civico)>
+<!ELEMENT città (#PCDATA)>
+<!ELEMENT via (#PCDATA)>
+<!ELEMENT numero_civico (#PCDATA)>
+]>
+
+<clienti>
+    <cliente>
+        <nome>Marco</nome>
+        <cognome>Rossi</cognome>
+        <telefono>3334353633</telefono>
+        <indirizzo>
+            <città>Milano</città>
+            <via>Viale Liguria</via>
+            <numero_civico>47</numero_civico>
+        </indirizzo>
+    </cliente>
+        <cliente>
+        <nome>Giacomo</nome>
+        <cognome>Cicciovalenti</cognome>
+        <telefono>3476489200</telefono>
+        <indirizzo>
+            <città>Milano</città>
+            <via>Via Watteau</via>
+            <numero_civico>15</numero_civico>
+        </indirizzo>
+    </cliente>
+        <cliente>
+        <nome>Gina</nome>
+        <cognome>Lava</cognome>
+        <telefono>3356485741</telefono>
+        <indirizzo>
+            <città>Milano</città>
+            <via>Piazzale Lotto</via>
+            <numero_civico>56</numero_civico>
+        </indirizzo>
+    </cliente>
+        <cliente>
+        <nome>Umberto</nome>
+        <cognome>Smaila</cognome>
+        <telefono>3469586453</telefono>
+        <indirizzo>
+            <città>Milano</città>
+            <via>Piazza San Babila</via>
+            <numero_civico>666</numero_civico>
+        </indirizzo>
+    </cliente>
+        <cliente>
+        <nome>Maccio</nome>
+        <cognome>Capatonda</cognome>
+        <telefono>3334596258</telefono>
+        <indirizzo>
+            <città>Milano</città>
+            <via>Via Vigevano</via>
+            <numero_civico>96</numero_civico>
+        </indirizzo>
+    </cliente>
+    
+</clienti>

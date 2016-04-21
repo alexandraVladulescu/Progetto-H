@@ -31,7 +31,7 @@ public class MainPanel extends JPanel{
         try {
             pizzeria = new Pizzeria();
             
-             pizzeria.loadMenuPizza("./databases/MenuPizze.xml", FormatType.XML);
+            pizzeria.loadMenuPizza("./databases/MenuPizze.xml", FormatType.XML);
             
             prPanel = new ProductPanel(pizzeria);
             cmPanel = new ComandaPanel(pizzeria);

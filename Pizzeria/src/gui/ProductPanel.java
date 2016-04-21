@@ -8,6 +8,7 @@ package gui;
 import data.Pizza;
 import data.Pizzeria;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -35,6 +36,7 @@ public class ProductPanel extends JPanel{
         createProductGrid(n-1);
         
         setLayout(new GridLayout(lineNumber, lineNumber-1));
+        setPreferredSize(new Dimension(300, 200));
         setBackground(Color.yellow);
         setVisible(true);
     }

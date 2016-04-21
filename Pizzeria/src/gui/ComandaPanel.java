@@ -5,9 +5,14 @@
  */
 package gui;
 
+import data.Address;
+import data.Client;
+import data.Comanda;
 import data.Pizzeria;
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -17,12 +22,27 @@ public class ComandaPanel extends JPanel {
 
     private Pizzeria pizzeria;
     
+    private JTextArea comandaTextArea;
+    
     public ComandaPanel(Pizzeria pizzeria) {
         
         this.pizzeria = pizzeria;
         
+        comandaTextArea = new JTextArea();
+        
         setBackground(Color.cyan);
+        setPreferredSize(new Dimension(300, 200));
         setVisible(true);
+        
+        createComanda();
+        
+        add(comandaTextArea);
+    }
+    
+    public void createComanda(){
+        pizzeria.setCurrentComanda(new Comanda());
+        pizzeria.setClientToComanda(new Client("Zio", "Simo","3337736974", new Address("MI", "Città del Fumo", "AK47")));
+        comandaTextArea.setText(pizzeria.showComandaDetails());
     }
 
 }
