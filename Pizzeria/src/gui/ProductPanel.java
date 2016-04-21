@@ -10,6 +10,7 @@ import data.Pizzeria;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import javafx.scene.layout.Border;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -37,7 +38,7 @@ public class ProductPanel extends JPanel{
         
         setLayout(new GridLayout(lineNumber, lineNumber-1));
         setPreferredSize(new Dimension(300, 200));
-        setBackground(Color.yellow);
+        setBackground(new Color(234, 230, 202));
         setVisible(true);
     }
     
@@ -47,6 +48,7 @@ public class ProductPanel extends JPanel{
         
         for (int i = 0; i < n; i++) {
             pizze[i] = new JButton(pizzeria.getMenuPizze().getPizze().get(i).getName());
+            pizze[i].setBackground(new Color(172, 255, 175));
             add(pizze[i]);
         }
     }

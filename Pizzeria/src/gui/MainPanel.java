@@ -37,7 +37,7 @@ public class MainPanel extends JPanel{
             cmPanel = new ComandaPanel(pizzeria);
             
             setLayout(new BorderLayout());
-            setBackground(java.awt.Color.BLACK);
+            setBackground(new java.awt.Color(195, 176, 145));
             
             add(prPanel, BorderLayout.WEST);
             add(cmPanel, BorderLayout.EAST);

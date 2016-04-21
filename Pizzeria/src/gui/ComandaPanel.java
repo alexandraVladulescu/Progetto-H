@@ -30,7 +30,7 @@ public class ComandaPanel extends JPanel {
         
         comandaTextArea = new JTextArea();
         
-        setBackground(Color.cyan);
+        setBackground(new Color(234, 230, 202));
         setPreferredSize(new Dimension(300, 200));
         setVisible(true);
         
