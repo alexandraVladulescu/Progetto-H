@@ -32,7 +32,7 @@ public class TestPrimoCasoDUso {
         p.setCurrentComanda(new Comanda());
 
         System.out.println("ISTANZIO UN CLIENTE (SENZA AGGIUNGERLO A NESSUNA LISTA_CLIENT)\n");
-        Client client = new Client("Mario", "Rossi", new Address("Lll", "ooo", "528"));
+        Client client = new Client("Mario", "Rossi","3335568544", new Address("Lll", "ooo", "528"));
         
         System.out.println("INTESTO LA COMANDA AL CLIENTE \n");
         p.setClientToComanda(client);
