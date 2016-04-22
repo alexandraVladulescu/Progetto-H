@@ -10,7 +10,9 @@ import data.Client;
 import data.Comanda;
 import data.Pizzeria;
 import java.awt.Color;
-import java.awt.Dimension;
+import java.util.Observer;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -18,25 +20,23 @@ import javax.swing.JTextArea;
  *
  * @author User
  */
-public class ComandaPanel extends JPanel {
-
+public class ComandaPanel extends JPanel{
+    
     private Pizzeria pizzeria;
     
     private JTextArea comandaTextArea;
-    
-    public ComandaPanel(Pizzeria pizzeria) {
+
+    public ComandaPanel(Pizzeria pizzeria){
         
-        this.pizzeria = pizzeria;
+       this.pizzeria=pizzeria;
+        
+        setBackground(new Color(234, 230, 202));
         
         comandaTextArea = new JTextArea();
         
-        setBackground(new Color(234, 230, 202));
-        setPreferredSize(new Dimension(300, 200));
-        setVisible(true);
+        add(comandaTextArea);
         
         createComanda();
-        
-        add(comandaTextArea);
     }
     
     public void createComanda(){
@@ -45,5 +45,8 @@ public class ComandaPanel extends JPanel {
         comandaTextArea.setText(pizzeria.showComandaDetails());
     }
 
-}
+    public void update(){
+        comandaTextArea.setText(pizzeria.showComandaDetails());
+    }
     
+}
