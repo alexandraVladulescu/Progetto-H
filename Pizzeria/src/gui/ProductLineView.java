@@ -5,10 +5,10 @@
  */
 package gui;
 
-import com.sun.prism.j2d.J2DPipeline;
 import data.Product;
 import java.awt.GridLayout;
-import javafx.scene.control.Spinner;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,11 +29,11 @@ public class ProductLineView extends JPanel{
     public ProductLineView(Product product) {
         this.product=product;
         
-        name=new JLabel();
-        price=new JLabel();
+        name=new JLabel(product.getName());
+        price=new JLabel(""+product.getPrice());
         edit=new JButton("Edit");
         delete=new JButton("Delete");
-        
+
         setLayout(new GridLayout(2, 2));
         
         add(name);
@@ -41,7 +41,6 @@ public class ProductLineView extends JPanel{
         add(edit);
         add(delete);
     }
-    
-    
+
     
 }

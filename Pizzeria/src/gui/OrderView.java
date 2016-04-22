@@ -69,6 +69,8 @@ public class OrderView extends JPanel implements Observer{
     @Override
     public void update(Observable o, Object o1) {
         cmPanel.update();
+        dtPanel.update();
+        repaint();
         
     }
     

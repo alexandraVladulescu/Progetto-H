@@ -99,4 +99,11 @@ public class Comanda extends Observable{
     private String getTime(){
         return deliveryTime.getTime().toString();
     }
+
+    public ArrayList<Product> getOrdersList() {
+        return ordersList;
+    }
+    
+    
 }
+
