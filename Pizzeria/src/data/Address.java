@@ -24,6 +24,10 @@ public class Address {
 
     }
 
+    public Address(String mi, String città_del_Fumo, String string, String aK47) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getLocalityName() {
         return localityName;
     }

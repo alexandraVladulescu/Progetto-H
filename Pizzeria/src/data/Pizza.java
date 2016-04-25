@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Francesco
  */
-public class Pizza extends Product {
+public class Pizza extends Product implements Comparable<Pizza>{
 
     private ArrayList<Ingredient> ingredients;
     
@@ -22,6 +22,11 @@ public class Pizza extends Product {
     
     public void addIngredient(Ingredient ingredient){
         ingredients.add(ingredient);
+    }
+
+    @Override
+    public int compareTo(Pizza t) {
+      return getName().compareToIgnoreCase(t.getName());
     }
 
     

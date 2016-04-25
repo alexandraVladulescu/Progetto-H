@@ -7,6 +7,7 @@ import i_o.*;
 import i_o_V1.FormatType;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observer;
 
 /**
  *
@@ -86,4 +87,10 @@ public class Pizzeria {
         this.addPizza(nomePizza);
 
     }
+
+    public Comanda getCurrentComanda() {
+        return currentComanda;
+    }
+    
+    
 }

@@ -6,6 +6,8 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
+import oracle.jrockit.jfr.JFR;
 
 /**
  *
@@ -15,12 +17,16 @@ public class MainFrame {
     
     public static void main(String[] args) {
         
-        MainPanel panel = new MainPanel();
+        OrderView panel = new OrderView();
+        
+        JTabbedPane selectView = new JTabbedPane();
+        selectView.addTab("Crea Nuovo Ordine", panel);
         
         JFrame fr = new JFrame("Pizzeria");
-        fr.setSize(500, 500);
+        //fr.setSize(700, 700);
+        fr.setExtendedState(JFrame.MAXIMIZED_BOTH);
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fr.add(panel);
+        fr.add(selectView);
         fr.setVisible(true);
     }
     

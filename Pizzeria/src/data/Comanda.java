@@ -9,30 +9,34 @@ import exceptions.ProductNotFoundException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author Francesco
  */
-public class Comanda {
+public class Comanda extends Observable{
 
     private ArrayList<Product> ordersList = new ArrayList<Product>();
     private Client client;
     private Calendar deliveryTime = new GregorianCalendar();
 
-    public Comanda() {
+    public Comanda(){
     }
 
     public void addProduct(Product p) {
         this.ordersList.add(p);
+        setChanged();
+        notifyObservers();
     }
 
     @Override
     public String toString() {
         return "CLIENT >> " + this.client.toString() + "\t"
-                + "OraDiConsegna " + this.deliveryTime + "\n"
-                + "Ordini : \n" + this.getOrderedProducts() + "\n "
-                + "Total : " + this.calculateTotalPrice();
+                + "\n\nOra di Consegna " + getTime() + "\n"
+                + "\nOrdini : \n" + this.getOrderedProducts() + "\n "
+                + "\nTotal : " + this.calculateTotalPrice();
     }
 
     public String getOrderedProducts() {
@@ -73,6 +77,8 @@ public class Comanda {
     public void removeProduct(String nomeProdcut) throws ProductNotFoundException {
         Product prodottoTrovato = this.searchProdcutByName(nomeProdcut);
         this.ordersList.remove(prodottoTrovato);
+        setChanged();
+        notifyObservers();
     }
 
     private Product searchProdcutByName(String nameProduct) throws ProductNotFoundException {
@@ -89,4 +95,15 @@ public class Comanda {
         }
         return p;
     }
+    
+    private String getTime(){
+        return deliveryTime.getTime().toString();
+    }
+
+    public ArrayList<Product> getOrdersList() {
+        return ordersList;
+    }
+    
+    
 }
+

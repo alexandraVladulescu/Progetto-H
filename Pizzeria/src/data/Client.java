@@ -13,11 +13,13 @@ public class Client {
 
     private String name;
     private String surname;
+    private String telephone;
     private Address address;
 
-    public Client(String name, String surname, Address address) {
+    public Client(String name, String surname, String telephone, Address address) {
         this.name = name;
         this.surname = surname;
+        this.telephone=telephone;
         this.address = address;
     }
 
@@ -27,6 +29,10 @@ public class Client {
 
     public String getSurname() {
         return surname;
+    }
+
+    public String getTelephone() {
+        return telephone;
     }
 
     public Address getIndirizzo() {
@@ -40,8 +46,9 @@ public class Client {
     @Override
     public String toString() {
         return "Name: " + this.name + "\t"
-                + "Surname: " + this.getSurname() + "\t"
-                + "Address " + this.getAddress() + "\n";
+                + "\nSurname: " + this.getSurname() + "\t"
+                + "\nAddress :" + this.getAddress() + "\n"
+                + "\nTel." + this.getTelephone() + "\n";
     }
 
 }

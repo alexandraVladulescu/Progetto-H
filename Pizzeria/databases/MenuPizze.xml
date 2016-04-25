@@ -90,5 +90,23 @@ and open the template in the editor.
             <nome>Uovo</nome>
         </ingredienti>
     </pizza>
+    <pizza> 
+        <nome>Salame Piccante</nome>
+        <prezzo>5.5</prezzo>
+        <ingredienti>
+            <nome>Pomodoro</nome>
+            <nome>Mozzarella</nome>
+            <nome>Salame Piccante</nome>
+        </ingredienti>
+    </pizza>
+    <pizza> 
+        <nome>Norvegese</nome>
+        <prezzo>7</prezzo>
+        <ingredienti>
+            <nome>Pomodoro</nome>
+            <nome>Mozzarella</nome>
+            <nome>Salmone</nome>
+        </ingredienti>
+    </pizza>
 </menu_pizze>
 

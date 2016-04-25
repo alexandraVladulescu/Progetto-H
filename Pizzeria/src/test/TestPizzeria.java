@@ -25,7 +25,7 @@ public class TestPizzeria {
         Pizzeria pizzeria = new Pizzeria();
         pizzeria.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);
         pizzeria.setCurrentComanda(new Comanda());
-        Client client = new Client("Mario", "Rossi", new Address("Lll", "ooo", "528"));
+        Client client = new Client("Mario", "Rossi","3335568544", new Address("Lll", "ooo", "528"));
         pizzeria.setClientToComanda(client);
         
          try {

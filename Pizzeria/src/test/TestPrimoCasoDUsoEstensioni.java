@@ -33,7 +33,7 @@ public class TestPrimoCasoDUsoEstensioni {
         p.setCurrentComanda(new Comanda());
 
         System.out.println("ISTANZIO UN CLIENTE (SENZA AGGIUNGERLO A NESSUNA LISTA_CLIENT)\n");
-        Client client = new Client("Mario", "Rossi", new Address("Lll", "ooo", "528"));
+        Client client = new Client("Mario", "Rossi", "3335568544", new Address("Lll", "ooo", "528"));
 
         System.out.println("INTESTO LA COMANDA AL CLIENTE \n");
         p.setClientToComanda(client);
@@ -57,7 +57,7 @@ public class TestPrimoCasoDUsoEstensioni {
         System.out.println("\t \t CHIAMA UN ALTRO CLIENTE \t \t \n");
         p.setCurrentComanda(new Comanda());
 
-        Client client1 = new Client("Claudio", "Cusano", new Address("Lll", "ooo", "528"));
+        Client client1 = new Client("Claudio", "Cusano", "3465568874", new Address("Lll", "ooo", "528"));
 
         System.out.println("INTESTO LA COMANDA AL CLIENTE \n");
         p.setClientToComanda(client1);
