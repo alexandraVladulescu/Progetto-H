@@ -37,7 +37,12 @@ public class Pizza extends Product implements Comparable<Pizza> {
 
     @Override
     public double getPrice() {
-        return super.getPrice(); //To change body of generated methods, choose Tools | Templates.
+        double plusPrice = 0;
+        for (Ingredient ingredient : ingredients) {
+            plusPrice += ingredient.getPrice();
+        }
+
+        return super.getPrice() + plusPrice; //To change body of generated methods, choose Tools | Templates.
     }
 
     public String printIngredient() {
