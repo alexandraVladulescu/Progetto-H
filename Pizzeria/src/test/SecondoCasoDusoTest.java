@@ -107,7 +107,9 @@ public class SecondoCasoDusoTest {
         System.out.println("Per tagliar la testa al toro setto currentCLient e stampo la sua comanda\n");
         p.setCurrentComanda("Cusano");
         System.out.println(p.getCurrentComanda());
+        System.out.println("\t\t\t AGGIUNGO INGREDIENTE ACCIUGA \n");
         p.addIngredientToPizza("acciuga","Capricciosa");
+        System.out.println("\t\t\tSTAMPO LA COMANDA \n");
         System.out.println(p.showComandaDetails());
     }
 }
