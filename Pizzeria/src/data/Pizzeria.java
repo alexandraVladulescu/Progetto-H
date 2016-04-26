@@ -2,6 +2,7 @@ package data;
 
 import exceptions.ProductNotFoundException;
 import exceptions.ComandaNotFoundException;
+import exceptions.IngredientNotFoundException;
 import exceptions.PizzaNotFoundInMenuException;
 import i_o.*;
 import i_o_V1.FormatType;
@@ -20,18 +21,23 @@ public class Pizzeria {
     private IngredientsManager ingredientsManager;
     private ProductsManager productsManager;
 
- 
     private Comanda currentComanda;
     private MenuPizze menuPizze;
 
     public Pizzeria() throws IOException {
         comandeManager = new ComandeManager();
         currentComanda = new Comanda();
-       
+        ingredientsManager = new IngredientsManager();
+
     }
 
     public void setCurrentComanda(Comanda currentComanda) {
         this.currentComanda = currentComanda;
+    }
+
+    public void setCurrentComanda(String clientSurname) throws ComandaNotFoundException {
+        Comanda comandaTrovata = this.comandeManager.searchComandaByName(clientSurname);
+        this.setCurrentComanda(comandaTrovata);
     }
 
     public void addPizza(String nomePizza) throws PizzaNotFoundInMenuException {
@@ -45,10 +51,14 @@ public class Pizzeria {
         return currentComanda.toString();
     }
 
-    public void loadMenuPizza(String path,FormatType type) throws IOException {
+    public void loadMenuPizza(String path, FormatType type) throws IOException {
         //Carico il Menù delle pizze
         menuPizze = new MenuPizze();
-        menuPizze.loadMenu(path,type);
+        menuPizze.loadMenu(path, type);
+    }
+
+    public void loadIngredientsMenu(String path) throws IOException {
+        this.ingredientsManager.loadMenu(path);
     }
 
     public String printMenuPizze() {
@@ -58,7 +68,6 @@ public class Pizzeria {
 //    public void addComanda(Comanda c) {
 //        comandaList.add(c);
 //    }
-
     public MenuPizze getMenuPizze() {
         return menuPizze;
     }
@@ -75,22 +84,22 @@ public class Pizzeria {
         currentComanda.removeProduct(nomePizza);
     }
 
-    public void removePizzaFromComanda(String clientSurname, String nomePizza) throws ComandaNotFoundException, ProductNotFoundException {
-        Comanda comandaTrovata = this.comandeManager.searchComandaByName(clientSurname);
-        this.setCurrentComanda(comandaTrovata);
-        this.removePizza(nomePizza);
-    }
-
-    public void addPizzaToComanda(String clientSurname, String nomePizza) throws ComandaNotFoundException, PizzaNotFoundInMenuException {
-        Comanda comandaTrovata = this.comandeManager.searchComandaByName(clientSurname);
-        this.setCurrentComanda(comandaTrovata);
-        this.addPizza(nomePizza);
-
-    }
-
     public Comanda getCurrentComanda() {
         return currentComanda;
     }
-    
-    
+
+    public void addIngredientToPizza(String ingredientName, String pizzaName) throws ProductNotFoundException, IngredientNotFoundException {//si riferisce alla comanda corrente
+        Pizza pizza = (Pizza) currentComanda.searchProdcutByName(pizzaName);
+        Ingredient ingredient = ingredientsManager.getIngredientByName(ingredientName);
+        pizza.addIngredient(ingredient);
+    }
+
+    public String printAllComande() {
+        return comandeManager.printAllComande();
+    }
+
+    public String printAllIngredients() {
+        return this.ingredientsManager.printAllIngredient();
+    }
+
 }

@@ -8,9 +8,12 @@ package test;
 import data.Address;
 import data.Client;
 import data.Comanda;
-import exceptions.ComandaNotFoundException;
-import exceptions.PizzaNotFoundInMenuException;
+import data.Ingredient;
+import data.IngredientsManager;
 import data.Pizzeria;
+import exceptions.ComandaNotFoundException;
+import exceptions.IngredientNotFoundException;
+import exceptions.PizzaNotFoundInMenuException;
 import exceptions.ProductNotFoundException;
 import i_o_V1.FormatType;
 import java.io.IOException;
@@ -19,13 +22,13 @@ import java.io.IOException;
  *
  * @author Francesco
  */
-public class TestPrimoCasoDUsoEstensioni {
+public class SecondoCasoDusoTest {
 
-    public static void main(String[] args) throws IOException, ComandaNotFoundException, ProductNotFoundException, PizzaNotFoundInMenuException {
+    public static void main(String[] args) throws IOException, ComandaNotFoundException, PizzaNotFoundInMenuException, ProductNotFoundException, IngredientNotFoundException {
 
         System.out.println("ISTANZIO PIZZERIA E CARICO I MENU PRESENTI \n");
         Pizzeria p = new Pizzeria();
-        p.loadMenuPizza("./databases/MenuPizze.xml", FormatType.XML);
+        p.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);
         System.out.println("\t MENU \t" + p.printMenuPizze() + "\t \n");
 
         System.out.println(" IL CLIENTE CHIAMA \n");
@@ -63,9 +66,9 @@ public class TestPrimoCasoDUsoEstensioni {
         p.setClientToComanda(client1);
         try {
             System.out.println("AGGIUNGO PRODOTTI ALLA COMANDA CORRENTE \n");
-            p.addPizza("Marinara");
-            p.addPizza("Capricciosa");
 
+            p.addPizza("Capricciosa");
+            p.addPizza("Marinara");
         } catch (PizzaNotFoundInMenuException e) {
             System.out.println(e.getMessage());
         }
@@ -74,14 +77,37 @@ public class TestPrimoCasoDUsoEstensioni {
         p.confirmComanda();
         System.out.println("\t \t CHIAMA IL CLIENTE DI PRIMA CHE VUOLE TOGLIERE LA MARGHERITA E AGGIUNGERE UNA CAPRICCIOSA \t \t \n");
         p.setCurrentComanda("Rossi");
+        System.out.println(p.showComandaDetails());
+        p.removePizza("Margherita");
 
         System.out.println("RIASSUNTO COMANDA \n");
         System.out.println(p.showComandaDetails());
 
-        p.addPizza("Capricciosa");
+        p.addPizza("Capricciosa"); //Ho gia settato il client current dando il nome Rossi
 
         System.out.println("RIASSUNTO COMANDA \n");
         System.out.println(p.showComandaDetails());
+        System.out.println("FIN QUI NESSUNA MODIFICA AGLI INGREDIENTI DI UNA PIZZA ORDINATA\n");
 
+        System.out.println("CARICO DB INGREDIENTI DA MAIN\n");
+        p.loadIngredientsMenu("./databases/ingredienti.txt");
+//        IngredientsManager i = new IngredientsManager();
+//        i.addIngredient(new Ingredient("acciuga", 0.5));
+//        i.addIngredient(new Ingredient("wurstel", 1));
+//        i.addIngredient(new Ingredient("patatine", 1.5));
+//        i.addIngredient(new Ingredient("salmone", 2));
+
+        System.out.println("\tTUTTI GLI INGREDIENTI AGGIUNTI NEL DB:\n");
+        System.out.println(p.printAllIngredients());
+       
+        System.out.println("STAMPO TUTTE LE COMANDE CHE HO\n");
+        System.out.println(p.printAllComande());
+
+        System.out.println("Richiama Claudio e vuole modificare la capricciosa aggiungendo  ");
+        System.out.println("Per tagliar la testa al toro setto currentCLient e stampo la sua comanda\n");
+        p.setCurrentComanda("Cusano");
+        System.out.println(p.getCurrentComanda());
+        p.addIngredientToPizza("acciuga","Capricciosa");
+        System.out.println(p.showComandaDetails());
     }
 }

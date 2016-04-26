@@ -49,13 +49,13 @@ public class MenuPizze {
     public Pizza getPizzaByName(String name) throws PizzaNotFoundInMenuException {
         Pizza p = null;
         for (Pizza pizza : pizze) {
-            if (pizza.getName().equals(name)) {
+            if (pizza.getName().equalsIgnoreCase(name)) {
                 //return pizza;
                 p = pizza;
             }
         }
         if (p == null) {
-            throw new PizzaNotFoundInMenuException("PIZZA NOT FOUND EXCEPTION");
+            throw new PizzaNotFoundInMenuException("PIZZA NOT FOUND EXCEPTION ; PIZZA\t"+name+"\n");
         }
         return p;
     }

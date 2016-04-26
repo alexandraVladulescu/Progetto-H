@@ -81,10 +81,10 @@ public class Comanda extends Observable{
         notifyObservers();
     }
 
-    private Product searchProdcutByName(String nameProduct) throws ProductNotFoundException {
+    public Product searchProdcutByName(String nameProduct) throws ProductNotFoundException {
         Product p = null;
         for (Product ord : ordersList) {
-            if (ord.getName().equals(nameProduct)) {
+            if (ord.getName().equalsIgnoreCase(nameProduct)) {
                 p = ord;
                 break; //fa schifo
 

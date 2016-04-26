@@ -5,7 +5,7 @@
  */
 package test;
 
-import com.sun.org.apache.xml.internal.security.c14n.helper.C14nHelper;
+//import com.sun.org.apache.xml.internal.security.c14n.helper.C14nHelper;
 import data.Client;
 import i_o_V1.ClientsXmlReader;
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class TestClientsReader {
             System.out.println(c3.toString()+"\n");
             System.out.println(c4.toString()+"\n");
         } catch (IOException ex) {
-            Logger.getLogger(TestClientsReader.class.getName()).log(Level.SEVERE, null, ex);
+           // Logger.getLogger(TestClientsReader.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         

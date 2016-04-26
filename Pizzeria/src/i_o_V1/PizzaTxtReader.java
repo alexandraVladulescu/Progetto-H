@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package i_o_V1;
+
 import i_o.*;
 import data.*;
 import java.io.BufferedReader;
@@ -30,9 +31,16 @@ public class PizzaTxtReader implements PizzaReaderFactory {
 
     @Override
     public Pizza getNextProduct() throws IOException {
-        String[] array;
-        array = line.split("\t");
-        return new Pizza(array[0], Double.parseDouble(array[1]));
+        String[] firstLine;
+        String[] secondLine;
+        firstLine = line.split("\t");
+        secondLine = buffer.readLine().split("\t");// legge la seconda riga per gli ingredienti
+        Pizza pizza = new Pizza(firstLine[0], Double.parseDouble(firstLine[1]));
+        for (String ingredientLine : secondLine) {
+            pizza.addIngredient(new Ingredient(ingredientLine));
+        }
+       
+        return pizza;
 
     }
 
