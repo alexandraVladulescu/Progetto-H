@@ -90,22 +90,22 @@ public class Pizzeria {
         return currentComanda;
     }
 
-    public void addIngredientToPizza(String ingredientName, String pizzaName) throws ProductNotFoundException, IngredientNotFoundException {//si riferisce alla comanda corrente
-        Pizza pizza = (Pizza) currentComanda.searchProdcutByName(pizzaName);
+    public void addIngredientToPizza(String ingredientName, int index) throws ProductNotFoundException, IngredientNotFoundException {//si riferisce alla comanda corrente
+        Pizza pizza = (Pizza) currentComanda.searchProductByIndex(index);
         Ingredient ingredient = ingredientsManager.getIngredientByName(ingredientName);
-        pizza.addIngredient(ingredient);
+        pizza.addPlusIngredient(ingredient);
 
         ArrayList<Pizza> temp = (ArrayList<Pizza>) menuPizze.getPizze().clone();// PRELEVO DA DB
         temp.add(pizza);// AGGIUNGO LA MIA PIZZA MODIFICATA
-        temp.sort(new ComparatorPizza());
+        temp.sort(new Pizza.ComparatorPizza());
         System.out.println(">>>>>>>>>>>>>>>>>>DENTRO ADD INGREDIENT TO PIZZA\n ");
         System.out.println("\t\t\t\tPROVA DOPO IL SORT : \n" + temp.toString());
-        int index = 0;
+        int i = 0;
         for (Pizza p : temp) {
             if (p == (pizza)) {
                 break;//schifo
             }
-            index++;
+            i++;
         }
         System.out.println(index);
         System.out.println("***********\t\tPIZZA\t" + temp.get(index));
@@ -124,35 +124,7 @@ public class Pizzeria {
 //        temp.get(index-1).getIngredients().;
     }
 
-    public static class ComparatorPizza implements Comparator<Pizza> {
-
-        public ComparatorPizza() {
-        }
-
-        @Override
-        public int compare(Pizza p1, Pizza p2) {
-            ArrayList<Ingredient> tempListIngredient = (ArrayList<Ingredient>) p1.getIngredients().clone();
-            ArrayList<Ingredient> p1ListCopy = (ArrayList<Ingredient>) p1.getIngredients().clone();
-            ArrayList<Ingredient> p2ListCopy = (ArrayList<Ingredient>) p2.getIngredients().clone();
-
-            p1ListCopy.removeAll(p2ListCopy);// rimuovo dalla lista copiata di p1
-            p2ListCopy.removeAll(tempListIngredient); // rimuovo dalla lista copiata di p2
-            if (p1ListCopy.size() > p2ListCopy.size()) {
-                return 1;
-            } else if (p1ListCopy.size() < p2ListCopy.size()) {
-                return -1;
-            } else {
-                if (p1.getPrice() > p2.getPrice()) {
-                    return 1;
-                } else if (p1.getPrice() < p2.getPrice()) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            }
-        }
-
-    }
+   
 
     public String printAllComande() {
         return comandeManager.printAllComande();

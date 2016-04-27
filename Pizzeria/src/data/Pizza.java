@@ -6,6 +6,7 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  *
@@ -14,10 +15,12 @@ import java.util.ArrayList;
 public class Pizza extends Product implements Comparable<Pizza> {
 
     private ArrayList<Ingredient> ingredients;
+    private ArrayList<Ingredient> plusIngredients;
 
     public Pizza(String name, double price) {
         super(name, price);
         ingredients = new ArrayList<Ingredient>();
+        plusIngredients = new ArrayList<>();
 
     }
 
@@ -25,9 +28,14 @@ public class Pizza extends Product implements Comparable<Pizza> {
         this.ingredients = ingredients;
     }
 
+    public void setPlusIngredients(ArrayList<Ingredient> plusIngredients) {
+        this.plusIngredients = plusIngredients;
+    }
+
     public Pizza copyPizza() {// fa una copia degli attributi ma non del riferimento. istanzia un nuovo obj
         Pizza p = new Pizza(this.getName(), this.getPrice());
         p.setIngredients((ArrayList<Ingredient>) this.getIngredients().clone());
+        p.setPlusIngredients((ArrayList<Ingredient>) this.getPlusIngredients().clone());
         return (p);
     }
 
@@ -35,8 +43,16 @@ public class Pizza extends Product implements Comparable<Pizza> {
         return ingredients;
     }
 
+    public ArrayList<Ingredient> getPlusIngredients() {
+        return plusIngredients;
+    }
+
     public void addIngredient(Ingredient ingredient) {
         ingredients.add(ingredient);
+    }
+
+    public void addPlusIngredient(Ingredient ingredient) {
+        plusIngredients.add(ingredient);
     }
 
     @Override
@@ -46,24 +62,27 @@ public class Pizza extends Product implements Comparable<Pizza> {
 
     @Override
     public String getName() {
-        return super.getName(); //To change body of generated methods, choose Tools | Templates.
+        return super.getName();
     }
 
     @Override
     public double getPrice() {
         double plusPrice = 0;
-        for (Ingredient ingredient : ingredients) {
+        for (Ingredient ingredient : plusIngredients) {
             plusPrice += ingredient.getPrice();
         }
 
-        return super.getPrice() + plusPrice; //To change body of generated methods, choose Tools | Templates.
+        return super.getPrice() + plusPrice;
     }
 
     public String printIngredient() {
         String t = "";
-        for (Ingredient ingredient : ingredients) {
-            t += "\t" + ingredient.toString() + "\n";
-        }
+            for (Ingredient ingredient : ingredients) {
+                t += "\t" + ingredient.toString() + "\n";
+            }
+            for (Ingredient ingredient : plusIngredients){
+                t += "\t" + ingredient.toString() + "\n";
+            }
         return t;
     }
 
@@ -76,7 +95,9 @@ public class Pizza extends Product implements Comparable<Pizza> {
     public boolean equals(Object o) {
         Pizza p = (Pizza) o;
         ArrayList<Ingredient> list1 = (ArrayList<Ingredient>) p.getIngredients().clone();
+        list1.addAll((ArrayList<Ingredient>)p.getPlusIngredients().clone());
         ArrayList<Ingredient> list2 = (ArrayList<Ingredient>) this.getIngredients().clone();
+        list2.addAll((ArrayList<Ingredient>)this.getPlusIngredients().clone());
         if (list1.size() == list2.size()) {
             list1.removeAll(list2);
             if (list1.isEmpty()) {
@@ -89,5 +110,40 @@ public class Pizza extends Product implements Comparable<Pizza> {
         }
 
     }
+    
+     public static class ComparatorPizza implements Comparator<Pizza> {
+
+        public ComparatorPizza() {
+        }
+
+        @Override
+        public int compare(Pizza p1, Pizza p2) {
+            ArrayList<Ingredient> tempListIngredient = (ArrayList<Ingredient>) p1.getIngredients().clone();
+            tempListIngredient.addAll((ArrayList<Ingredient>)p1.getPlusIngredients().clone());
+            ArrayList<Ingredient> p1ListCopy = (ArrayList<Ingredient>) p1.getIngredients().clone();
+            p1ListCopy.addAll((ArrayList<Ingredient>)p1.getPlusIngredients().clone());
+            ArrayList<Ingredient> p2ListCopy = (ArrayList<Ingredient>) p2.getIngredients().clone();
+            p2ListCopy.addAll((ArrayList<Ingredient>)p2.getPlusIngredients().clone());
+
+            p1ListCopy.removeAll(p2ListCopy);// rimuovo dalla lista copiata di p1
+            p2ListCopy.removeAll(tempListIngredient); // rimuovo dalla lista copiata di p2
+            if (p1ListCopy.size() > p2ListCopy.size()) {
+                return 1;
+            } else if (p1ListCopy.size() < p2ListCopy.size()) {
+                return -1;
+            } else {
+                if (p1.getPrice() > p2.getPrice()) {
+                    return 1;
+                } else if (p1.getPrice() < p2.getPrice()) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        }
+
+    }
+     
+     
 
 }
