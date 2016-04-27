@@ -27,20 +27,31 @@ public class ComandeManager {
     public Comanda searchComandaByName(String surname) throws ComandaNotFoundException {
         Comanda c = null;
         for (Comanda com : comande) {
-            if (surname.equals(com.getClient().getSurname())) {
+           
+
+            if (surname.equalsIgnoreCase(com.getClient().getSurname())) {
                 c = com;
+                break;
             }
-            break; // fa schifo
+            // fa schifo
         }
         if (c == null) {
             throw new ComandaNotFoundException("\t NESSUNA COMANDA TROVATA CORRISPONDENTE A \t" + surname + "\n");
         }
         return c;
     }
-public Comanda getComanda(String surname) throws ComandaNotFoundException{
+
+    public Comanda getComanda(String surname) throws ComandaNotFoundException {
         Comanda comandaTrovata = this.searchComandaByName(surname);
         return comandaTrovata;
     }
 
+    public String printAllComande() {
+        String s = "";
+        for (Comanda c : comande) {
+            s += "\t" + c.toString() + "\n";
+        }
+        return s;
+    }
 
 }

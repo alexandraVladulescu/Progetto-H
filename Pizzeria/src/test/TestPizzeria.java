@@ -10,6 +10,7 @@ import data.Client;
 import data.Comanda;
 import exceptions.PizzaNotFoundInMenuException;
 import data.Pizzeria;
+import i_o_V1.FormatType;
 import java.io.IOException;
 
 /**
@@ -17,11 +18,14 @@ import java.io.IOException;
  * @author Francesco
  */
 public class TestPizzeria {
+    
+    // ./databases/pizze.txt
+    // ./databases/MenuPizze.xml
     public static void main(String[] args) throws IOException {
         Pizzeria pizzeria = new Pizzeria();
-        pizzeria.loadMenues();
+        pizzeria.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);
         pizzeria.setCurrentComanda(new Comanda());
-        Client client = new Client("Mario", "Rossi", new Address("Lll", "ooo", "528"));
+        Client client = new Client("Mario", "Rossi","3335568544", new Address("Lll", "ooo", "528"));
         pizzeria.setClientToComanda(client);
         
          try {

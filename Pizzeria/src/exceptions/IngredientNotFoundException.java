@@ -9,11 +9,10 @@ package exceptions;
  *
  * @author Francesco
  */
-public class PizzaNotFoundInMenuException extends Exception {
+public class IngredientNotFoundException extends Exception {
 
-    public PizzaNotFoundInMenuException(String message) {
+    public IngredientNotFoundException(String message) {
         super(message);
-       // printStackTrace();
     }
-    
+
 }

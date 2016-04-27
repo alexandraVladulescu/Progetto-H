@@ -5,21 +5,34 @@ package data;
  * @author Markenos
  */
 public class Ingredient {
-    private String name;
-    private String price;
 
-    public Ingredient(String name, String price) {
+    private String name;
+    private double price;
+
+    public Ingredient(String name, double price) {
         this.name = name;
         this.price = price;
+    }
+
+    public Ingredient(String name) {
+        this.name = name;
+        this.price = 0;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
-    
-    
+
+    public boolean equals(Object o) {
+        Ingredient ingredient = (Ingredient)o;
+        return this.getName().equalsIgnoreCase(ingredient.getName());
+    }
+
+    public String toString() {
+        return "\t" + this.getName() + "\n";
+    }
 }

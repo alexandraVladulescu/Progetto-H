@@ -1,0 +1,12 @@
+acciuga	1
+olive	1.2
+wurstel	2
+patatine	2
+salmone	2.5
+tonno	1.5
+mais	1
+uova	3
+pancetta	3
+prosciutto cotto	2
+prosciutto crudo	2
+salsiccia	2

@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package exceptions;
+package i_o_V1;
 
 /**
  *
  * @author Francesco
  */
-public class PizzaNotFoundInMenuException extends Exception {
-
-    public PizzaNotFoundInMenuException(String message) {
-        super(message);
-       // printStackTrace();
-    }
-    
+public enum FormatType {
+    TXT,XML
 }

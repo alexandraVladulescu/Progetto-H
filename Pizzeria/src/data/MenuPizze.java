@@ -4,10 +4,16 @@
  * and open the template in the editor.
  */
 package data;
+
 import exceptions.PizzaNotFoundInMenuException;
 import i_o.*;
+import i_o_V1.FormatType;
+import i_o_V1.MenuPizzaLoader;
+import i_o_V1.PizzaReaderFactory;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  *
@@ -16,26 +22,24 @@ import java.util.ArrayList;
 public class MenuPizze {
 
     //AcquireMenu acquireMenu;
-    
     // private MenuPizzeReader menuReader;
     private ArrayList<Pizza> pizze;
 
     public MenuPizze() {
-        
-        //acquireMenu = new AcquireXmlMenu();
-        //   menuReader = new MenuPizzeReader();
+
         pizze = new ArrayList<>();
     }
 // ./databases/pizze.txt
     //./databases/MenuPizze.xml
-    public void loadMenu(MenuLoader acquireMenu) throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
-        acquireMenu.fillProductList("pizza");
-        ArrayList<Product> temp = new ArrayList<>();
-        temp = acquireMenu.getMenu();
-        for (Product temp1 : temp) {
-            pizze.add((Pizza) temp1);
 
+    public void loadMenu(String path, FormatType type) throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
+        MenuPizzaLoader menuPizzaLoader = new MenuPizzaLoader();
+        PizzaReaderFactory Reader = menuPizzaLoader.getFilePizzaReader(path, type);
+        while (Reader.hasNextProduct()) {
+            pizze.add(Reader.getNextProduct());
         }
+        Collections.sort(pizze);
+
     }
 
     public ArrayList<Pizza> printAllPizzas() {
@@ -45,15 +49,23 @@ public class MenuPizze {
     public Pizza getPizzaByName(String name) throws PizzaNotFoundInMenuException {
         Pizza p = null;
         for (Pizza pizza : pizze) {
-            if (pizza.getName().equals(name)) {
+            if (pizza.getName().equalsIgnoreCase(name)) {
                 //return pizza;
                 p = pizza;
             }
         }
         if (p == null) {
-            throw new PizzaNotFoundInMenuException("PIZZA NOT FOUND EXCEPTION");
+            throw new PizzaNotFoundInMenuException("PIZZA NOT FOUND EXCEPTION ; PIZZA\t"+name+"\n");
         }
         return p;
+    }
+
+    public int getMenuSize() {
+        return pizze.size();
+    }
+
+    public ArrayList<Pizza> getPizze() {
+        return pizze;
     }
 
 }
