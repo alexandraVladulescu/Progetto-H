@@ -27,7 +27,8 @@ public class Ingredient {
         return price;
     }
 
-    public boolean equals(Ingredient ingredient) {
+    public boolean equals(Object o) {
+        Ingredient ingredient = (Ingredient)o;
         return this.getName().equalsIgnoreCase(ingredient.getName());
     }
 
