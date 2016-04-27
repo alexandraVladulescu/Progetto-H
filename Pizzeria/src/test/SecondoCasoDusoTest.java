@@ -110,7 +110,7 @@ public class SecondoCasoDusoTest {
         
         System.out.println("\t\t\t AGGIUNGO INGREDIENTE ACCIUGA \n");
         
-        p.addIngredientToPizza("acciuga","Capricciosa");
+        p.addIngredientToPizza("acciuga",0);
         
         System.out.println("\t\t\tSTAMPO LA COMANDA \n");
         

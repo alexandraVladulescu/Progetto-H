@@ -96,6 +96,14 @@ public class Comanda extends Observable{
         return p;
     }
     
+    public Product searchProductByIndex(int index){
+        Product p = null;
+        if (index < ordersList.size()){
+            p = ordersList.get(index);
+        }
+        return p;
+    }
+    
     private String getTime(){
         return deliveryTime.getTime().toString();
     }
