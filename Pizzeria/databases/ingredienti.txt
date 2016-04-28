@@ -1,4 +1,4 @@
-acciuga	1
+acciughe	1
 olive	1.2
 wurstel	2
 patatine	2
@@ -10,3 +10,5 @@ pancetta	3
 prosciutto cotto	2
 prosciutto crudo	2
 salsiccia	2
+salame	1
+origano	1

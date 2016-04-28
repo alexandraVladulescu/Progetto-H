@@ -92,39 +92,56 @@ public class Pizzeria {
 
     public void addIngredientToPizza(String ingredientName, int index) throws ProductNotFoundException, IngredientNotFoundException {//si riferisce alla comanda corrente
         Pizza pizza = (Pizza) currentComanda.searchProductByIndex(index);
-        Ingredient ingredient = ingredientsManager.getIngredientByName(ingredientName);
-        pizza.addPlusIngredient(ingredient);
+        Ingredient ingredient = ingredientsManager.getIngredientByName(ingredientName);//se viene trovato viene resituito l'ingrediente che vogliamo aggiungere
+        pizza.addPlusIngredient(ingredient);//Add ingrediente all'istanza della pizza in currentComanda
 
-        ArrayList<Pizza> temp = (ArrayList<Pizza>) menuPizze.getPizze().clone();// PRELEVO DA DB
+        ArrayList<Pizza> temp = (ArrayList<Pizza>) menuPizze.getPizze().clone();// PRELEVO DA DB E CLONO IL MENU
         temp.add(pizza);// AGGIUNGO LA MIA PIZZA MODIFICATA
-        temp.sort(new Pizza.ComparatorPizza());
+        temp.sort(new Pizza.ComparatorPizza());//  USO IL COMPARATOR E RIORDINO IL MIO INSIEME (HO ALL'INTERNO ANCHE LA MIA PIZZA MODIFICATA)
         System.out.println(">>>>>>>>>>>>>>>>>>DENTRO ADD INGREDIENT TO PIZZA\n ");
         System.out.println("\t\t\t\tPROVA DOPO IL SORT : \n" + temp.toString());
-        int i = 0;
+        int k = 0;
         for (Pizza p : temp) {
             if (p == (pizza)) {
-                break;//schifo
+                break;//schifo -->switch to WHILE!!
             }
-            i++;
+            k++;
         }
-        System.out.println(index);
-        System.out.println("***********\t\tPIZZA\t" + temp.get(index));
-        System.out.println("************PIZZA PIU' SIMILE E'" + temp.get(index - 1));
+        System.out.println("\tPosizione nella lista temp ->" + k);// k mi dice in che posizione è la mia pizza nella lista che ho ordinato
+        System.out.println("***********\t\t\t LA MIA PIZZA \t" + temp.get(k));
+        System.out.println("************PIZZA PIU' SIMILE E'" + temp.get(k - 1));
         System.out.println(">>>>>>>>>>>>>>>>>>FINE \n");
 
-        this.currentComanda.getOrdersList().remove(pizza);//RIMUOVO LA PIZZA CHE AVEVO MODIFICATO
-        if (pizza.equals(temp.get(index - 1))) {
-            this.currentComanda.addProduct(temp.get(index - 1));//questo ha gia i costi base degli ingred
-        }else{
-                    
-                    }
-       //AGGIUNGO QUELLA PIU SIMILE
+        this.currentComanda.getOrdersList().remove(pizza);//RIMUOVO LA PIZZA CHE AVEVO MODIFICATO DALLA CURRENTCOMANDA
+        // DEVO CONTROLLARE CHE LA POSIZIONE IN CUI SI E' CLASSIFICATA LA MIA PIZZA MODIFICATA NON SIA LA PRIMA (OVVERO K == 0)
+        if (k == 0) {// SE E' LA PRIMA RIAGGIUNGO LA MIA PIZZA (FORSE CASO IMPOSSIBILE)
+            this.currentComanda.addProduct(pizza);
+        } else if (pizza.equals(temp.get(k - 1))) {
+            this.currentComanda.addProduct(temp.get(k - 1));//questo ha gia i costi base degli ingred
 
-        //DEVO MODIFICARE LA LISTA DEGLI INGREDIENTI D QUELLA PIU SIMILE
-//        temp.get(index-1).getIngredients().;
+        } else {
+            int j = 0;
+            boolean exit = false;
+            while (!exit) {
+
+                ArrayList<Ingredient> candidato = (ArrayList<Ingredient>) temp.get(k - 1 - j).getIngredients().clone();
+                ArrayList<Ingredient> modificata = (ArrayList<Ingredient>) pizza.getIngredients().clone();
+                ArrayList<Ingredient> modificataPlus = (ArrayList<Ingredient>) pizza.getPlusIngredients().clone();
+                modificata.addAll(modificataPlus);
+                candidato.removeAll(modificata); //mi serve se il primo if non è verificato
+
+                if (candidato.isEmpty()) {
+                    // se candidato è vuoto -> gli ingredienti base vanno bene devo solo aggiungere gli altri plus
+                    modificata.removeAll(temp.get(k - 1 - j).getIngredients());
+                    temp.get(k - 1 - j).getPlusIngredients().addAll(modificata);
+                    this.currentComanda.addProduct(temp.get(k - j - 1));
+                    exit = true;
+                }
+                j++;
+            }
+        }
+
     }
-
-   
 
     public String printAllComande() {
         return comandeManager.printAllComande();

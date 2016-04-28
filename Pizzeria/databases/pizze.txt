@@ -5,4 +5,4 @@ pomodoro	mozzarella	funghi	prosciutto cotto	carciofi	olive nere	capperi
 4formaggi	5.5
 pomodoro	mozzarella	gorgonzola	provola
 napoli	6.5
-pomodoro	mozzarella	acciughe	origano	capperi 
+pomodoro	mozzarella	acciughe	origano	capperi

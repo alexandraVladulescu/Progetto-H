@@ -99,7 +99,7 @@ public class SecondoCasoDusoTest {
 
         System.out.println("\tTUTTI GLI INGREDIENTI AGGIUNTI NEL DB:\n");
         System.out.println(p.printAllIngredients());
-       
+
         System.out.println("STAMPO TUTTE LE COMANDE CHE HO\n");
         System.out.println(p.printAllComande());
 
@@ -107,15 +107,19 @@ public class SecondoCasoDusoTest {
         System.out.println("Per tagliar la testa al toro setto currentCLient e stampo la sua comanda\n");
         p.setCurrentComanda("Cusano");
         System.out.println(p.getCurrentComanda());
-        
+
         System.out.println("\t\t\t AGGIUNGO INGREDIENTE ACCIUGA \n");
-        
-        p.addIngredientToPizza("acciuga",0);
-        
+
+        p.addIngredientToPizza("acciughe", 0);
+        p.addPizza("margherita");
         System.out.println("\t\t\tSTAMPO LA COMANDA \n");
         
+        p.addIngredientToPizza("acciughe", 1);
+       // p.addIngredientToPizza("origano", 1);
+        System.out.println("\t\t\tSTAMPO LA COMANDA \n");
+
         System.out.println(p.showComandaDetails());
-        
+
         System.out.println("\t MENU PIZZE \n");
         System.out.println(p.printMenuPizze());
     }
