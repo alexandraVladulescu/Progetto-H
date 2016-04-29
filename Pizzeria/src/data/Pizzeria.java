@@ -85,6 +85,9 @@ public class Pizzeria {
     public void removePizza(String nomePizza) throws ProductNotFoundException {
         currentComanda.removeProduct(nomePizza);
     }
+    public void removePizza(int index) throws ProductNotFoundException{
+            currentComanda.removeProduct(index);
+                        }
 
     public Comanda getCurrentComanda() {
         return currentComanda;

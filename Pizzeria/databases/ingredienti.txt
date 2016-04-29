@@ -1,5 +1,6 @@
 acciughe	1
 olive	1.2
+olive nere	1.2
 wurstel	2
 patatine	2
 salmone	2.5
@@ -9,8 +10,9 @@ uova	3
 pancetta	3
 prosciutto cotto	2
 prosciutto crudo	2
-salsiccia	2
+salsiccia	0
 salame	1
 origano	1
 capperi	0.5
 carciofi	1
+funghi	1.5

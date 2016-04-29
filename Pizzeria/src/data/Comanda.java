@@ -16,13 +16,13 @@ import java.util.Observer;
  *
  * @author Francesco
  */
-public class Comanda extends Observable{
+public class Comanda extends Observable {
 
     private ArrayList<Product> ordersList = new ArrayList<Product>();
     private Client client;
     private Calendar deliveryTime = new GregorianCalendar();
 
-    public Comanda(){
+    public Comanda() {
     }
 
     public void addProduct(Product p) {
@@ -81,6 +81,13 @@ public class Comanda extends Observable{
         notifyObservers();
     }
 
+    public void removeProduct(int index) throws ProductNotFoundException {
+        Product prodottoTrovato = this.searchProductByIndex(index);
+        this.ordersList.remove(prodottoTrovato);
+        setChanged();
+        notifyObservers();
+    }
+
     public Product searchProdcutByName(String nameProduct) throws ProductNotFoundException {
         Product p = null;
         for (Product ord : ordersList) {
@@ -95,23 +102,24 @@ public class Comanda extends Observable{
         }
         return p;
     }
-    
-    public Product searchProductByIndex(int index){
+
+    public Product searchProductByIndex(int index) throws ProductNotFoundException {
         Product p = null;
-        if (index < ordersList.size()){
+        if (index < ordersList.size()) {
             p = ordersList.get(index);
+        } else {
+            throw new ProductNotFoundException("\t PRODUCT NOT FOUND FOR INDEX -->" + index);
         }
+
         return p;
     }
-    
-    private String getTime(){
+
+    private String getTime() {
         return deliveryTime.getTime().toString();
     }
 
     public ArrayList<Product> getOrdersList() {
         return ordersList;
     }
-    
-    
-}
 
+}

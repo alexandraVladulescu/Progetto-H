@@ -6,3 +6,7 @@ pomodoro	mozzarella	funghi	prosciutto cotto	carciofi	olive nere	capperi
 pomodoro	mozzarella	gorgonzola	provola
 napoli	6.5
 pomodoro	mozzarella	acciughe	origano	capperi
+prosciutto e funghi	6.5
+pomodoro	mozzarella	prosciutto cotto	funghi
+futura	6.5
+pomodoro	mozzarella	prosciutto cotto	funghi	olive nere

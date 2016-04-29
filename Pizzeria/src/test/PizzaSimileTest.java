@@ -38,17 +38,28 @@ public class PizzaSimileTest {
         System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
 
         pizzeria.addIngredientToPizza("acciughe", 0);
-         System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
-         
-         
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+
         pizzeria.addIngredientToPizza("origano", 0);
-         System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
-         
-         pizzeria.addIngredientToPizza("capperi", 0);
-          System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+
+        pizzeria.addIngredientToPizza("capperi", 0);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
          //System.out.println("\t\t\t\t MENU PIZZE\n" + pizzeria.printMenuPizze());
-          
-          pizzeria.addIngredientToPizza("carciofi", 0);
-           System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+
+        pizzeria.addIngredientToPizza("carciofi", 0);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+
+        pizzeria.addPizza("margherita");
+        pizzeria.addIngredientToPizza("prosciutto cotto", 1);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+        pizzeria.addIngredientToPizza("funghi", 1);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+        pizzeria.addIngredientToPizza("salsiccia", 1);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+
+        pizzeria.removePizza(0);
+         System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+
     }
 }
