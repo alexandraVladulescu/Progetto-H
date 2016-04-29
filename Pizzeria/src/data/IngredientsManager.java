@@ -33,6 +33,11 @@ public class IngredientsManager {
             
         }
     }
+
+    public ArrayList<Ingredient> getIngredients() {
+        return ingredients;
+    }
+    
     
     public Ingredient getIngredientByName(String ingredientName) throws IngredientNotFoundException {
         Ingredient ingredientTrovato = null;

@@ -10,9 +10,6 @@ import data.Client;
 import data.Comanda;
 import data.Pizzeria;
 import java.awt.Color;
-import java.util.Observer;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
