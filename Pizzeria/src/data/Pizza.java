@@ -82,9 +82,9 @@ public class Pizza extends Product implements Comparable<Pizza>, Cloneable {
 
     public String printIngredient() {
         String t = "";
-//        for (Ingredient ingredient : ingredients) {
-//            t += "\t" + ingredient.toString() + "\n";
-//        }
+       for (Ingredient ingredient : ingredients) {
+            t += "\t" + ingredient.toString() + "\n";
+       }
         for (Ingredient ingredient : plusIngredients) {
             t += "\t***" + ingredient.toString() + "\n";
         }
@@ -93,7 +93,7 @@ public class Pizza extends Product implements Comparable<Pizza>, Cloneable {
 
     @Override
     public String toString() {
-        return "\t" + getName() + "\t" + getPrice() + "\n" + this.printIngredient() + "\n";
+        return "\t" + getName() + "\t" + getPrice() + "\n" + printIngredient() + "\n";
     }
 
     @Override
