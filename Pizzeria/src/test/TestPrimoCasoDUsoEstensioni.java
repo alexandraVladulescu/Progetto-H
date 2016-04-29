@@ -21,7 +21,7 @@ import java.io.IOException;
  */
 public class TestPrimoCasoDUsoEstensioni {
 
-    public static void main(String[] args) throws IOException, ComandaNotFoundException, ProductNotFoundException, PizzaNotFoundInMenuException {
+    public static void main(String[] args) throws IOException, ComandaNotFoundException, ProductNotFoundException, PizzaNotFoundInMenuException, CloneNotSupportedException {
 
         System.out.println("ISTANZIO PIZZERIA E CARICO I MENU PRESENTI \n");
         Pizzeria p = new Pizzeria();

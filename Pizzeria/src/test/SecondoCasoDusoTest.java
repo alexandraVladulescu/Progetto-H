@@ -24,7 +24,7 @@ import java.io.IOException;
  */
 public class SecondoCasoDusoTest {
 
-    public static void main(String[] args) throws IOException, ComandaNotFoundException, PizzaNotFoundInMenuException, ProductNotFoundException, IngredientNotFoundException {
+    public static void main(String[] args) throws IOException, ComandaNotFoundException, PizzaNotFoundInMenuException, ProductNotFoundException, IngredientNotFoundException, CloneNotSupportedException {
 
         System.out.println("ISTANZIO PIZZERIA E CARICO I MENU PRESENTI \n");
         Pizzeria p = new Pizzeria();
@@ -115,7 +115,7 @@ public class SecondoCasoDusoTest {
         System.out.println("\t\t\tSTAMPO LA COMANDA \n");
         
         p.addIngredientToPizza("acciughe", 1);
-       // p.addIngredientToPizza("origano", 1);
+        p.addIngredientToPizza("origano", 1);
         System.out.println("\t\t\tSTAMPO LA COMANDA \n");
 
         System.out.println(p.showComandaDetails());

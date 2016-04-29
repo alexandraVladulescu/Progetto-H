@@ -12,7 +12,7 @@ import java.util.Comparator;
  *
  * @author Francesco
  */
-public class Pizza extends Product implements Comparable<Pizza> {
+public class Pizza extends Product implements Comparable<Pizza>, Cloneable {
 
     private ArrayList<Ingredient> ingredients;
     private ArrayList<Ingredient> plusIngredients;
@@ -32,10 +32,15 @@ public class Pizza extends Product implements Comparable<Pizza> {
         this.plusIngredients = plusIngredients;
     }
 
-    public Pizza copyPizza() {// fa una copia degli attributi ma non del riferimento. istanzia un nuovo obj
+    @Override
+    public Object clone() throws CloneNotSupportedException {// fa una copia degli attributi ma non del riferimento. istanzia un nuovo obj
         Pizza p = new Pizza(this.getName(), this.getPrice());
-        p.setIngredients((ArrayList<Ingredient>) this.getIngredients().clone());
-        p.setPlusIngredients((ArrayList<Ingredient>) this.getPlusIngredients().clone());
+        for (Ingredient ingredient : this.ingredients) {
+            p.ingredients.add((Ingredient) ingredient.clone());
+        }
+        for (Ingredient ingredient : this.plusIngredients) {
+            p.plusIngredients.add((Ingredient) ingredient.clone());
+        }
         return (p);
     }
 
@@ -77,12 +82,12 @@ public class Pizza extends Product implements Comparable<Pizza> {
 
     public String printIngredient() {
         String t = "";
-            for (Ingredient ingredient : ingredients) {
-                t += "\t" + ingredient.toString() + "\n";
-            }
-            for (Ingredient ingredient : plusIngredients){
-                t += "\t" + ingredient.toString() + "\n";
-            }
+//        for (Ingredient ingredient : ingredients) {
+//            t += "\t" + ingredient.toString() + "\n";
+//        }
+        for (Ingredient ingredient : plusIngredients) {
+            t += "\t***" + ingredient.toString() + "\n";
+        }
         return t;
     }
 
@@ -95,9 +100,9 @@ public class Pizza extends Product implements Comparable<Pizza> {
     public boolean equals(Object o) {
         Pizza p = (Pizza) o;
         ArrayList<Ingredient> list1 = (ArrayList<Ingredient>) p.getIngredients().clone();
-        list1.addAll((ArrayList<Ingredient>)p.getPlusIngredients().clone());
+        list1.addAll((ArrayList<Ingredient>) p.getPlusIngredients().clone());
         ArrayList<Ingredient> list2 = (ArrayList<Ingredient>) this.getIngredients().clone();
-        list2.addAll((ArrayList<Ingredient>)this.getPlusIngredients().clone());
+        list2.addAll((ArrayList<Ingredient>) this.getPlusIngredients().clone());
         if (list1.size() == list2.size()) {
             list1.removeAll(list2);
             if (list1.isEmpty()) {
@@ -110,8 +115,8 @@ public class Pizza extends Product implements Comparable<Pizza> {
         }
 
     }
-    
-     public static class ComparatorPizza implements Comparator<Pizza> {
+
+    public static class ComparatorPizza implements Comparator<Pizza> {
 
         public ComparatorPizza() {
         }
@@ -119,11 +124,11 @@ public class Pizza extends Product implements Comparable<Pizza> {
         @Override
         public int compare(Pizza p1, Pizza p2) {
             ArrayList<Ingredient> tempListIngredient = (ArrayList<Ingredient>) p1.getIngredients().clone();
-            tempListIngredient.addAll((ArrayList<Ingredient>)p1.getPlusIngredients().clone());
+            tempListIngredient.addAll((ArrayList<Ingredient>) p1.getPlusIngredients().clone());
             ArrayList<Ingredient> p1ListCopy = (ArrayList<Ingredient>) p1.getIngredients().clone();
-            p1ListCopy.addAll((ArrayList<Ingredient>)p1.getPlusIngredients().clone());
+            p1ListCopy.addAll((ArrayList<Ingredient>) p1.getPlusIngredients().clone());
             ArrayList<Ingredient> p2ListCopy = (ArrayList<Ingredient>) p2.getIngredients().clone();
-            p2ListCopy.addAll((ArrayList<Ingredient>)p2.getPlusIngredients().clone());
+            p2ListCopy.addAll((ArrayList<Ingredient>) p2.getPlusIngredients().clone());
 
             p1ListCopy.removeAll(p2ListCopy);// rimuovo dalla lista copiata di p1
             p2ListCopy.removeAll(tempListIngredient); // rimuovo dalla lista copiata di p2
@@ -143,7 +148,5 @@ public class Pizza extends Product implements Comparable<Pizza> {
         }
 
     }
-     
-     
 
 }

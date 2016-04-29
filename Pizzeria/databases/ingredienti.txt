@@ -12,3 +12,5 @@ prosciutto crudo	2
 salsiccia	2
 salame	1
 origano	1
+capperi	0.5
+carciofi	1

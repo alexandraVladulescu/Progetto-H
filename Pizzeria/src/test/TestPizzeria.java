@@ -21,7 +21,7 @@ public class TestPizzeria {
     
     // ./databases/pizze.txt
     // ./databases/MenuPizze.xml
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, CloneNotSupportedException {
         Pizzeria pizzeria = new Pizzeria();
         pizzeria.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);
         pizzeria.setCurrentComanda(new Comanda());

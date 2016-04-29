@@ -20,7 +20,7 @@ import java.io.IOException;
  */
 public class TestPrimoCasoDUso {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, CloneNotSupportedException {
         
         
         System.out.println("ISTANZIO PIZZERIA E CARICO I MENU PRESENTI \n");

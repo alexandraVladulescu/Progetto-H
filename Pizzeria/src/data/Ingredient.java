@@ -4,7 +4,7 @@ package data;
  *
  * @author Markenos
  */
-public class Ingredient {
+public class Ingredient implements Cloneable {
 
     private String name;
     private double price;
@@ -12,6 +12,12 @@ public class Ingredient {
     public Ingredient(String name, double price) {
         this.name = name;
         this.price = price;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Ingredient in = new Ingredient(this.name, this.price);
+        return in;
     }
 
     public Ingredient(String name) {
@@ -28,7 +34,7 @@ public class Ingredient {
     }
 
     public boolean equals(Object o) {
-        Ingredient ingredient = (Ingredient)o;
+        Ingredient ingredient = (Ingredient) o;
         return this.getName().equalsIgnoreCase(ingredient.getName());
     }
 

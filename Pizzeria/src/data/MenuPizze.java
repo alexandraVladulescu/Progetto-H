@@ -19,7 +19,7 @@ import java.util.Collections;
  *
  * @author User
  */
-public class MenuPizze {
+public class MenuPizze implements Cloneable {
 
     //AcquireMenu acquireMenu;
     // private MenuPizzeReader menuReader;
@@ -28,6 +28,16 @@ public class MenuPizze {
     public MenuPizze() {
 
         pizze = new ArrayList<>();
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        MenuPizze mP = new MenuPizze();
+        for (Pizza p : pizze) {
+            mP.pizze.add((Pizza) p.clone());
+        }
+        return mP;
+
     }
 // ./databases/pizze.txt
     //./databases/MenuPizze.xml
@@ -55,7 +65,7 @@ public class MenuPizze {
             }
         }
         if (p == null) {
-            throw new PizzaNotFoundInMenuException("PIZZA NOT FOUND EXCEPTION ; PIZZA\t"+name+"\n");
+            throw new PizzaNotFoundInMenuException("PIZZA NOT FOUND EXCEPTION ; PIZZA\t" + name + "\n");
         }
         return p;
     }
