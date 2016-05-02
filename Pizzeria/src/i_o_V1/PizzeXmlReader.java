@@ -6,7 +6,6 @@
 package i_o_V1;
 
 
-import data.Ingredient;
 import i_o.*;
 import data.Pizza;
 import data.Product;
@@ -42,19 +41,10 @@ public class PizzeXmlReader implements PizzaReaderFactory {
         String name = attrpizza.item(0).getFirstChild().getNodeValue().trim();
 
         String price = attrpizza.item(1).getFirstChild().getNodeValue().trim();
-        
-        Pizza newPizza = new Pizza(name, Double.valueOf(price));
-        
-        NodeList ingredients = attrpizza.item(2).getChildNodes();
 
-        for (int i = 0; i < ingredients.getLength(); i++) {
-            String ing = ingredients.item(i).getFirstChild().getNodeValue().trim();
-            newPizza.addIngredient(new Ingredient(ing));
-        }
-        
         indexList++;
         
-        return newPizza;
+        return new Pizza(name, Double.valueOf(price));
     }
 
     @Override

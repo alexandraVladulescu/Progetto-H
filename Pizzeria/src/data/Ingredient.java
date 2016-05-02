@@ -4,7 +4,7 @@ package data;
  *
  * @author Markenos
  */
-public class Ingredient implements Cloneable {
+public class Ingredient implements Cloneable, Comparable<Ingredient> {
 
     private String name;
     private double price;
@@ -40,5 +40,14 @@ public class Ingredient implements Cloneable {
 
     public String toString() {
         return "\t" + this.getName() + "\n";
+    }
+    @Override
+    public int compareTo(Ingredient o) {
+
+        return this.getName().compareToIgnoreCase(o.getName());
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

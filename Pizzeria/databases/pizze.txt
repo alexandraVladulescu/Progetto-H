@@ -10,3 +10,5 @@ prosciutto e funghi	6.5
 pomodoro	mozzarella	prosciutto cotto	funghi
 futura	6.5
 pomodoro	mozzarella	prosciutto cotto	funghi	olive nere
+viennese	5.5
+pomodoro	mozzarella	wurstel

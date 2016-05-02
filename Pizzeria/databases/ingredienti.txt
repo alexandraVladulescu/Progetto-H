@@ -16,3 +16,6 @@ origano	1
 capperi	0.5
 carciofi	1
 funghi	1.5
+pomodoro	0
+mozzarella	0.5
+salame piccante	1.2

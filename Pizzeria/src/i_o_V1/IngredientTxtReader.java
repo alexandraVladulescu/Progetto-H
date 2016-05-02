@@ -30,6 +30,7 @@ public class IngredientTxtReader {
     public Ingredient getNextIngredient() {
         String[] array ;
        array = this.line.split("\t");
+        System.out.println(array[0]);
        return new Ingredient(array[0], Double.parseDouble(array[1]));
         
     }
