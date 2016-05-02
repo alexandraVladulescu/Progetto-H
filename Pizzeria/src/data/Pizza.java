@@ -59,7 +59,14 @@ public class Pizza extends Product implements Comparable<Pizza>, Cloneable {
     public void addPlusIngredient(Ingredient ingredient) {
         plusIngredients.add(ingredient);
     }
+ public boolean removeIngredient(Ingredient ingredient) {
+        return ingredients.remove(ingredient);
+    }
 
+    public boolean removePlusIngredient(Ingredient ingredient) {
+
+        return plusIngredients.remove(ingredient);
+    }
     @Override
     public int compareTo(Pizza t) {// Oridna in ordine alfabetico a-z
         return this.getName().compareToIgnoreCase(t.getName());
@@ -70,6 +77,14 @@ public class Pizza extends Product implements Comparable<Pizza>, Cloneable {
         return super.getName();
     }
 
+    public String getFullName(){
+        String s = super.getName();
+        for(Ingredient ingredient: plusIngredients){
+            s += " + " +  ingredient.getName();
+        }
+        return s;
+    }
+    
     @Override
     public double getPrice() {
         double plusPrice = 0;
@@ -82,9 +97,9 @@ public class Pizza extends Product implements Comparable<Pizza>, Cloneable {
 
     public String printIngredient() {
         String t = "";
-       for (Ingredient ingredient : ingredients) {
-            t += "\t" + ingredient.toString() + "\n";
-       }
+//        for (Ingredient ingredient : ingredients) {
+//            t += "\t" + ingredient.toString() + "\n";
+//        }
         for (Ingredient ingredient : plusIngredients) {
             t += "\t***" + ingredient.toString() + "\n";
         }
@@ -93,7 +108,7 @@ public class Pizza extends Product implements Comparable<Pizza>, Cloneable {
 
     @Override
     public String toString() {
-        return "\t" + getName() + "\t" + getPrice() + "\n" + printIngredient() + "\n";
+        return "\t" + getName() + "\t" + getPrice() + "\n" + this.printIngredient() + "\n";
     }
 
     @Override
@@ -149,4 +164,6 @@ public class Pizza extends Product implements Comparable<Pizza>, Cloneable {
 
     }
 
+    
+    
 }

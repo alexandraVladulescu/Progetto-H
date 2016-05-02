@@ -2,12 +2,10 @@ package test;
 
 
 import data.Pizza;
-import data.Pizzeria;
 import data.Product;
 import i_o.MenuLoader;
 
 import i_o.XmlMenuLoader;
-import i_o_V1.FormatType;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -27,12 +25,16 @@ public class TestMenuPizzeReader {
     // ./databases/MenuPizze.xml
    
     public static void main(String[] args) throws IOException  {
-     
-        Pizzeria pizzeria = new Pizzeria();
-        pizzeria.loadMenuPizza("./databases/MenuPizze.xml", FormatType.XML);
+        XmlMenuLoader xmlMenuLoader = new XmlMenuLoader();
+        ArrayList<Product> pizze = new ArrayList<>();
         
-        for (int i = 0; i < pizzeria.getMenuPizze().getPizze().size(); i++) {
-            pizzeria.getMenuPizze().printAllPizzas();
+    
+         
+//        pizze = reader.readFile();
+        xmlMenuLoader.fillProductList("pizza");
+         pizze = xmlMenuLoader.getMenu();
+        for (Product pizza : pizze) {
+            System.out.println(pizza.toString());
         }
     }
 }

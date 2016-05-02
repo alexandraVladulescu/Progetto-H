@@ -5,13 +5,10 @@
  */
 package gui;
 
-import data.Ingredient;
-import data.Pizza;
 import data.Product;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,6 +24,7 @@ public class ProductLineView extends JPanel{
     private JLabel name;
     private JLabel price;
     private JButton edit;
+    private JButton delete;
 
     public ProductLineView(Product product) {
         this.product=product;
@@ -34,31 +32,15 @@ public class ProductLineView extends JPanel{
         name=new JLabel(product.getName());
         price=new JLabel(""+product.getPrice());
         edit=new JButton("Edit");
-                
-        setEditFunctionality();
-        
+        delete=new JButton("Delete");
+
         setLayout(new GridLayout(2, 2));
         
         add(name);
         add(price);
         add(edit);
+        add(delete);
     }
 
-    private void setEditFunctionality() {
-        edit.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                editPizza();
-            }
-            
-});
-    }
-
-    private void editPizza(){
-        Pizza pz = (Pizza)product;
-        //pz.addPlusIngredient(Ingredient ing);
-        AddIngredientFrame aif = new AddIngredientFrame();
-        aif.setVisible(true);
-    }
     
 }

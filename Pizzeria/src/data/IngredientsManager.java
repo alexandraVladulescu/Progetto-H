@@ -5,6 +5,7 @@ import i_o_V1.IngredientTxtReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class IngredientsManager {
     
@@ -32,12 +33,8 @@ public class IngredientsManager {
             this.addIngredient(reader.getNextIngredient());
             
         }
+        Collections.sort(ingredients);
     }
-
-    public ArrayList<Ingredient> getIngredients() {
-        return ingredients;
-    }
-    
     
     public Ingredient getIngredientByName(String ingredientName) throws IngredientNotFoundException {
         Ingredient ingredientTrovato = null;
@@ -53,4 +50,21 @@ public class IngredientsManager {
             return ingredientTrovato;
         }
     }
+
+    public ArrayList<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        IngredientsManager ingredientsManager = new IngredientsManager();
+        for(Ingredient ingredient:this.ingredients){
+            ingredientsManager.ingredients.add((Ingredient) ingredient.clone());
+        }
+        return ingredientsManager;
+    }
+    
+    
+    
+    
 }
