@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package i_o_V1;
+package i_o.input.pizza_reader;
+import data.Pizza;
 
-import data.Drink;
-
+import data.Product;
 import java.io.IOException;
 
 /**
  *
  * @author Francesco
  */
-interface DrinkReaderFactory {
-    abstract Drink getNextProduct() throws IOException;
+public interface PizzaReaderFactory {
+    
+    abstract Pizza getNextProduct() throws IOException;
     abstract boolean hasNextProduct() throws IOException;
     
 }

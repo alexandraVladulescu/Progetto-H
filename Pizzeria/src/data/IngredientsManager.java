@@ -1,7 +1,7 @@
 package data;
 
 import exceptions.IngredientNotFoundException;
-import i_o_V1.IngredientTxtReader;
+import i_o.input.ingredient_reader.IngredientTxtReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;

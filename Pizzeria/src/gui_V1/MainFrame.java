@@ -2,7 +2,7 @@ package gui_V1;
 
 import data.Comanda;
 import data.Pizzeria;
-import i_o_V1.FormatType;
+import i_o.FormatType;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
