@@ -103,7 +103,7 @@ public class Pizzeria {
         temp.add(pizza);// AGGIUNGO LA MIA PIZZA MODIFICATA
         temp.sort(new Pizza.ComparatorPizza());//  USO IL COMPARATOR E RIORDINO IL MIO INSIEME (HO ALL'INTERNO ANCHE LA MIA PIZZA MODIFICATA)
        // System.out.println(">>>>>>>>>>>>>>>>>>DENTRO ADD INGREDIENT TO PIZZA\n ");
-       // System.out.println("\t\t\t\tPROVA DOPO IL SORT : \n" + temp.toString());
+        System.out.println("\t\t\t\tPROVA DOPO IL SORT : \n" + temp.toString());
         int k = 0;
         for (Pizza p : temp) {
             if (p == (pizza)) {
@@ -111,9 +111,9 @@ public class Pizzeria {
             }
             k++;
         }
-       // System.out.println("\tPosizione nella lista temp ->" + k);// k mi dice in che posizione è la mia pizza nella lista che ho ordinato
-       // System.out.println("***********\t\t\t LA MIA PIZZA \t" + temp.get(k));
-       // System.out.println("************PIZZA PIU' SIMILE E'" + temp.get(k - 1));
+        System.out.println("\tPosizione nella lista temp ->" + k);// k mi dice in che posizione è la mia pizza nella lista che ho ordinato
+        System.out.println("***********\t\t\t LA MIA PIZZA \t" + temp.get(k));
+        System.out.println("************PIZZA PIU' SIMILE E'" + temp.get(k - 1));
        // System.out.println(">>>>>>>>>>>>>>>>>>FINE \n");
        // System.out.println("\t\t\t\t 2 MENU PIZZE\n" + printMenuPizze());
         this.currentComanda.getOrdersList().remove(pizza);
@@ -133,14 +133,18 @@ public class Pizzeria {
                 ArrayList<Ingredient> candidato = (ArrayList<Ingredient>) temp.get(k - 1 - j).getIngredients().clone();
                 ArrayList<Ingredient> modificata = (ArrayList<Ingredient>) pizza.getIngredients().clone();
                 ArrayList<Ingredient> modificataPlus = (ArrayList<Ingredient>) pizza.getPlusIngredients().clone();
-                modificata.addAll(modificataPlus);
+                modificata.addAll(modificataPlus); 
+               // System.out.println("STAMPO MODIFICATA ********* "+ modificata.toString());
                 candidato.removeAll(modificata); //mi serve se il primo if non è verificato
              //   System.out.println("\t\t\t\t 5 MENU PIZZE\n" + printMenuPizze());
+               // System.out.println("STAMPO CANDIDATO *****"+candidato.toString());
                 if (candidato.isEmpty()) {
                   //  System.out.println("\t\t\t\t 6 MENU PIZZE\n" + printMenuPizze());
                    // System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP\n");
                     // se candidato è vuoto -> gli ingredienti base vanno bene devo solo aggiungere gli altri plus
+                   // System.out.println("MODIFICATA DENTRO IF 1"+modificata.toString());
                     modificata.removeAll(temp.get(k - 1 - j).getIngredients());
+                 //   System.out.println("MODIFICATA DENTRO L IF 2 "+modificata.toString());
                   // System.out.println("\t\t\t\t 7 MENU PIZZE\n" + printMenuPizze());
                     temp.get(k - 1 - j).getPlusIngredients().addAll(modificata);
                  //   System.out.println("\t\t\t\t 8 MENU PIZZE\n" + printMenuPizze());

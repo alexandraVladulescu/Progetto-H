@@ -65,5 +65,8 @@ public class PizzaSimileTest {
       pizzeria.addIngredientToPizza("patatine", 1);
        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
       
+       pizzeria.addPizza("margherita");
+       pizzeria.addIngredientToPizza("mozzarella", 2);
+         System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
     }
 }
