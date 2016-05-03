@@ -19,12 +19,11 @@ import java.io.IOException;
  *
  * @author Francesco
  */
-public class PizzaSimileTest {
-
-    public static void main(String[] args) throws IOException, PizzaNotFoundInMenuException, ProductNotFoundException, IngredientNotFoundException, CloneNotSupportedException {
+public class PizzaSimileTestXml {
+     public static void main(String[] args) throws IOException, PizzaNotFoundInMenuException, ProductNotFoundException, IngredientNotFoundException, CloneNotSupportedException {
         Pizzeria pizzeria = new Pizzeria();
 
-        pizzeria.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);
+        pizzeria.loadMenuPizza("./databases/MenuPizze.xml", FormatType.XML);
         System.out.println("CARICO DB INGREDIENTI DA MAIN\n");
         pizzeria.loadIngredientsMenu("./databases/ingredienti.txt");
 
@@ -64,6 +63,5 @@ public class PizzaSimileTest {
          pizzeria.addPizza("margherita");
       pizzeria.addIngredientToPizza("patatine", 1);
        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
-      
-    }
+}
 }

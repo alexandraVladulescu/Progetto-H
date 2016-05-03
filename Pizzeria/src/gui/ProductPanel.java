@@ -12,8 +12,10 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javafx.scene.layout.Border;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 /**
  *

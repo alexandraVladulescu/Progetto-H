@@ -28,6 +28,7 @@ and open the template in the editor.
         <ingredienti>
             <nome>Pomodoro</nome>
             <nome>Origano</nome>
+            <nome>Acciughe</nome>
         </ingredienti>
     </pizza>
     <pizza> 
@@ -37,9 +38,9 @@ and open the template in the editor.
             <nome>Pomodoro</nome>
             <nome>Mozzarella</nome>
             <nome>Funghi</nome>
-            <nome>Prosciutto Cotto</nome>
+            <nome>Prosciutto cotto</nome>
             <nome>Carciofi</nome>
-            <nome>Olive Nere</nome>
+            <nome>Olive nere</nome>
             <nome>Capperi</nome>
         </ingredienti>
     </pizza>
@@ -59,7 +60,7 @@ and open the template in the editor.
             <nome>Pomodoro</nome>
             <nome>Mozzarella</nome>
             <nome>Funghi</nome>
-            <nome>Prosciutto Cotto</nome>
+            <nome>Prosciutto cotto</nome>
         </ingredienti>
     </pizza>
     <pizza> 
@@ -68,7 +69,7 @@ and open the template in the editor.
         <ingredienti>
             <nome>Pomodoro</nome>
             <nome>Mozzarella</nome>
-            <nome>Patatine Fritte</nome>
+            <nome>Patatine fritte</nome>
         </ingredienti>
     </pizza>
     <pizza> 
@@ -86,8 +87,8 @@ and open the template in the editor.
         <ingredienti>
             <nome>Pomodoro</nome>
             <nome>Mozzarella</nome>
-            <nome>Prosciutto Cotto</nome>
-            <nome>Uovo</nome>
+            <nome>Prosciutto cotto</nome>
+            <nome>Uova</nome>
         </ingredienti>
     </pizza>
     <pizza> 
@@ -96,7 +97,7 @@ and open the template in the editor.
         <ingredienti>
             <nome>Pomodoro</nome>
             <nome>Mozzarella</nome>
-            <nome>Salame Piccante</nome>
+            <nome>Salame piccante</nome>
         </ingredienti>
     </pizza>
     <pizza> 

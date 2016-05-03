@@ -1,12 +1,110 @@
-margherita	4
+MARINARA	3.5
+pomodoro	aglio	origano
+SICILIANA	5.0
+pomodoro	olive	acciughe	origano	capperi
+MARGHERITA	4.0
 pomodoro	mozzarella
-capricciosa	6
-pomodoro	mozzarella	funghi	prosciutto cotto	carciofi	olive nere	capperi
-4formaggi	5.5
-pomodoro	mozzarella	gorgonzola	provola
-napoli	6.5
-pomodoro	mozzarella	acciughe	origano	capperi
-prosciutto e funghi	6.5
+NAPOLI	5.0
+pomodoro	mozzarella	acciughe	origano
+PROSCIUGIO	5.0
+pomodoro	mozzarella	prosciutto cotto
+CALABRESE	5.0
+pomodoro	mozzarella	salame piccante
+WURSTEL	5.0
+pomodoro	mozzarella	wurstel
+PIZZAIOLA	5.0
+pomodoro	mozzarella	scamorza
+OLIVE	5.0
+pomodoro	mozzarella	olive
+CHIPS	5.0
+pomodoro	mozzarella	patatine
+SALSICCIA	5.0
+mozzarella	pomodoro	salsiccia
+FUNGHI	5.0
+mozzarella	pomodoro	funghi
+GORGONZOLA	5.0
+pomodoro	mozzarella	gorgonzola
+PUGLIESE	5.5
+pomodoro	mozzarella	cipolla	grana
+BISMARK	5.5
+pomodoro	mozzarella	prosciutto cotto	uovo
+PERE E ZOLA	5.5
+mozzarella	pere	gorgonzola
+LOMBARDA	6.0
+pomodoro	mozzarella	salame dolce	funghi
+VULCANO	5.0
+pomodoro	cipolle	peperoni
+BAVARESE	6.0
+pomodoro	mozzarella	wurstel	pancetta
+REGINA	6.0
 pomodoro	mozzarella	prosciutto cotto	funghi
-futura	6.5
-pomodoro	mozzarella	prosciutto cotto	funghi	olive nere
+CHIPS E PROSCIUTTO	6.0
+pomodoro	mozzarella	prosciutto cotto	patatine
+CASSOLESE	6.0
+pomodoro	mozzarella	prosciutto cotto	gorgonzola
+WURSTEL E CHIPS	6.0
+pomodoro	mozzarella	wurstel	patatine
+QUATTRO STAGIONI	6.0
+pomodoro	mozzarella	prosciutto cotto	funghi	carciofi	olive
+CRUDO	6.0
+pomodoro	mozzarella	prosciutto crudo
+ROMANA	6.0
+pomodoro	mozzarella	acciughe	olive	capperi	origano
+PORCINI	6.0
+pomodoro	mozzarella	funghi porcini
+TREVISANA	6.0
+mozzarella	trevisana	scamorza
+TONNO	6.0
+pomodoro	mozzarella	tonno
+TONNO E CIPOLLE	6.0
+pomodoro	mozzarella	tonno	cipolle
+DIAVOLA	6.0
+pomodoro	mozzarella	cipolle	salsiccia piccante	peperoni
+VEGETARIANA	6.0
+pomodoro	mozzarella	verdure grigliate	olive
+GIGLIO	6.0
+mozzarella	prosciutto crudo
+CALAMARI	7.0
+pomodoro	mozzarella	calamari
+PANNA E SPECK	6.5
+pomodoro	mozzarella	panna	speck
+BRACCIO DI FERRO	7.0
+mozzarella	gorgonzola	noci	speck
+FRUTTI DI MARE	7.5
+pomodoro	mozzarella	frutti di mare
+PAZZA	7.5
+pomodoro	mozzarella	calamari	prosciutto cotto	peperoni	olive
+MARE E MONTI	8.0
+pomodoro	mozzarella	frutti di mare	funghi porcini
+CAPRICCIOSA	6.5
+pomodoro	mozzarella	prosciutto cotto	funghi	carciofi	olive	acciughe	origano
+MARGERITA SPECIALE	6.0
+pomodoro	mozzarella di bufala
+LIVE	7.5
+pomodoro	mozzarella di bufala	funghi porcini	speck	rucola
+LIVE BY NIGHT	7.5
+pomodoro	mozzarella di bufala	rucola	grana
+CELTICA	7.5
+mozzarella	salmone	brie
+AFFUMICATA	7.0
+pomodoro	mozzarella	speck	scamorza
+IRON MAN	7.5
+pomodoro	mozzarella	spinaci	crudo	grana
+FABIO MAGNO	9.0
+pomodoro	mozzarella	bresaola	grana	funghi porcini
+CILAVEGNA BY NIGHT	7.5
+pomodoro	mozzarella	asparagi	prosciutto crudo
+NUOVA DELHI	7.0
+mozzarella	mela	gamberi	curry
+MARACAIBO	6.0
+pomodoro	mozzarella	salame piccante	salsiccia
+SPIDER PORK	7.5
+pomodoro	mozzarella	porchetta	patatine
+BOSCAIOLA	8.0
+mozzarella	funghi porcini	prosciutto cotto	panna
+2012	8.0
+pomodoro	mozzarella	salame piccante	cipolle	peperoni	pancetta	peperoncino
+TROPEA BY NIGHT	9.0
+pomodoro	mozzarella	gamberi	calamari	cipolle rosse
+MILANO-NOVARA	7.0
+mozzarella	zola	salame dolce

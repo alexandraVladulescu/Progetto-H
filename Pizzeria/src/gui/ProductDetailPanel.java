@@ -7,65 +7,41 @@ package gui;
 
 import data.Pizzeria;
 import data.Product;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.HashMap;
-import java.util.Iterator;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicSplitPaneUI;
 
 /**
  *
  * @author User
  */
-public class ProductDetailPanel extends JPanel {
+public class ProductDetailPanel extends JPanel{
+    
+    private ArrayList<ProductLineView> productsDetailsList;
     
     private Pizzeria pizzeria;
-    private HashMap<JButton, ProductLineView> button_map;
 
     public ProductDetailPanel(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
-        button_map = new HashMap<>();
         
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        
+        productsDetailsList = new ArrayList<>();
     }
     
     public void createProductLine(Product p){
-        ProductLineView plv = new ProductLineView(p);
-        add(addProductLineView(plv));
-    }
-    
-    public HashMap<JButton, ProductLineView> getButton_map(){
-        return button_map;
-        
+        productsDetailsList.add(new ProductLineView(p));
+        add(productsDetailsList.get(productsDetailsList.size()-1));
     }
 
-    public void removeAll() {
-        for (Iterator iterator = button_map.keySet().iterator(); iterator.hasNext();) {
-            button_map.remove(iterator.next());
+    public ArrayList<ProductLineView> getProductsDetailsList() {
+        return productsDetailsList;
+    }
+    
+    public void removeAll(){
+        for (ProductLineView productLineView : productsDetailsList) {
+            productLineView.removeAll();
         }
-    }
-    
-    private JButton addProductLineView(ProductLineView plv){
-        JButton deleteButton = new JButton("delete");
-        
-        button_map.put(deleteButton, plv);
-        
-        deleteButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                removeProductLine(deleteButton);
-            }
-    });
-        return deleteButton;
-    }
-    
-    private void removeProductLine(JButton delButton){
-        button_map.remove(delButton);
-        System.out.println("ci vado qua ?");
-        repaint();
     }
     
 }
