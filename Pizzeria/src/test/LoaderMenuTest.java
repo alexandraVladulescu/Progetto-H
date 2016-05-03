@@ -7,8 +7,7 @@ package test;
 
 import data.MenuPizze;
 import data.Pizzeria;
-import i_o.TxtMenuLoader;
-import i_o.XmlMenuLoader;
+
 import i_o_V1.FormatType;
 import java.io.IOException;
 
