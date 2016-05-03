@@ -24,7 +24,7 @@ public class OrderView extends JPanel implements Observer {
 
     // Il primo pannello è quello di sinistra contenente l'elenco delle pizze nel menu
     // Il secondo pannello è quello di destra che contiene i dettagli della comanda
-    private PizzaButtonsPanel pizzasPanel;
+    private PizzaButtonsPanel pizzaButtonsPanel;
     private OrderDetailsPanel orderDetailsPanel;
 
     public OrderView(Pizzeria pizzeria) {
@@ -34,11 +34,11 @@ public class OrderView extends JPanel implements Observer {
         pizzeria.getCurrentComanda().addObserver(this);
 
         //Istanzio i pannelli che contiene OrderView
-        pizzasPanel = new PizzaButtonsPanel(this.pizzeria);
+        pizzaButtonsPanel = new PizzaButtonsPanel(this.pizzeria);
         orderDetailsPanel = new OrderDetailsPanel(this.pizzeria);
 
         //Scroller per il pannello delle pizze. Disabilitiamo lo scrolling orizzontale
-        JScrollPane scrollerPizzasPanel = new JScrollPane(pizzasPanel);
+        JScrollPane scrollerPizzasPanel = new JScrollPane(pizzaButtonsPanel);
         scrollerPizzasPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         //setto che la barra verticale ci sia sempre per evitare l'effetto "saltino" quando essa viene creata...
         //un po come visto nel caso di PizzasOrderedPanel...
