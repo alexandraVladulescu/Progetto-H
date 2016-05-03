@@ -21,7 +21,7 @@ public class PizzasTotalPricePanel extends JPanel {
         this.setLayout(new GridLayout(1,2));
         
         //Istanzio le due label
-        labelDescription = new JLabel("Totale:");
+        labelDescription = new JLabel("Totale pizze:");
         labelTotalPrice = new JLabel(Double.toString(pizzeria.getCurrentComanda().calculateTotalPrice()));
         
         //Aggiungo le label al pannello
