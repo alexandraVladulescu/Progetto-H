@@ -41,7 +41,7 @@ public class PizzeXmlReader implements PizzaReaderFactory {
         String name = attrpizza.item(0).getFirstChild().getNodeValue().trim();
 
         String price = attrpizza.item(1).getFirstChild().getNodeValue().trim();
-
+       
         indexList++;
         
         return new Pizza(name, Double.valueOf(price));

@@ -16,7 +16,7 @@ import java.io.IOException;
 public class LoadPizzaWithIngredientTests {
     public static void main(String[] args) throws IOException {
         Pizzeria p = new Pizzeria();
-        p.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);
+        p.loadMenuPizza("./databases/MenuPizze.xml", FormatType.XML);
         System.out.println(p.printMenuPizze());
     }
 }
