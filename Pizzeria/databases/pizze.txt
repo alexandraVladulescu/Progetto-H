@@ -107,4 +107,8 @@ pomodoro	mozzarella	salame piccante	cipolle	peperoni	pancetta	peperoncino
 TROPEA BY NIGHT	9.0
 pomodoro	mozzarella	gamberi	calamari	cipolle rosse
 MILANO-NOVARA	7.0
-mozzarella	zola	salame dolce
+mozzarella	gorgonzola	salame dolce
+BIANCA	3.5
+mozzarella
+ROSSA	3
+pomodoro
