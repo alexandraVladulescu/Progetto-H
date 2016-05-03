@@ -5,8 +5,7 @@
  */
 package i_o_V1;
 
-
-import i_o.*;
+import data.Ingredient;
 import data.Pizza;
 import data.Product;
 import java.io.IOException;
@@ -25,6 +24,7 @@ public class PizzeXmlReader implements PizzaReaderFactory {
     private NodeList pizzaList;
     private int indexList;
 //./databases/MenuPizze.xml
+
     public PizzeXmlReader(String path) {
 
         xmlMenu = MyXmlParser.getDocument(path);
@@ -41,10 +41,19 @@ public class PizzeXmlReader implements PizzaReaderFactory {
         String name = attrpizza.item(0).getFirstChild().getNodeValue().trim();
 
         String price = attrpizza.item(1).getFirstChild().getNodeValue().trim();
-       
+
+        NodeList ingredients = attrpizza.item(2).getChildNodes();
+
+        Pizza newPizza = new Pizza(name, Double.valueOf(price));
+
+        for (int i = 0; i < ingredients.getLength(); i++) {
+            String ingName = ingredients.item(i).getFirstChild().getNodeValue().trim();
+            newPizza.addIngredient(new Ingredient(name));
+
+        }
         indexList++;
-        
-        return new Pizza(name, Double.valueOf(price));
+
+        return newPizza;
     }
 
     @Override
