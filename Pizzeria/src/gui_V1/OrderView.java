@@ -1,5 +1,7 @@
 package gui_V1;
 
+import gui_V1.order_details_view.OrderDetailsPanel;
+import gui_V1.product_selection_view.PizzaButtonsPanel;
 import data.Pizzeria;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -22,7 +24,7 @@ public class OrderView extends JPanel implements Observer {
 
     // Il primo pannello è quello di sinistra contenente l'elenco delle pizze nel menu
     // Il secondo pannello è quello di destra che contiene i dettagli della comanda
-    private PizzasPanel pizzasPanel;
+    private PizzaButtonsPanel pizzasPanel;
     private OrderDetailsPanel orderDetailsPanel;
 
     public OrderView(Pizzeria pizzeria) {
@@ -32,7 +34,7 @@ public class OrderView extends JPanel implements Observer {
         pizzeria.getCurrentComanda().addObserver(this);
 
         //Istanzio i pannelli che contiene OrderView
-        pizzasPanel = new PizzasPanel(this.pizzeria);
+        pizzasPanel = new PizzaButtonsPanel(this.pizzeria);
         orderDetailsPanel = new OrderDetailsPanel(this.pizzeria);
 
         //Scroller per il pannello delle pizze. Disabilitiamo lo scrolling orizzontale
