@@ -1,4 +1,4 @@
-package gui_V1;
+package gui_V1.order_details_view;
 
 import data.Pizza;
 import data.Pizzeria;

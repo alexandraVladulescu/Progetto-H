@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui_V1;
+package gui_V1.order_details_view.edit_view;
 
 import data.Ingredient;
 import data.IngredientsManager;
@@ -16,13 +16,14 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 /**
- *
+ * Pannello contenente tutti gli ingredienti della pizzeria. Sono presenti dei checkBox uno per ingrediente
+ * in modo che si possono selezionare quelli da aggiungere alla pizza da modificare
  * @author Markenos
  */
-public class AddIngredientsPanel extends JPanel implements AddRemoveIngredientsPanel {
+public class AddIngredientsPanel extends JPanel {
 
     private Pizzeria pizzeria;
-    //Teniamo l'ArrayList di checkBox...ci servirà poi in AddRemoveIngredientButton...
+    //Teniamo l'ArrayList di checkBox...ci servirà poi in AddIngredientsButton...
     private ArrayList<JCheckBox> checkIngredients;
 
     AddIngredientsPanel(Pizzeria pizzeria) {

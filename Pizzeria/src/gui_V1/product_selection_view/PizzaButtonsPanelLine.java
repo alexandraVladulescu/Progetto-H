@@ -1,4 +1,4 @@
-package gui_V1;
+package gui_V1.product_selection_view;
 
 import data.MenuPizze;
 import data.Pizza;
@@ -24,14 +24,14 @@ import javax.swing.JPanel;
  *
  * @author Markenos
  */
-public class PizzaLinePanel extends JPanel {
+public class PizzaButtonsPanelLine extends JPanel {
 
     private JButton[] pizzas;
     private Pizzeria pizzeria;
     private int numeroColonne;
     private int internalIndex;
 
-    public PizzaLinePanel(Pizzeria pizzeria, int numeroColonne) {
+    public PizzaButtonsPanelLine(Pizzeria pizzeria, int numeroColonne) {
         this.pizzeria = pizzeria;
         this.numeroColonne = numeroColonne;
         pizzas = new JButton[this.numeroColonne];

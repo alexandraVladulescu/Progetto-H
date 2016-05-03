@@ -1,4 +1,4 @@
-package gui_V1;
+package gui_V1.order_details_view;
 
 import data.Pizzeria;
 import java.awt.GridLayout;
@@ -9,12 +9,12 @@ import javax.swing.JPanel;
  *
  * @author Markenos
  */
-public class PizzasTotalPricePanel extends JPanel {
+public class ComandaTotalPricePanel extends JPanel {
     private Pizzeria pizzeria;
     private JLabel labelDescription;
     private JLabel labelTotalPrice;
 
-    public PizzasTotalPricePanel(Pizzeria pizzeria) {
+    public ComandaTotalPricePanel(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
         
         //Imposto una griglia di una riga e una colonna: la prima per la scritta "Totale" la seconda per il prezzo

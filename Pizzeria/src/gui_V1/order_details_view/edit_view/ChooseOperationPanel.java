@@ -1,4 +1,4 @@
-package gui_V1;
+package gui_V1.order_details_view.edit_view;
 
 import data.Pizzeria;
 import java.awt.BorderLayout;
@@ -37,7 +37,7 @@ public class ChooseOperationPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
-                //Creo un nuovo frame per scegliere la nuova pizza...
+                //Creo un nuovo frame per scegliere gli ingredienti da aggiungere
                 JFrame addIngredientsFrame = new JFrame("Scegli gli ingredienti da aggiungere...");
                 //Creo il pannello interno
                 AddIngredientsPanel addIngredientsPanel = new AddIngredientsPanel(pizzeria);
@@ -48,7 +48,7 @@ public class ChooseOperationPanel extends JPanel {
                 //Aggiungo scroller al frame
                 addIngredientsFrame.getContentPane().add(BorderLayout.CENTER,scrollerAddIngredientsPanel);
                 //Aggiungo anche il pulsante per confermare l'aggiunta degli ingredienti selezionati
-                addIngredientsFrame.getContentPane().add(BorderLayout.SOUTH,new AddRemoveIngredientButton("Aggiungi ingredienti",pizzeria,index,addIngredientsFrame,addIngredientsPanel));
+                addIngredientsFrame.getContentPane().add(BorderLayout.SOUTH,new AddIngredientsButton("Aggiungi ingredienti",pizzeria,index,addIngredientsFrame,addIngredientsPanel));
                 addIngredientsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 addIngredientsFrame.setSize((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/4, (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2);
                 //Per centrarlo sullo schermo...anche se non lo centra in verita...
@@ -61,7 +61,35 @@ public class ChooseOperationPanel extends JPanel {
             
 });
         JButton removeIngredients = new JButton("Rimuovi ingredienti");
-        
+        //Aggiungo il listener per il pulsante removeIngredients
+        removeIngredients.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
+                //Creo un nuovo frame per scegliere gli ingredienti da rimuovere
+                JFrame removeIngredientsFrame = new JFrame("Scegli gli ingredienti da rimuovere...");
+                //Creo il pannello interno
+                RemoveIngredientsPanel removeIngredientsPanel = new RemoveIngredientsPanel(pizzeria,index);
+                //Creo lo scroller per tale pannello
+                JScrollPane  scrollerRemoveIngredientsPanel = new JScrollPane(removeIngredientsPanel);
+                //Voglio visualizzare sempre la barra verticale di scorrimento
+                scrollerRemoveIngredientsPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                //Aggiungo scroller al frame
+                removeIngredientsFrame.getContentPane().add(BorderLayout.CENTER,scrollerRemoveIngredientsPanel);
+                //Aggiungo anche il pulsante per confermare la rimozione degli ingredienti selezionati
+                removeIngredientsFrame.getContentPane().add(BorderLayout.SOUTH,new RemoveIngredientsButton("Rimuovi ingredienti",pizzeria,index,removeIngredientsFrame,removeIngredientsPanel));
+                removeIngredientsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                removeIngredientsFrame.setSize((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/4, (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2);
+                //Per centrarlo sullo schermo...anche se non lo centra in verita...
+                //Ragionamento fatto: assegno come posizione x e y la metà della dimensione dello schermo e poi
+                //tolgo a quanto trovato la metà della dimensione del frame stesso...tutto questo per centrarlo!
+                removeIngredientsFrame.setLocation(((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2)-((int)removeIngredientsFrame.getSize().getWidth()/2), ((int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2)-((int)removeIngredientsFrame.getSize().getHeight()/2));
+                removeIngredientsFrame.setVisible(true);
+                frameGenitore.dispose();
+            }
+            
+});
         this.add(addIngredients);
         this.add(removeIngredients);
         

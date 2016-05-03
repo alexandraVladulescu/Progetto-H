@@ -1,4 +1,4 @@
-package gui_V1;
+package gui_V1.product_selection_view;
 
 import data.Pizza;
 import data.Pizzeria;
@@ -14,12 +14,12 @@ import javax.swing.JPanel;
  *
  * @author Markenos
  */
-public class PizzasPanel extends JPanel {
+public class PizzaButtonsPanel extends JPanel {
 
     private Pizzeria pizzeria;
     private static final int NUMERO_COLONNE = 4;
 
-    public PizzasPanel(Pizzeria pizzeria) {
+    public PizzaButtonsPanel(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
 
         //Ottengo il numero di pizze nel menù e quindi il  numero di linee
@@ -36,7 +36,7 @@ public class PizzasPanel extends JPanel {
 
     private void createPizzasGrid(int n, int numberLine) {
         //Ottengo un ArrayList di numberLine righe. Ogni riga contiene i pulsanti che rappresentano le pizze
-        ArrayList<PizzaLinePanel> rows = new ArrayList<PizzaLinePanel>();
+        ArrayList<PizzaButtonsPanelLine> rows = new ArrayList<PizzaButtonsPanelLine>();
 
         //Istanzio una variabile che indica l'indice cui siamo arrivati a scorrere tra le n pizze
         int index = 0;
@@ -44,7 +44,7 @@ public class PizzasPanel extends JPanel {
         //Per ogni riga contenente i pulsanti...
         for (int i = 0; i < numberLine; i++) {
             //Creo una nuova linea contenente i pulsanti
-            PizzaLinePanel pizzaLinePanel = new PizzaLinePanel(pizzeria, NUMERO_COLONNE);
+            PizzaButtonsPanelLine pizzaLinePanel = new PizzaButtonsPanelLine(pizzeria, NUMERO_COLONNE);
             rows.add(pizzaLinePanel);
             //Finché c'è spazio in pizzaLinePanel per aggiungere pulsanti (cioè pizze...)
             while (pizzaLinePanel.hasNext()) {
