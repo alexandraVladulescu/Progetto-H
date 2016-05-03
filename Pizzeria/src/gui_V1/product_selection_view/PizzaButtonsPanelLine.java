@@ -5,6 +5,7 @@ import data.Pizza;
 import data.Pizzeria;
 import data.Product;
 import exceptions.ProductNotFoundException;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -63,6 +64,7 @@ public class PizzaButtonsPanelLine extends JPanel {
             tempMenuPizze = (MenuPizze) pizzeria.getMenuPizze().clone();
             Pizza pizza = tempMenuPizze.getPizze().get(externalIndex);
             pizzas[internalIndex] = new JButton(pizza.getName());
+            pizzas[internalIndex].setBackground(new Color(172,255,175));
             //Aggiungo il listener a ciascun pulsante rappresentante una pizza
             pizzas[internalIndex].addMouseListener(new MouseAdapter() {
 
