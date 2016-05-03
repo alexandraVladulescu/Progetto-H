@@ -4,26 +4,205 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-
+<!DOCTYPE ingredienti[
+<!ELEMENT ingredienti (ingrediente+)>
+<!ELEMENT ingrediente (nome, prezzo)>
+<!ELEMENT nome (#PCDATA)>
+<!ELEMENT prezzo(#PCDATA)>
+]>
 
 <ingredienti>
-    <name nome="Pomodoro">
-        <price prezzo="0.50" />
-    <name/>
-    <name nome="Mozzarella">
-        <price prezzo="1.0" />
-    <name/>
-    <name nome="Capperi">
-        <price prezzo="0.50" />
-    <name/>
-    <name nome="Carciofi">
-        <price prezzo="0.50" />
-    <name/>
-    <name nome="Prosciutto Cotto">
-        <price prezzo="1.0" />
-    <name/>
-    <name nome="Funghi">
-        <price prezzo="1.0" />
-    <name/>
+    <ingrediente>
+        <nome>Acciughe</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Aglio</nome>
+        <prezzo>0</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Asparagi</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Bresaola</nome>
+        <prezzo>2</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Brie</nome>
+        <prezzo>1.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Calamari</nome>
+        <prezzo>2</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Capperi</nome>
+        <prezzo>0</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Carciofi</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Cipolle</nome>
+        <prezzo>0</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Cipolle Rosse</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Curry</nome>
+        <prezzo>0</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Doppia Mozzarella</nome>
+        <prezzo>1.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Frutti di Mare</nome>
+        <prezzo>2.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Funghi</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Funghi Porcini</nome>
+        <prezzo>2</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Gamberi</nome>
+        <prezzo>2</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Gorgonzola</nome>
+        <prezzo>1.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Grana</nome>
+        <prezzo>1.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Mais</nome>
+        <prezzo>0.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Mela</nome>
+        <prezzo>0.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Mozzarella di Bufala</nome>
+        <prezzo>2</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Noci</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+     <ingrediente>
+        <nome>Olive</nome>
+        <prezzo>0.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Olive Nere</nome>
+        <prezzo>0.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Origano</nome>
+        <prezzo>0</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Pancetta</nome>
+        <prezzo>1.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Panna</nome>
+        <prezzo>0.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Patatine</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Peperoncino</nome>
+        <prezzo>0</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Peperoni</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Pere</nome>
+        <prezzo>0.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Pomodoro</nome>
+        <prezzo>0</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Porchetta</nome>
+        <prezzo>2</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Prosciutto Cotto</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Prosciutto Crudo</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Rucola</nome>
+        <prezzo>0.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Salame Dolce</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Salame Piccante</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Salmone</nome>
+        <prezzo>2</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Salsiccia</nome>
+        <prezzo>1.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Scamorza</nome>
+        <prezzo>1.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Speck</nome>
+        <prezzo>1.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Spinaci</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Tonno</nome>
+        <prezzo>1.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Trevisana</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Uovo</nome>
+        <prezzo>1.5</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Verdure Grigliate</nome>
+        <prezzo>2</prezzo>
+    </ingrediente>
+    <ingrediente>
+        <nome>Wurstel</nome>
+        <prezzo>1</prezzo>
+    </ingrediente>
     
 </ingredienti>
