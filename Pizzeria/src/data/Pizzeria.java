@@ -111,9 +111,9 @@ public class Pizzeria {
             }
             k++;
         }
-        System.out.println("\tPosizione nella lista temp ->" + k);// k mi dice in che posizione è la mia pizza nella lista che ho ordinato
-        System.out.println("***********\t\t\t LA MIA PIZZA \t" + temp.get(k));
-        System.out.println("************PIZZA PIU' SIMILE E'" + temp.get(k - 1));
+       // System.out.println("\tPosizione nella lista temp ->" + k);// k mi dice in che posizione è la mia pizza nella lista che ho ordinato
+       // System.out.println("***********\t\t\t LA MIA PIZZA \t" + temp.get(k));
+       // System.out.println("************PIZZA PIU' SIMILE E'" + temp.get(k - 1));
        // System.out.println(">>>>>>>>>>>>>>>>>>FINE \n");
        // System.out.println("\t\t\t\t 2 MENU PIZZE\n" + printMenuPizze());
         this.currentComanda.getOrdersList().remove(pizza);
