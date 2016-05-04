@@ -6,9 +6,9 @@
 package data;
 
 import exceptions.PizzaNotFoundInMenuException;
-import i_o_V1.FormatType;
-import i_o_V1.MenuPizzaLoader;
-import i_o_V1.PizzaReaderFactory;
+import i_o.FormatType;
+import i_o.input.pizza_reader.MenuPizzaLoader;
+import i_o.input.pizza_reader.PizzaReaderFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,9 +43,9 @@ public class MenuPizze implements Cloneable {
 
     public void loadMenu(String path, FormatType type) throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
         MenuPizzaLoader menuPizzaLoader = new MenuPizzaLoader();
-        PizzaReaderFactory Reader = menuPizzaLoader.getFilePizzaReader(path, type);
-        while (Reader.hasNextProduct()) {
-            pizze.add(Reader.getNextProduct());
+        PizzaReaderFactory reader = menuPizzaLoader.getFilePizzaReader(path, type);
+        while (reader.hasNextProduct()) {
+            pizze.add(reader.getNextProduct());
         }
         Collections.sort(pizze);
 

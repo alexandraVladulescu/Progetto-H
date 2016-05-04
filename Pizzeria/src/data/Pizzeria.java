@@ -5,7 +5,7 @@ import exceptions.ComandaNotFoundException;
 import exceptions.IngredientNotFoundException;
 import exceptions.PizzaNotFoundInMenuException;
 
-import i_o_V1.FormatType;
+import i_o.FormatType;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -59,8 +59,8 @@ public class Pizzeria {
         menuPizze.loadMenu(path, type);
     }
 
-    public void loadIngredientsMenu(String path) throws IOException {
-        this.ingredientsManager.loadMenu(path);
+    public void loadIngredientsMenu(String path, FormatType type) throws IOException {
+        this.ingredientsManager.loadMenu(path,type);
     }
 
     public String printMenuPizze() {

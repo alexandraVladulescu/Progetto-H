@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package i_o_V1;
+package i_o.input.client_reader;
 
 import data.Address;
 import data.Client;
 import data.Pizza;
+import i_o.MyXmlParser;
 import java.io.IOException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -17,13 +18,13 @@ import org.w3c.dom.NodeList;
  *
  * @author User
  */
-public class ClientsXmlReader {
+public class ClientXmlReader {
     
     private Document clientsBook;
     private NodeList clientsList;
     private int indexList;
 //./databases/ClientsDB.xml
-    public ClientsXmlReader(String path) {
+    public ClientXmlReader(String path) {
 
         clientsBook = MyXmlParser.getDocument(path);
         this.clientsList = clientsBook.getElementsByTagName("cliente");// HO LA STRUTTURA NODELIST

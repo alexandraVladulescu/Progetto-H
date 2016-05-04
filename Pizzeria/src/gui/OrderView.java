@@ -6,7 +6,7 @@
 package gui;
 
 import data.Pizzeria;
-import i_o_V1.FormatType;
+import i_o.FormatType;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.io.IOException;

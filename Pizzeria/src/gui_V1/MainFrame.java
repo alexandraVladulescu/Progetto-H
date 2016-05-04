@@ -2,7 +2,7 @@ package gui_V1;
 
 import data.Comanda;
 import data.Pizzeria;
-import i_o_V1.FormatType;
+import i_o.FormatType;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +27,7 @@ public class MainFrame {
             pizzeria = new Pizzeria();
             
             //Carico gli ingredienti da file txt
-            pizzeria.loadIngredientsMenu("./databases/ingredienti.txt");
+            pizzeria.loadIngredientsMenu("./databases/ingredienti.txt",FormatType.TXT);
             
             //Carico le pizze da file txt
             pizzeria.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);

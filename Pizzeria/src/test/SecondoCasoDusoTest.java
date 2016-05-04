@@ -15,7 +15,7 @@ import exceptions.ComandaNotFoundException;
 import exceptions.IngredientNotFoundException;
 import exceptions.PizzaNotFoundInMenuException;
 import exceptions.ProductNotFoundException;
-import i_o_V1.FormatType;
+import i_o.FormatType;
 import java.io.IOException;
 
 /**
@@ -90,7 +90,7 @@ public class SecondoCasoDusoTest {
         System.out.println("FIN QUI NESSUNA MODIFICA AGLI INGREDIENTI DI UNA PIZZA ORDINATA\n");
 
         System.out.println("CARICO DB INGREDIENTI DA MAIN\n");
-        p.loadIngredientsMenu("./databases/ingredienti.txt");
+        p.loadIngredientsMenu("./databases/ingredienti.txt",FormatType.TXT);
 //        IngredientsManager i = new IngredientsManager();
 //        i.addIngredient(new Ingredient("acciuga", 0.5));
 //        i.addIngredient(new Ingredient("wurstel", 1));
