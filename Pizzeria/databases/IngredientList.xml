@@ -92,6 +92,10 @@ and open the template in the editor.
         <nome>Mela</nome>
         <prezzo>0.5</prezzo>
     </ingrediente>
+     <ingrediente>
+        <nome>Mozzarella</nome>
+        <prezzo>0</prezzo>
+    </ingrediente>
     <ingrediente>
         <nome>Mozzarella di Bufala</nome>
         <prezzo>2</prezzo>
