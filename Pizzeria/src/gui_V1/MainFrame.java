@@ -27,7 +27,7 @@ public class MainFrame {
             pizzeria = new Pizzeria();
             
             //Carico gli ingredienti da file txt
-            pizzeria.loadIngredientsMenu("./databases/ingredienti.txt");
+            pizzeria.loadIngredientsMenu("./databases/ingredienti.txt",FormatType.TXT);
             
             //Carico le pizze da file txt
             pizzeria.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);

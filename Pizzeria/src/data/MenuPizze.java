@@ -43,9 +43,9 @@ public class MenuPizze implements Cloneable {
 
     public void loadMenu(String path, FormatType type) throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
         MenuPizzaLoader menuPizzaLoader = new MenuPizzaLoader();
-        PizzaReaderFactory Reader = menuPizzaLoader.getFilePizzaReader(path, type);
-        while (Reader.hasNextProduct()) {
-            pizze.add(Reader.getNextProduct());
+        PizzaReaderFactory reader = menuPizzaLoader.getFilePizzaReader(path, type);
+        while (reader.hasNextProduct()) {
+            pizze.add(reader.getNextProduct());
         }
         Collections.sort(pizze);
 

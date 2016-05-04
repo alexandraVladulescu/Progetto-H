@@ -59,8 +59,8 @@ public class Pizzeria {
         menuPizze.loadMenu(path, type);
     }
 
-    public void loadIngredientsMenu(String path) throws IOException {
-        this.ingredientsManager.loadMenu(path);
+    public void loadIngredientsMenu(String path, FormatType type) throws IOException {
+        this.ingredientsManager.loadMenu(path,type);
     }
 
     public String printMenuPizze() {
