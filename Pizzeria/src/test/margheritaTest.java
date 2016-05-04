@@ -12,7 +12,7 @@ import data.Pizzeria;
 import exceptions.IngredientNotFoundException;
 import exceptions.PizzaNotFoundInMenuException;
 import exceptions.ProductNotFoundException;
-import i_o_V1.FormatType;
+import i_o.FormatType;
 import java.io.IOException;
 
 /**
@@ -25,7 +25,7 @@ public class margheritaTest {
 
         pizzeria.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);
         System.out.println("CARICO DB INGREDIENTI DA MAIN\n");
-        pizzeria.loadIngredientsMenu("./databases/ingredienti.txt");
+        pizzeria.loadIngredientsMenu("./databases/ingredienti.txt",FormatType.TXT);
 
         System.out.println("\t\t\t\t MENU PIZZE\n" + pizzeria.printMenuPizze());
         System.out.println("\t\t\t\t INGREDIENTI PRESENTI\n" + pizzeria.printAllIngredients());

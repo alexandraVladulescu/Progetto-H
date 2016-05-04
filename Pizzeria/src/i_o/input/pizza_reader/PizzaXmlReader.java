@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package i_o_V1;
+package i_o.input.pizza_reader;
 
 import data.Ingredient;
 import data.Pizza;
 import data.Product;
+import i_o.MyXmlParser;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.w3c.dom.*;
@@ -18,14 +19,14 @@ import org.w3c.dom.*;
  *
  * @author User
  */
-public class PizzeXmlReader implements PizzaReaderFactory {
+public class PizzaXmlReader implements PizzaReaderFactory {
 
     private Document xmlMenu;
     private NodeList pizzaList;
     private int indexList;
 //./databases/MenuPizze.xml
 
-    public PizzeXmlReader(String path) {
+    public PizzaXmlReader(String path) {
 
         xmlMenu = MyXmlParser.getDocument(path);
         this.pizzaList = xmlMenu.getElementsByTagName("pizza");// HO LA STRUTTURA NODELIST

@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package i_o_V1;
+package i_o.input.pizza_reader;
 
 import data.*;
+import i_o.FormatType;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class MenuPizzaLoader {
                 filePizzaReader = new PizzaTxtReader(path);
                 break;
             case XML:
-                filePizzaReader = new PizzeXmlReader(path);
+                filePizzaReader = new PizzaXmlReader(path);
                 break;
             default : filePizzaReader = null;
         }

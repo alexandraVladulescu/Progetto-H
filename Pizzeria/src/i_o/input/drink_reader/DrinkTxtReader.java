@@ -3,27 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package i_o_V1;
+package i_o.input.drink_reader;
 
 import data.*;
-import java.io.IOException;
 
 /**
  *
  * @author Francesco
  */
-class DrinkXmlReader implements DrinkReaderFactory {
+public class DrinkTxtReader implements DrinkReaderFactory {
 
-    public DrinkXmlReader(String path) {
+    public DrinkTxtReader(String path) {
     }
 
     @Override
-    public Drink getNextProduct() throws IOException {
+    public Drink getNextProduct() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean hasNextProduct() throws IOException {
+    public boolean hasNextProduct() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

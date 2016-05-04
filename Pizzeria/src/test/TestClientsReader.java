@@ -7,7 +7,7 @@ package test;
 
 //import com.sun.org.apache.xml.internal.security.c14n.helper.C14nHelper;
 import data.Client;
-import i_o_V1.ClientsXmlReader;
+import i_o.input.client_reader.ClientXmlReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +20,7 @@ public class TestClientsReader {
     
     public static void main(String[] args) {
         
-        ClientsXmlReader reader = new ClientsXmlReader("./databases/ClientsDB.xml");
+        ClientXmlReader reader = new ClientXmlReader("./databases/ClientsDB.xml");
         
         try {
             Client c1 = reader.getNextClient();

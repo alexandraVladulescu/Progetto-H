@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package i_o_V1;
+package i_o.input.ingredient_reader;
 
 import data.Address;
 import data.Client;
 import data.Ingredient;
+import i_o.MyXmlParser;
 import java.io.IOException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -17,20 +18,21 @@ import org.w3c.dom.NodeList;
  *
  * @author User
  */
-public class IndgredientsXmlReader {
+public class IngredientXmlReader implements IngredientReaderFactory {
     
     private Document ingredientsList;
     private NodeList ingredientsNodeList;
     private int indexList;
   
     //./databases/ClientsDB.xml
-    public IndgredientsXmlReader(String path) {
+    public IngredientXmlReader(String path) {
 
         ingredientsList = MyXmlParser.getDocument(path);
         this.ingredientsNodeList = ingredientsList.getElementsByTagName("cliente");// HO LA STRUTTURA NODELIST
         indexList = 0;
     }
     
+    @Override
     public Ingredient getNextIngredient() throws IOException {//RICORDARE CHE QUESTO VIENE RICHIAMATO PER SECONDO
         Node ingredient = ingredientsNodeList.item(indexList);
         //Livello <ingrediente>*
@@ -45,7 +47,8 @@ public class IndgredientsXmlReader {
         return new Ingredient(name, Double.valueOf(price));
     }
 
-    public boolean hasNextProduct() throws IOException {//RICORDARE CHE VIENE RICHIAMATO PER PRIMO
+    @Override
+    public boolean hasNextIngredient() throws IOException {//RICORDARE CHE VIENE RICHIAMATO PER PRIMO
         if (this.indexList < ingredientsNodeList.getLength()) {
 
             return true;

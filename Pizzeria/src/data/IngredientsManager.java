@@ -1,7 +1,10 @@
 package data;
 
 import exceptions.IngredientNotFoundException;
-import i_o_V1.IngredientTxtReader;
+import i_o.FormatType;
+import i_o.input.ingredient_reader.IngredientReaderFactory;
+import i_o.input.ingredient_reader.IngredientTxtReader;
+import i_o.input.ingredient_reader.IngredientsListLoader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,8 +30,9 @@ public class IngredientsManager {
         return t;
     }
     
-    public void loadMenu(String path) throws FileNotFoundException, IOException {
-        IngredientTxtReader reader = new IngredientTxtReader(path);
+    public void loadMenu(String path, FormatType type) throws FileNotFoundException, IOException {
+        IngredientsListLoader ingredientsListLoader = new IngredientsListLoader();
+        IngredientReaderFactory reader = ingredientsListLoader.getFileIngredientReader(path, type);
         while (reader.hasNextIngredient()) {
             this.addIngredient(reader.getNextIngredient());
             
