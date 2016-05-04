@@ -46,3 +46,4 @@ gamberi	1.5
 porchetta	2
 peperoncino	0.5
 cipolle rosse	1
+mozzarella	0
