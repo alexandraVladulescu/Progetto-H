@@ -76,23 +76,23 @@ public class ClientDetailsPanel extends JPanel {
         
         JButton confirmButton = new JButton("OK");
         confirmButton.setBackground(new Color(180, 238, 180));
-        this.add(confirmButton);
         confirmButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 setClientToComanda();
             }
         });
+        this.add(confirmButton);
         
         JButton clearButton = new JButton("clear");
         clearButton.setBackground(new Color(180, 238, 180));
-        this.add(clearButton);
-        confirmButton.addMouseListener(new MouseAdapter() {
+        clearButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 clearAllTextFields();
             }
         });
+        this.add(clearButton);
     }
     
     private void setClientToComanda(){
@@ -102,7 +102,9 @@ public class ClientDetailsPanel extends JPanel {
                                 textClientNumber.getText(), ad);
         
         pizzeria.getCurrentComanda().setClient(cl);
-        //pizzeria.getCurrentComanda().setDeliveryTime(); TODO
+        pizzeria.confirmComanda();
+        /*TODO: pizzeria.getCurrentComanda().setDeliveryTime(); 
+        TODO: Printer.getPrinterSingleton().printOrder();*/
         System.out.println(pizzeria.showComandaDetails());
     }
     

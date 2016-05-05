@@ -21,6 +21,7 @@ public class Comanda extends Observable {
     private ArrayList<Product> ordersList = new ArrayList<Product>();
     private Client client;
     private Calendar deliveryTime = new GregorianCalendar();
+    private boolean terminated=false;
 
     public Comanda() {
     }
@@ -120,6 +121,10 @@ public class Comanda extends Observable {
 
     public ArrayList<Product> getOrdersList() {
         return ordersList;
+    }
+    
+    public void terminate(){
+        terminated=true;
     }
 
 }
