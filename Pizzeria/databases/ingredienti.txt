@@ -1,49 +1,50 @@
-acciughe	1
+acciughe	1.0
+aglio	0.0
+asparagi	1.0
+bresaola	2.0
+brie	1.0
+calamari	2.0
+capperi	0.5
+carciofi	1.0
+cipolle	0.0
+cipolle rosse	1.0
+curry	0.0
+doppia mozzarella	0.5
+frutti di mare	2.0
+funghi	1.5
+funghi porcini	1.5
+gamberi	1.5
+gorgonzola	1.2
+grana	1.0
+mais	1.0
+Marco	2.0
+mela	0.5
+mozzarella	0.0
+mozzarella di bufala	2.0
+noci	1.0
 olive	1.2
 olive nere	1.2
-wurstel	2
-patatine	2
-salmone	2.5
-tonno	1.5
-mais	1
-uovo	3
-pancetta	3
-prosciutto cotto	2
-prosciutto crudo	2
-salsiccia	0
-salame dolce	1
-origano	1
-capperi	0.5
-carciofi	1
-funghi	1.5
-salame piccante	1.2
-doppia mozzarella	0.5
-peperoni	1
-pomodoro	0
-aglio	0
-scamorza	1
-gorgonzola	1.2
-grana	1
-pere	1.5
-cipolle	0
-trevisana	0.5
-verdure grigliate	1
-calamari	2
+origano	1.0
+pancetta	3.0
 panna	0.5
-speck	1
-noci	1
-frutti di mare	2
-funghi porcini	1.5
-mozzarella di bufala	2
-rucola	0.5
-brie	1
-spinaci	1
-bresaola	2
-asparagi	1
-mela	0.5
-curry	0
-gamberi	1.5
-porchetta	2
+patatine	2.0
 peperoncino	0.5
-cipolle rosse	1
-mozzarella	0
+peperoni	1.0
+pere	1.5
+pomodoro	0.0
+porchetta	2.0
+prosciutto cotto	2.0
+prosciutto crudo	2.0
+rucola	0.5
+salame dolce	1.0
+salame piccante	1.2
+salmone	2.5
+salsiccia	0.0
+scamorza	1.0
+speck	1.0
+spinaci	1.0
+tonno	1.5
+trevisana	0.5
+uovo	3.0
+verdure grigliate	1.0
+wurstel	2.0
