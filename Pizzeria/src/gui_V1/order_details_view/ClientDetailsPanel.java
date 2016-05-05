@@ -96,7 +96,7 @@ public class ClientDetailsPanel extends JPanel {
     }
     
     private void setClientToComanda(){
-        Address ad = new Address(textCity.getText(), textClientAddress.getText(), 
+        Address ad = new Address(textCity.getSelectedText(), textClientAddress.getText(), 
                                    textClientNumber.getText());
         Client cl = new Client(textClientName.getText(), textClientSurname.getText(),
                                 textClientNumber.getText(), ad);
