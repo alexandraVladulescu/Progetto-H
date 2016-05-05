@@ -115,7 +115,7 @@ public class OrderDetailsPanel extends JPanel{
         lim.gridx = 0;
         lim.gridy = 5;
         lim.weightx = 1;
-        lim.weighty = 12;
+        lim.weighty = 6;
         lim.fill = GridBagConstraints.BOTH;
         layout.setConstraints(clientDetailsPanel, lim);
         this.add(clientDetailsPanel);

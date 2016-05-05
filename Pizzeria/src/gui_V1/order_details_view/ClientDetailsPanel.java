@@ -3,9 +3,11 @@ package gui_V1.order_details_view;
 import data.Address;
 import data.Client;
 import data.Pizzeria;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,8 +34,9 @@ public class ClientDetailsPanel extends JPanel {
 
         this.pizzeria = pizzeria;
         
-        //Il layout è una griglia di 6 righe e 2 colonne
-        this.setLayout(new GridLayout(6, 2));
+        setBackground(new Color(193, 255, 193));
+        //Il layout è una griglia di 8 righe e 2 colonne
+        this.setLayout(new GridLayout(8, 2));
         
         //Creo i vari campi con relative label
         JLabel labelClientName = new JLabel("Nome cliente");
@@ -72,6 +75,7 @@ public class ClientDetailsPanel extends JPanel {
         this.add(textDeliveringHour);
         
         JButton confirmButton = new JButton("OK");
+        confirmButton.setBackground(new Color(180, 238, 180));
         this.add(confirmButton);
         confirmButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -81,6 +85,7 @@ public class ClientDetailsPanel extends JPanel {
         });
         
         JButton clearButton = new JButton("clear");
+        clearButton.setBackground(new Color(180, 238, 180));
         this.add(clearButton);
         confirmButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -97,6 +102,7 @@ public class ClientDetailsPanel extends JPanel {
                                 textClientNumber.getText(), ad);
         
         pizzeria.getCurrentComanda().setClient(cl);
+        //pizzeria.getCurrentComanda().setDeliveryTime(); TODO
         System.out.println(pizzeria.showComandaDetails());
     }
     
