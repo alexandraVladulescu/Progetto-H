@@ -1,33 +1,66 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
+import data.Comanda;
+import data.Pizzeria;
+import i_o.FormatType;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
-import oracle.jrockit.jfr.JFR;
 
 /**
  *
- * @author User
+ * @author Markenos
  */
 public class MainFrame {
-    
-    public static void main(String[] args) {
-        
-        OrderView panel = new OrderView();
-        
-        JTabbedPane selectView = new JTabbedPane();
-        selectView.addTab("Crea Nuovo Ordine", panel);
-        
-        JFrame fr = new JFrame("Pizzeria");
-        //fr.setSize(700, 700);
-        fr.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fr.add(selectView);
-        fr.setVisible(true);
+
+    //La nostra pizzeria
+
+    private Pizzeria pizzeria;
+    //Pannello relativo alla sezione "Crea/Modifica ordine"
+    private OrderView orderView;
+    private ComandeView comandeView;
+
+    public MainFrame() {
+        try {
+            //Istanziazione della nostra pizzeria
+            pizzeria = new Pizzeria();
+            
+            //Carico gli ingredienti da file txt
+            pizzeria.loadIngredientsMenu("./databases/ingredienti.txt",FormatType.TXT);
+            
+            //Carico le pizze da file txt
+            pizzeria.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);
+            
+            //Creo una nuova comanda (comportamento di default all'apertra del programma)
+            pizzeria.setCurrentComanda(new Comanda());
+            
+            //La finestra principale
+            JFrame mainFrame = new JFrame("Pizzeria");
+            mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            
+            //Istanzio i pannelli che contiene
+            orderView = new OrderView(this.pizzeria);
+            comandeView = new ComandeView(this.pizzeria);
+
+            //Permette di scegliere tra la sezione "Crea/Modifica ordine" e la sezione "Storico ordini"
+            JTabbedPane selectView = new JTabbedPane();
+            selectView.addTab("Crea/Modifica ordine", orderView);
+            selectView.addTab("Comande Attive", comandeView);
+
+            mainFrame.add(selectView);
+            mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            mainFrame.setVisible(true);
+
+            
+        } catch (IOException ex) {
+            System.err.println("Errore nel caricamento dei file");
+        }
+
     }
-    
+
+    public static void main(String[] args) {
+        new MainFrame();
+    }
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui_V1.comande_view;
+package gui.comande_view;
 
 import java.awt.Color;
 
@@ -11,10 +11,10 @@ import java.awt.Color;
  *
  * @author User
  */
-public class WaitingComandePanel extends ComandePanel{
+public class ShippedComandePanel extends ComandePanel{
 
-    public WaitingComandePanel() {
-        setBackground(Color.RED);
+    public ShippedComandePanel() {
+        setBackground(Color.GREEN);
     }
     
     

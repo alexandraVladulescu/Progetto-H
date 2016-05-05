@@ -1,6 +1,6 @@
-package gui_V1.order_details_view;
+package gui.order_details_view;
 
-import gui_V1.order_details_view.ClientDetailsPanel;
+import gui.order_details_view.ClientDetailsPanel;
 import data.Pizzeria;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;

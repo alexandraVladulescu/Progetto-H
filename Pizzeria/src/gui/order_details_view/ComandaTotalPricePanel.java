@@ -1,4 +1,4 @@
-package gui_V1.order_details_view;
+package gui.order_details_view;
 
 import data.Pizzeria;
 import java.awt.Color;
@@ -10,12 +10,12 @@ import javax.swing.JPanel;
  *
  * @author Markenos
  */
-public class DrinksTotalPricePanel extends JPanel {
+public class ComandaTotalPricePanel extends JPanel {
     private Pizzeria pizzeria;
     private JLabel labelDescription;
     private JLabel labelTotalPrice;
 
-    public DrinksTotalPricePanel(Pizzeria pizzeria) {
+    public ComandaTotalPricePanel(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
         
         setBackground(new Color(180, 238, 180));
@@ -23,7 +23,7 @@ public class DrinksTotalPricePanel extends JPanel {
         this.setLayout(new GridLayout(1,2));
         
         //Istanzio le due label
-        labelDescription = new JLabel("Totale bibite:");
+        labelDescription = new JLabel("Totale comanda:");
         labelTotalPrice = new JLabel(Double.toString(pizzeria.getCurrentComanda().calculateTotalPrice()));
         
         //Aggiungo le label al pannello

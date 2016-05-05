@@ -1,9 +1,9 @@
-package gui_V1.order_details_view;
+package gui.order_details_view;
 
 import data.Pizza;
 import data.Pizzeria;
 import exceptions.ProductNotFoundException;
-import gui_V1.order_details_view.edit_view.ChooseOperationPanel;
+import gui.order_details_view.edit_view.ChooseOperationPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
