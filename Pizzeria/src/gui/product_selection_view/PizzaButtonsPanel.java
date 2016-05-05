@@ -1,4 +1,4 @@
-package gui_V1.product_selection_view;
+package gui.product_selection_view;
 
 import data.Pizza;
 import data.Pizzeria;

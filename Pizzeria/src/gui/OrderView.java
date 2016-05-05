@@ -1,78 +1,62 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
+import gui.order_details_view.OrderDetailsPanel;
+import gui.product_selection_view.PizzaButtonsPanel;
 import data.Pizzeria;
-import i_o.FormatType;
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.paint.Color;
-import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 /**
  *
- * @author User
+ * @author Markenos
  */
-public class OrderView extends JPanel implements Observer{
+public class OrderView extends JPanel implements Observer {
 
-    private Pizzeria pizzeria; 
-    
-    private ProductPanel pizzePanel;
-    private OrderDetailsPanel dtPanel;
-    private ComandaPanel cmPanel;
-    
-    private JTabbedPane productTypePane;
-   
-    
-    public OrderView(){
+    private Pizzeria pizzeria;
+
+    // Il primo pannello è quello di sinistra contenente l'elenco delle pizze nel menu
+    // Il secondo pannello è quello di destra che contiene i dettagli della comanda
+    private PizzaButtonsPanel pizzaButtonsPanel;
+    private OrderDetailsPanel orderDetailsPanel;
+
+    public OrderView(Pizzeria pizzeria) {
+
+        this.pizzeria = pizzeria;
+
+        pizzeria.getCurrentComanda().addObserver(this);
+
+        //Istanzio i pannelli che contiene OrderView
+        pizzaButtonsPanel = new PizzaButtonsPanel(this.pizzeria);
+        orderDetailsPanel = new OrderDetailsPanel(this.pizzeria);
+
+        //Scroller per il pannello delle pizze. Disabilitiamo lo scrolling orizzontale
+        JScrollPane scrollerPizzasPanel = new JScrollPane(pizzaButtonsPanel);
+        scrollerPizzasPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        //setto che la barra verticale ci sia sempre per evitare l'effetto "saltino" quando essa viene creata...
+        //un po come visto nel caso di PizzasOrderedPanel...
+        scrollerPizzasPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+        //Per selezionare tra bibite e bevande (aggiungo gli scroller ovviamente...)
+        JTabbedPane selectProductType = new JTabbedPane();
+        selectProductType.addTab("Pizze", scrollerPizzasPanel);
+
+        //Griglia di una riga e due colonne
+        this.setLayout(new GridLayout(1, 2));
+
         
-        productTypePane = new JTabbedPane();
-        productTypePane.setBackground(new java.awt.Color(175, 255, 172));
-           
-        try {
-            pizzeria = new Pizzeria();
-            
-            pizzeria.loadMenuPizza("./databases/MenuPizze.xml", FormatType.XML);
-            
-            pizzePanel = new ProductPanel(pizzeria);
-            dtPanel = new OrderDetailsPanel(pizzeria);
-            cmPanel = new ComandaPanel(pizzeria);
-            
-            pizzeria.getCurrentComanda().addObserver(this);
-            
-            productTypePane.addTab("Pizze", pizzePanel);
-            
-            setLayout(new GridLayout(1, 3));
-            setBackground(new java.awt.Color(195, 176, 145));
-            
-            add(productTypePane);
-            add(dtPanel);
-            add(cmPanel);
-            
-        } catch (IOException ex) {
-            //JDialog errorDialog = new JDialog
-            System.err.println("Problemi di Input Dei File");
-        }
         
+        this.add(selectProductType);
+        this.add(orderDetailsPanel);
+
     }
 
     @Override
-    public void update(Observable o, Object o1) {
-        cmPanel.update();
-        dtPanel.update();
-        repaint();
-        
+    public void update(Observable o, Object arg) {
+        this.orderDetailsPanel.update();
     }
-    
-    
+
 }

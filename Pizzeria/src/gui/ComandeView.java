@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui_V1;
+package gui;
 
 import data.Comanda;
 import data.Pizzeria;
-import gui_V1.comande_view.ShippedComandePanel;
-import gui_V1.comande_view.WaitingComandePanel;
+import gui.comande_view.ShippedComandePanel;
+import gui.comande_view.WaitingComandePanel;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;

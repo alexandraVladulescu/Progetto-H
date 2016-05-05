@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui_V1.comande_view;
+package gui.comande_view;
 
 import data.Comanda;
 import java.util.ArrayList;

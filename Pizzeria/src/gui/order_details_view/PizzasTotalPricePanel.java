@@ -1,4 +1,4 @@
-package gui_V1.order_details_view;
+package gui.order_details_view;
 
 import data.Pizzeria;
 import java.awt.Color;
