@@ -86,6 +86,25 @@ public class MenuPizze implements Cloneable {
         this.writeMenu("./databases/pizze.txt", FormatType.TXT);
     }
     
+    //Questo metodo serve per rimuovere una pizza da quelle presenti nella pizzeria.
+    public void removePizzaFromPizzeria(String name) throws PizzaNotFoundInMenuException, IOException{
+        //Questa variabile boolean serve per sapere se la pizza che vogliamo elimianare esiste o no nella pizzeria...
+        boolean exists = false;
+        for (Pizza pizza : pizze){
+            if (pizza.getName().equalsIgnoreCase(name)){
+                pizze.remove(pizza);
+                exists = true;
+                break;
+            }
+        }
+        //Se la pizza non esiste nella pizzeria...
+        if (!exists){
+            throw new PizzaNotFoundInMenuException("La pizza che vuoi eliminare non esiste nella pizzeria.");
+        }
+        Collections.sort(pizze);
+        writeMenu("./databases/pizze.txt", FormatType.TXT);
+    }
+    
     public ArrayList<Pizza> printAllPizzas() {
         return pizze;
     }

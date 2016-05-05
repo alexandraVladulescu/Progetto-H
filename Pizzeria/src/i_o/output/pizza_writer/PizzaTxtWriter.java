@@ -33,7 +33,7 @@ public class PizzaTxtWriter implements PizzaWriterFactory {
 
     @Override
     public void writeNextPizza() {
-        printWriter.println(pizzas.get(index).getName() + pizzas.get(index).getPrice() + "\n");
+        printWriter.print(pizzas.get(index).getName() + "\t" + pizzas.get(index).getPrice() + "\n");
         //Per ogni ingrediente presente nella pizza
         for (int i = 0; i < pizzas.get(index).getIngredients().size(); i++){
             //Quando arriviamo all'ultimo ingrediente non dobbiamo stampare la tabulazione finale altrimenti accadono casini poi in fase di lettura
