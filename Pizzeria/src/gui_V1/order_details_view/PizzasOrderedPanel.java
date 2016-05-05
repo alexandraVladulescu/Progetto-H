@@ -3,6 +3,7 @@ package gui_V1.order_details_view;
 import data.Pizza;
 import data.Pizzeria;
 import data.Product;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -25,6 +26,8 @@ public class PizzasOrderedPanel extends JPanel {
         this.pizzeria = pizzeria;
         pizzasLineView = new ArrayList<PizzaLineView>();
         
+        setBackground(new Color(193, 255, 193));
+                
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
     }
     
