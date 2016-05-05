@@ -1,7 +1,12 @@
 package gui_V1.order_details_view;
 
+import data.Address;
+import data.Client;
 import data.Pizzeria;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -14,6 +19,14 @@ import javax.swing.JTextField;
 public class ClientDetailsPanel extends JPanel {
     
     private Pizzeria pizzeria;
+    
+    private JTextField textClientName;
+    private JTextField textClientSurname;
+    private JTextField textClientAddress;
+    private JTextField textHouseNumber;
+    private JTextField textCity;
+    private JTextField textClientNumber;
+    private JTextField textDeliveringHour;
 
     public ClientDetailsPanel(Pizzeria pizzeria) {
 
@@ -23,35 +36,79 @@ public class ClientDetailsPanel extends JPanel {
         this.setLayout(new GridLayout(6, 2));
         
         //Creo i vari campi con relative label
+        JLabel labelClientName = new JLabel("Nome cliente");
+        this.add(labelClientName);
+        textClientName = new JTextField(5);
+        this.add(textClientName);
+        
         JLabel labelClientSurname = new JLabel("Cognome cliente");
         this.add(labelClientSurname);
-        JTextField textClientSurname = new JTextField(5);
+        textClientSurname = new JTextField(5);
         this.add(textClientSurname);
         
         JLabel labelClientAddress = new JLabel("Indirizzo cliente");
         this.add(labelClientAddress);
-        JTextField textClientAddress = new JTextField();
+        textClientAddress = new JTextField();
         this.add(textClientAddress);
         
         JLabel labelHouseNumber = new JLabel("Numero civico");
         this.add(labelHouseNumber);
-        JTextField textHouseNumber = new JTextField();
+        textHouseNumber = new JTextField();
         this.add(textHouseNumber);
         
         JLabel labelCity = new JLabel("Città");
         this.add(labelCity);
-        JTextField textCity = new JTextField();
+        textCity = new JTextField();
         this.add(textCity);
         
         JLabel labelClientNumber = new JLabel("Recapito");
         this.add(labelClientNumber);
-        JTextField textClientNumber = new JTextField();
+        textClientNumber = new JTextField();
         this.add(textClientNumber);
         
         JLabel labelDeliveringHour = new JLabel("Ora consegna");
         this.add(labelDeliveringHour);
-        JTextField textDeliveringHour = new JTextField();
+        textDeliveringHour = new JTextField();
         this.add(textDeliveringHour);
+        
+        JButton confirmButton = new JButton("OK");
+        this.add(confirmButton);
+        confirmButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                setClientToComanda();
+            }
+        });
+        
+        JButton clearButton = new JButton("clear");
+        this.add(clearButton);
+        confirmButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                clearAllTextFields();
+            }
+        });
+    }
+    
+    private void setClientToComanda(){
+        Address ad = new Address(textCity.getText(), textClientAddress.getText(), 
+                                   textClientNumber.getText());
+        Client cl = new Client(textClientName.getText(), textClientSurname.getText(),
+                                textClientNumber.getText(), ad);
+        
+        pizzeria.getCurrentComanda().setClient(cl);
+        System.out.println(pizzeria.showComandaDetails());
+    }
+    
+    private void clearAllTextFields(){
+        textCity.setText("");
+        textClientAddress.setText("");
+        textClientName.setText("");
+        textClientNumber.setText("");
+        textClientSurname.setText("");
+        textClientSurname.setText("");
+        textDeliveringHour.setText("");
+        textHouseNumber.setText("");
     }
 
 }

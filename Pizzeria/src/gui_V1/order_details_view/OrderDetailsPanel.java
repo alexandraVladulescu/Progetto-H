@@ -79,7 +79,7 @@ public class OrderDetailsPanel extends JPanel{
         lim.gridx = 0;
         lim.gridy = 1;
         lim.weightx = 1;
-        lim.weighty = 2;
+        lim.weighty = 1;
         lim.fill = GridBagConstraints.BOTH;
         layout.setConstraints(pizzasTotalPricePanel, lim);
         this.add(pizzasTotalPricePanel);
@@ -106,7 +106,7 @@ public class OrderDetailsPanel extends JPanel{
         lim.gridx = 0;
         lim.gridy = 4;
         lim.weightx = 1;
-        lim.weighty = 2;
+        lim.weighty = 1;
         lim.fill = GridBagConstraints.BOTH;
         layout.setConstraints(comandaTotalPricePanel, lim);
         this.add(comandaTotalPricePanel);
@@ -115,7 +115,7 @@ public class OrderDetailsPanel extends JPanel{
         lim.gridx = 0;
         lim.gridy = 5;
         lim.weightx = 1;
-        lim.weighty = 10;
+        lim.weighty = 12;
         lim.fill = GridBagConstraints.BOTH;
         layout.setConstraints(clientDetailsPanel, lim);
         this.add(clientDetailsPanel);
