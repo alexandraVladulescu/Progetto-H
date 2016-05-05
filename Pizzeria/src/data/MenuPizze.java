@@ -5,13 +5,15 @@
  */
 package data;
 
+import exceptions.AlreadyExistingPizzaException;
 import exceptions.PizzaNotFoundInMenuException;
 import i_o.FormatType;
 import i_o.input.pizza_reader.MenuPizzaLoader;
 import i_o.input.pizza_reader.PizzaReaderFactory;
+import i_o.output.pizza_writer.MenuPizzaWriter;
+import i_o.output.pizza_writer.PizzaWriterFactory;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -42,6 +44,9 @@ public class MenuPizze implements Cloneable {
     //./databases/MenuPizze.xml
 
     public void loadMenu(String path, FormatType type) throws IOException { //MI ARRIVANO COME PRODUCT, FACCIO IL CAST
+        //E' necessario fare il clear della collection altrimenti
+        //due caricamenti consecutivi possono sdoppiare le pizze
+        pizze.clear();
         MenuPizzaLoader menuPizzaLoader = new MenuPizzaLoader();
         PizzaReaderFactory reader = menuPizzaLoader.getFilePizzaReader(path, type);
         while (reader.hasNextProduct()) {
@@ -51,6 +56,36 @@ public class MenuPizze implements Cloneable {
 
     }
 
+    public void writeMenu(String path, FormatType type) throws IOException{
+        MenuPizzaWriter menuPizzaWriter = new MenuPizzaWriter();
+        PizzaWriterFactory writer = menuPizzaWriter.getFilePizzaWriter(path, type, pizze);
+        while(writer.hasNextPizza()){
+            writer.writeNextPizza();
+        }
+    }
+    
+    //Metodo per aggiungere una pizza all'elenco delle pizze presenti nella pizzeria.
+    public void createNewPizza(String name, double price, ArrayList<Ingredient> ingredients) throws AlreadyExistingPizzaException, IOException{
+        //Effettuiamo un controllo: se esiste già una pizza con questo nome lanciamo un eccezione
+        //in quanto non possono esistere due pizze aventi lo stesso nome
+        for(Pizza p: pizze){
+            if (name.equalsIgnoreCase(p.getName())){
+                throw new AlreadyExistingPizzaException("Esiste già una pizza con il nome " + name);
+            }
+        }
+        //Creiamo la pizza da inserire nel file
+        Pizza pizza = new Pizza(name, price);
+        for(Ingredient ingredient : ingredients){
+            pizza.addIngredient(ingredient);
+        }
+        //Aggiungiamo la pizza alle altre
+        pizze.add(pizza);
+        //Riordiniamo la collection
+        Collections.sort(pizze);
+        //Scriviamo su file le modifiche
+        this.writeMenu("./databases/pizze.txt", FormatType.TXT);
+    }
+    
     public ArrayList<Pizza> printAllPizzas() {
         return pizze;
     }
