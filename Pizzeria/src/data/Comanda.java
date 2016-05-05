@@ -127,5 +127,9 @@ public class Comanda extends Observable {
     public void terminate(){
         terminated=true;
     }
+    
+    public boolean getTerminated(){
+        return terminated;
+    }
 
 }

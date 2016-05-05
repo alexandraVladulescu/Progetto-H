@@ -41,6 +41,10 @@ public class ComandeManager {
         return c;
     }
 
+    public ArrayList<Comanda> getComande() {
+        return comande;
+    }
+
     public Comanda getComanda(String surname) throws ComandaNotFoundException {
         Comanda comandaTrovata = this.searchComandaByName(surname);
         return comandaTrovata;
