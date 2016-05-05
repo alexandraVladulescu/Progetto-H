@@ -20,6 +20,7 @@ public class MainFrame {
     private Pizzeria pizzeria;
     //Pannello relativo alla sezione "Crea/Modifica ordine"
     private OrderView orderView;
+    private ComandeView comandeView;
 
     public MainFrame() {
         try {
@@ -41,10 +42,12 @@ public class MainFrame {
             
             //Istanzio i pannelli che contiene
             orderView = new OrderView(this.pizzeria);
+            comandeView = new ComandeView(this.pizzeria);
 
             //Permette di scegliere tra la sezione "Crea/Modifica ordine" e la sezione "Storico ordini"
             JTabbedPane selectView = new JTabbedPane();
             selectView.addTab("Crea/Modifica ordine", orderView);
+            selectView.addTab("Comande Attive", comandeView);
 
             mainFrame.add(selectView);
             mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

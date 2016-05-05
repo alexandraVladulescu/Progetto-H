@@ -102,7 +102,9 @@ public class ClientDetailsPanel extends JPanel {
                                 textClientNumber.getText(), ad);
         
         pizzeria.getCurrentComanda().setClient(cl);
-        //pizzeria.getCurrentComanda().setDeliveryTime(); TODO
+        pizzeria.confirmComanda();
+        /*TODO: pizzeria.getCurrentComanda().setDeliveryTime(); 
+        TODO: Printer.getPrinterSingleton().printOrder();*/
         System.out.println(pizzeria.showComandaDetails());
     }
     

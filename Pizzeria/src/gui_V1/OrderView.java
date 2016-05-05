@@ -3,14 +3,10 @@ package gui_V1;
 import gui_V1.order_details_view.OrderDetailsPanel;
 import gui_V1.product_selection_view.PizzaButtonsPanel;
 import data.Pizzeria;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
