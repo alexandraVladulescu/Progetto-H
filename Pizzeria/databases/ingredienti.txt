@@ -17,7 +17,6 @@ gamberi	1.5
 gorgonzola	1.2
 grana	1.0
 mais	1.0
-Marco	2.0
 mela	0.5
 mozzarella	0.0
 mozzarella di bufala	2.0
