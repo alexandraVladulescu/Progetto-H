@@ -1,6 +1,7 @@
 package gui_V1.order_details_view;
 
 import data.Pizzeria;
+import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
@@ -13,6 +14,8 @@ public class DrinksOrderedPanel extends JPanel{
 
     public DrinksOrderedPanel(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
+        
+        setBackground(new Color(193, 255, 193));
     }
     
     

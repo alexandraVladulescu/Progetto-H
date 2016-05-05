@@ -1,6 +1,7 @@
 package gui_V1.order_details_view;
 
 import data.Pizzeria;
+import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +18,7 @@ public class ComandaTotalPricePanel extends JPanel {
     public ComandaTotalPricePanel(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
         
+        setBackground(new Color(180, 238, 180));
         //Imposto una griglia di una riga e una colonna: la prima per la scritta "Totale" la seconda per il prezzo
         this.setLayout(new GridLayout(1,2));
         
