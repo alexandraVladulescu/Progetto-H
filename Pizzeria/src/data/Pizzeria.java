@@ -74,6 +74,10 @@ public class Pizzeria {
         return menuPizze;
     }
 
+    public ComandeManager getComandeManager() {
+        return comandeManager;
+    }
+
     public void confirmComanda() {
         comandeManager.addComanda(currentComanda);
     }
