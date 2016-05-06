@@ -21,7 +21,7 @@ public class CurrentComandaManager extends Observable {
     private Comanda currentComanda;
     private ComandeManager comandeManager;
     private MenuPizze menuPizze;// diventato Singleton
-    private IngredientsManager ingredientsManager;
+    private IngredientsManager ingredientsManager; //diventato Singleton 
 
     public CurrentComandaManager() {
         comandeManager = new ComandeManager();
