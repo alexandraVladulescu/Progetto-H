@@ -44,6 +44,8 @@ public class MainFrame {
             orderView = new OrderView(this.pizzeria);
             comandeView = new ComandeView(this.pizzeria);
 
+            pizzeria.addObserver(comandeView);
+            
             //Permette di scegliere tra la sezione "Crea/Modifica ordine" e la sezione "Storico ordini"
             JTabbedPane selectView = new JTabbedPane();
             selectView.addTab("Crea/Modifica ordine", orderView);

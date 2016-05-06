@@ -7,6 +7,7 @@ package gui.comande_view;
 
 import data.Comanda;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -17,29 +18,32 @@ import javax.swing.JTextField;
  */
 public class ComandePanel extends JPanel{
     
-    private ArrayList<Comanda> comande;
+    private HashMap<Comanda, JTextField> comandeMap;
 
     public ComandePanel() {
        //setLayout(new BoxLayout(this, HEIGHT));
         
-        comande = new ArrayList<>();
+        comandeMap = new HashMap<>();
     }
     
     public void addComanda(Comanda comanda){
-        comande.add(comanda);
+        comandeMap.put(comanda, new JTextField(comanda.toString()));
     }
 
-    public ArrayList<Comanda> getComande() {
-        return comande;
+    public HashMap<Comanda, JTextField> getComandeMap() {
+        return comandeMap;
+    }
+
+    public void displayComande(){
+        for (Comanda cmd : comandeMap.keySet()) {
+            comandeMap.get(cmd).setEditable(false);
+            add(comandeMap.get(cmd));
+            //TODO : Aggiungere MouseListener per riportare alla schermata ordini
+        }
     }
     
-    public void displayComande(){
-        for (Comanda comanda : comande) {
-            JTextField txtFld = new JTextField(comanda.toString());
-            txtFld.setEditable(false);
-            add(txtFld);
-            //TODO: aggiungere un MouseListener che al click ti riporta alla schermata ordini
-        }
+    public void removeAllComande(){
+        comandeMap.clear();
     }
     
 }
