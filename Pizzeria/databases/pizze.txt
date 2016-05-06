@@ -54,7 +54,7 @@ MARACAIBO	6.0
 pomodoro	mozzarella	salame piccante	salsiccia
 MARE E MONTI	8.0
 pomodoro	mozzarella	frutti di mare	funghi porcini
-MARGERITA SPECIALE	6.0
+MARGHERITA SPECIALE	6.0
 pomodoro	mozzarella di bufala
 MARINARA	3.5
 pomodoro	aglio	origano
@@ -110,3 +110,5 @@ WURSTEL	5.0
 pomodoro	mozzarella	wurstel
 WURSTEL E CHIPS	6.0
 pomodoro	mozzarella	wurstel	patatine
+MARGHERITA	4.0
+pomodoro	mozzarella

@@ -22,10 +22,9 @@ public class CurrentComandaManager extends Observable {
     private ComandeManager comandeManager;
     private MenuPizze menuPizze;// diventato Singleton
     private IngredientsManager ingredientsManager; //diventato Singleton 
-
+    
     public CurrentComandaManager() {
         comandeManager = new ComandeManager();
-        currentComanda = new Comanda();
         menuPizze = MenuPizze.getInstance();// setto il menuPizze con l'unica istanza che esiste
         ingredientsManager = IngredientsManager.getInstance();// setto il menu degli ingredienti con l'unica istanza
     }
