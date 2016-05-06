@@ -53,7 +53,7 @@ public class Pizzeria {
         return menuPizze;
     }
 
-    public ComandeManager getComandeManager() {
+    public ComandeManager getComandeManager() { // Bisogna veder se serve
         return comandeManager;
     }
 

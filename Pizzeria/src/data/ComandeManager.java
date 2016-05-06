@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class ComandeManager {
 
     private ArrayList<Comanda> comande;
-    private Comanda currentComanda;
 
     public ComandeManager() {
         comande = new ArrayList<Comanda>();
