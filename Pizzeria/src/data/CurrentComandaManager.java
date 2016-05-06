@@ -10,6 +10,7 @@ import exceptions.IngredientNotFoundException;
 import exceptions.PizzaNotFoundInMenuException;
 import exceptions.ProductNotFoundException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Observable;
 
 /**
@@ -223,6 +224,18 @@ public class CurrentComandaManager extends Observable {
         }
 
         //Notifichiamo agli osservatori le modifiche da noi fatte
+        setChanged();
+        notifyObservers();
+    }
+    
+    //Metodo per ritornare l'ora di consegna della comanda corrente
+    public Calendar getDeliveryTime() {
+        return this.getCurrentComanda().getDeliveryTime();
+    }
+
+    //Metodo per settare l'ora di consegna della comanda corrente
+    public void setDeliveryTime(Calendar data) {
+        this.getCurrentComanda().setDeliveryTime(data);
         setChanged();
         notifyObservers();
     }

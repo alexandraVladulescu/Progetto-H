@@ -6,10 +6,15 @@ import data.CurrentComandaManager;
 import data.Pizzeria;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -29,7 +34,7 @@ public class ClientDetailsPanel extends JPanel {
     private JTextField textHouseNumber;
     private JTextField textCity;
     private JTextField textClientNumber;
-    private JTextField textDeliveringHour;
+    private JComboBox comboDeliveringHour;
 
     public ClientDetailsPanel(Pizzeria pizzeria) {
 
@@ -71,8 +76,30 @@ public class ClientDetailsPanel extends JPanel {
         
         JLabel labelDeliveringHour = new JLabel("Ora consegna");
         this.add(labelDeliveringHour);
-        textDeliveringHour = new JTextField();
-        this.add(textDeliveringHour);
+        comboDeliveringHour = new JComboBox();
+        //Per ogni 5 minuti che esistono in 24 ore...
+        for(int i = 0; i < ((24*60)/5);i++){
+            comboDeliveringHour.addItem(createDeliveringHourString(i*5));
+        }
+        //Aggiungo il listener per la combobox in modo che quando seleziono un orario nella combobox me lo setti come
+        //orario di consegna della comanda corrente...
+        comboDeliveringHour.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Separo le ore e i minuti dell'ora di consegna in due stringhe separate
+                String[] time = ((String)(comboDeliveringHour.getSelectedItem())).split(":");
+                //I primi tre campi (Anno, mese e giorno) vengono presi dalla data attuale di sistema
+                pizzeria.getCurrentComandaManager().setDeliveryTime(new GregorianCalendar(
+                        Calendar.getInstance().get(Calendar.YEAR), 
+                        Calendar.getInstance().get(Calendar.MONTH), 
+                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 
+                        Integer.parseInt(time[0]),
+                        Integer.parseInt(time[1])));
+                System.out.println(pizzeria.getCurrentComandaManager().getDeliveryTime());
+            }
+        });
+        this.add(comboDeliveringHour);
         
         JButton confirmButton = new JButton("OK");
         confirmButton.addMouseListener(new MouseAdapter() {
@@ -114,8 +141,16 @@ public class ClientDetailsPanel extends JPanel {
         textClientNumber.setText("");
         textClientSurname.setText("");
         textClientSurname.setText("");
-        textDeliveringHour.setText("");
         textHouseNumber.setText("");
+    }
+    
+    //Questo metodo restituisce una stringa per indicare l'ora di consegna della pizza dati in input i minuti
+    //Viene usato durante la creazione della comboBox...
+    private String createDeliveringHourString(int minuts){
+        int hours = (int) Math.floor(minuts/60);
+        int remnantMinuts = minuts % 60;    //I minuti rimanenti sono il resto della divisione dei minuti totali per 60..
+        return String.format("%02d:%02d", hours,remnantMinuts);
+        
     }
 
 }
