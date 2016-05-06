@@ -22,7 +22,7 @@ public class LoaderMenuTest {
 
     public static void main(String[] args) throws IOException {
         System.out.println("Test istanziando un menuPizze dal Main \n");
-        MenuPizze menuPizze = new MenuPizze();
+        MenuPizze menuPizze =  MenuPizze.getInstance();
         menuPizze.loadMenu("./databases/MenuPizze.xml", FormatType.XML);
         System.out.println(menuPizze.printAllPizzas());
 
