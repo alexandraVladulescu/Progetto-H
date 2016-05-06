@@ -21,7 +21,6 @@ public class ComandaTotalPricePanel extends JPanel {
         this.pizzeria = pizzeria;
         currentComandaManager = pizzeria.getCurrentComandaManager();
         
-        setBackground(new Color(180, 238, 180));
         //Imposto una griglia di una riga e una colonna: la prima per la scritta "Totale" la seconda per il prezzo
         this.setLayout(new GridLayout(1,2));
         

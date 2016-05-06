@@ -26,8 +26,6 @@ public class PizzasOrderedPanel extends JPanel {
         this.pizzeria = pizzeria;
         pizzasLineView = new ArrayList<PizzaLineView>();
         
-        setBackground(new Color(193, 255, 193));
-                
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
     }
     
