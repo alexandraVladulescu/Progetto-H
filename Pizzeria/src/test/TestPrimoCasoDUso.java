@@ -8,6 +8,7 @@ package test;
 import data.Address;
 import data.Client;
 import data.Comanda;
+import data.CurrentComandaManager;
 import data.Pizza;
 import exceptions.PizzaNotFoundInMenuException;
 import data.Pizzeria;
@@ -26,20 +27,20 @@ public class TestPrimoCasoDUso {
         System.out.println("ISTANZIO PIZZERIA E CARICO I MENU PRESENTI \n");
         Pizzeria p = new Pizzeria();
         p.loadMenuPizza("./databases/MenuPizze.xml", FormatType.XML);
-        
+        CurrentComandaManager c = p.getCurrentComandaManager();
         System.out.println(" IL CLIENTE CHIAMA \n");
         System.out.println("SETTO COMANDA CORRENTE VUOTA \n");
-        p.setCurrentComanda(new Comanda());
+        c.setCurrentComanda(new Comanda());
 
         System.out.println("ISTANZIO UN CLIENTE (SENZA AGGIUNGERLO A NESSUNA LISTA_CLIENT)\n");
         Client client = new Client("Mario", "Rossi","3335568544", new Address("Lll", "ooo", "528"));
         
         System.out.println("INTESTO LA COMANDA AL CLIENTE \n");
-        p.setClientToComanda(client);
+        c.setClientToComanda(client);
         try {
                 System.out.println("AGGIUNGO PRODOTTI ALLA COMANDA CORRENTE \n");
-            p.addPizza("Margherita");
-            p.addPizza("Capricciosa");
+            c.addPizza("Margherita");
+            c.addPizza("Capricciosa");
             
           
 
@@ -49,10 +50,10 @@ public class TestPrimoCasoDUso {
        
         
         System.out.println("RIASSUNTO COMANDA \n");
-        System.out.println(p.showComandaDetails());
+        System.out.println(c.showComandaDetails());
         
         System.out.println("SE E' TUTTO OKAY CONFERMO LA COMANDA \n");
-        p.confirmComanda();
+        c.confirmComanda();
 
     }
 
