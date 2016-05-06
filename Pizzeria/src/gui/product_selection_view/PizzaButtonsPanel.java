@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,13 +16,14 @@ import javax.swing.JPanel;
  *
  * @author Markenos
  */
-public class PizzaButtonsPanel extends JPanel {
+public class PizzaButtonsPanel extends JPanel implements Observer {
 
     private Pizzeria pizzeria;
     private static final int NUMERO_COLONNE = 4;
 
     public PizzaButtonsPanel(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
+        this.pizzeria.getMenuPizze().addObserver(this);
 
         //Ottengo il numero di pizze nel menù e quindi il  numero di linee
         //tenendo da conto che al massimo il pannello ha 3 colonne (dal numero di colonne si determina il numero di righe...)
@@ -59,5 +62,20 @@ public class PizzaButtonsPanel extends JPanel {
         }
        
     }
+
+    //L'aggiornamento di questa schermata avviene quando aggiungiamo o rimuoviamo una pizza dalla pizzeria
+    @Override
+    public void update(Observable o, Object arg) {
+        this.removeAll();
+        int n = pizzeria.getMenuPizze().getMenuSize();
+        int numberLine = (int) Math.ceil( ((double)n) / ((double)NUMERO_COLONNE));
+
+        //Utilizzo un BoxLayout
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        
+        this.createPizzasGrid(n, numberLine);
+    }
+    
+    
 
 }

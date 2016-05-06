@@ -149,7 +149,10 @@ public class CurrentComandaManager extends Observable {
                 j++;
             }
         }
-
+        //Notifichiamo agli osservatori le modifiche da noi fatte
+        setChanged();
+        notifyObservers();
+        
     }
 
     public void removeIngredientToPizza(String ingredientName, int index) throws ProductNotFoundException, IngredientNotFoundException, CloneNotSupportedException {//si riferisce alla comanda corrente
@@ -219,6 +222,9 @@ public class CurrentComandaManager extends Observable {
             }
         }
 
+        //Notifichiamo agli osservatori le modifiche da noi fatte
+        setChanged();
+        notifyObservers();
     }
 
 }

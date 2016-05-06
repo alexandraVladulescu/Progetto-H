@@ -15,12 +15,13 @@ import i_o.output.pizza_writer.PizzaWriterFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Observable;
 
 /**
  *
  * @author User
  */
-public class MenuPizze implements Cloneable {
+public class MenuPizze extends Observable implements Cloneable{
 
     //AcquireMenu acquireMenu;
     // private MenuPizzeReader menuReader;
@@ -90,6 +91,9 @@ public class MenuPizze implements Cloneable {
         Collections.sort(pizze);
         //Scriviamo su file le modifiche
         this.writeMenu("./databases/pizze.txt", FormatType.TXT);
+        //Notifichiamo gli Observer delle modifiche fatte
+        this.setChanged();
+        this.notifyObservers();
     }
 
     //Questo metodo serve per rimuovere una pizza da quelle presenti nella pizzeria.
@@ -109,6 +113,9 @@ public class MenuPizze implements Cloneable {
         }
         Collections.sort(pizze);
         writeMenu("./databases/pizze.txt", FormatType.TXT);
+        //Notifichiamo gli Observer delle modifiche fatte
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public ArrayList<Pizza> printAllPizzas() {
