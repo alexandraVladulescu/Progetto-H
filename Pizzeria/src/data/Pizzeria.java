@@ -57,9 +57,6 @@ public class Pizzeria {
         return comandeManager;
     }
 
-    public String printAllComande() {
-        return comandeManager.printAllComande();
-    }
 
     public String printAllIngredients() {
         return this.ingredientsManager.printAllIngredient();
