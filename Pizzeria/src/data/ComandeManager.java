@@ -10,10 +10,12 @@ import java.util.ArrayList;
 public class ComandeManager {
 
     private ArrayList<Comanda> comande;
+    private Comanda currentComanda;
 
     public ComandeManager() {
         comande = new ArrayList<Comanda>();
     }
+//Sposto la creazione di una nuova comanda (che corrisponde con la current comanda) in ComandaManager
 
     public void addComanda(Comanda c) {
         this.comande.add(c);
@@ -27,7 +29,6 @@ public class ComandeManager {
     public Comanda searchComandaByName(String surname) throws ComandaNotFoundException {
         Comanda c = null;
         for (Comanda com : comande) {
-           
 
             if (surname.equalsIgnoreCase(com.getClient().getSurname())) {
                 c = com;

@@ -25,10 +25,16 @@ public class MenuPizze implements Cloneable {
     //AcquireMenu acquireMenu;
     // private MenuPizzeReader menuReader;
     private ArrayList<Pizza> pizze;
+    private static MenuPizze menuPizze = new MenuPizze();
 
-    public MenuPizze() {
+    private MenuPizze() {
 
         pizze = new ArrayList<>();
+    }
+
+    public static MenuPizze getInstance() {
+
+        return menuPizze;
     }
 
     @Override
@@ -56,26 +62,26 @@ public class MenuPizze implements Cloneable {
 
     }
 
-    public void writeMenu(String path, FormatType type) throws IOException{
+    public void writeMenu(String path, FormatType type) throws IOException {
         MenuPizzaWriter menuPizzaWriter = new MenuPizzaWriter();
         PizzaWriterFactory writer = menuPizzaWriter.getFilePizzaWriter(path, type, pizze);
-        while(writer.hasNextPizza()){
+        while (writer.hasNextPizza()) {
             writer.writeNextPizza();
         }
     }
-    
+
     //Metodo per aggiungere una pizza all'elenco delle pizze presenti nella pizzeria.
-    public void createNewPizza(String name, double price, ArrayList<Ingredient> ingredients) throws AlreadyExistingPizzaException, IOException{
+    public void createNewPizza(String name, double price, ArrayList<Ingredient> ingredients) throws AlreadyExistingPizzaException, IOException {
         //Effettuiamo un controllo: se esiste già una pizza con questo nome lanciamo un eccezione
         //in quanto non possono esistere due pizze aventi lo stesso nome
-        for(Pizza p: pizze){
-            if (name.equalsIgnoreCase(p.getName())){
+        for (Pizza p : pizze) {
+            if (name.equalsIgnoreCase(p.getName())) {
                 throw new AlreadyExistingPizzaException("Esiste già una pizza con il nome " + name);
             }
         }
         //Creiamo la pizza da inserire nel file
         Pizza pizza = new Pizza(name, price);
-        for(Ingredient ingredient : ingredients){
+        for (Ingredient ingredient : ingredients) {
             pizza.addIngredient(ingredient);
         }
         //Aggiungiamo la pizza alle altre
@@ -85,26 +91,26 @@ public class MenuPizze implements Cloneable {
         //Scriviamo su file le modifiche
         this.writeMenu("./databases/pizze.txt", FormatType.TXT);
     }
-    
+
     //Questo metodo serve per rimuovere una pizza da quelle presenti nella pizzeria.
-    public void removePizzaFromPizzeria(String name) throws PizzaNotFoundInMenuException, IOException{
+    public void removePizzaFromPizzeria(String name) throws PizzaNotFoundInMenuException, IOException {
         //Questa variabile boolean serve per sapere se la pizza che vogliamo elimianare esiste o no nella pizzeria...
         boolean exists = false;
-        for (Pizza pizza : pizze){
-            if (pizza.getName().equalsIgnoreCase(name)){
+        for (Pizza pizza : pizze) {
+            if (pizza.getName().equalsIgnoreCase(name)) {
                 pizze.remove(pizza);
                 exists = true;
                 break;
             }
         }
         //Se la pizza non esiste nella pizzeria...
-        if (!exists){
+        if (!exists) {
             throw new PizzaNotFoundInMenuException("La pizza che vuoi eliminare non esiste nella pizzeria.");
         }
         Collections.sort(pizze);
         writeMenu("./databases/pizze.txt", FormatType.TXT);
     }
-    
+
     public ArrayList<Pizza> printAllPizzas() {
         return pizze;
     }
