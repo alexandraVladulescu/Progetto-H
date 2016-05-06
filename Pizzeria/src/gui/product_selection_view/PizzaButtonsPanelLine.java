@@ -72,7 +72,7 @@ public class PizzaButtonsPanelLine extends JPanel {
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
                     try {
-                        pizzeria.getCurrentComanda().addProduct((Product) pizza.clone());
+                        pizzeria.getCurrentComandaManager().addPizza((Pizza)pizza.clone());
                     } catch (CloneNotSupportedException ex) {
                         System.err.println("Errore durante la clonazione della pizza in PizzasLinePanel");
                     }

@@ -34,7 +34,7 @@ public class MainFrame {
             pizzeria.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);
             
             //Creo una nuova comanda (comportamento di default all'apertra del programma)
-            pizzeria.setCurrentComanda(new Comanda());
+            pizzeria.getCurrentComandaManager().setCurrentComanda(new Comanda());
             
             //La finestra principale
             JFrame mainFrame = new JFrame("Pizzeria");
@@ -44,7 +44,7 @@ public class MainFrame {
             orderView = new OrderView(this.pizzeria);
             comandeView = new ComandeView(this.pizzeria);
 
-            pizzeria.addObserver(comandeView);
+            pizzeria.getCurrentComandaManager().addObserver(comandeView);
             
             //Permette di scegliere tra la sezione "Crea/Modifica ordine" e la sezione "Storico ordini"
             JTabbedPane selectView = new JTabbedPane();

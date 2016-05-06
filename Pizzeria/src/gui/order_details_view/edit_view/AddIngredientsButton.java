@@ -51,11 +51,11 @@ public class AddIngredientsButton extends JButton {
                 //Per ogni ingrediente che vogliamo aggiungere
                 for (String ingredientName : ingredientsToAdd) {
                     try {
-                        pizzeria.addIngredientToPizza(ingredientName, getIndex());
+                        pizzeria.getCurrentComandaManager().addIngredientToPizza(ingredientName, getIndex());
                         //Utilizzo un metodo setIndex perché sennò java da problemi lavorando in una innerClass...
                         //Perché faccio quello che faccio sotto? Perché l'algoritmo che aggiunge l'ingrediente alla pizza, dopo averlo aggiunto
                         //mette la pizza modificata in fondo alla comanda...quindi il suo index cambia a size()-1...
-                        setIndex(pizzeria.getCurrentComanda().getOrdersList().size()-1);
+                        setIndex(pizzeria.getCurrentComandaManager().getCurrentComanda().getOrdersList().size()-1);
                     } catch (ProductNotFoundException ex) {
                         System.err.println("La pizza a cui vuoi aggiungere l'ingrediente non esiste nella comanda corrente");
                     } catch (IngredientNotFoundException ex) {

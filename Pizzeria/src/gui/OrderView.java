@@ -27,7 +27,7 @@ public class OrderView extends JPanel implements Observer {
 
         this.pizzeria = pizzeria;
 
-        pizzeria.getCurrentComanda().addObserver(this);
+        pizzeria.getCurrentComandaManager().addObserver(this);
 
         //Istanzio i pannelli che contiene OrderView
         pizzaButtonsPanel = new PizzaButtonsPanel(this.pizzeria);

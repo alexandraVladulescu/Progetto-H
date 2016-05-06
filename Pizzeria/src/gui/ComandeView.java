@@ -40,6 +40,7 @@ public class ComandeView extends JPanel implements Observer{
 
     @Override
     public void update(Observable o, Object o1) {
+        //Rimuovo tutti gli elementi dai pannelli delle comande
         shippedComandePanel.removeAllComande();
         waitingComandePanel.removeAllComande();
         ArrayList<Comanda> cmds = new ArrayList<>();

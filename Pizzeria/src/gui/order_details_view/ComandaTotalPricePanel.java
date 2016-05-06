@@ -1,5 +1,6 @@
 package gui.order_details_view;
 
+import data.CurrentComandaManager;
 import data.Pizzeria;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -12,11 +13,13 @@ import javax.swing.JPanel;
  */
 public class ComandaTotalPricePanel extends JPanel {
     private Pizzeria pizzeria;
+    private CurrentComandaManager currentComandaManager;
     private JLabel labelDescription;
     private JLabel labelTotalPrice;
 
     public ComandaTotalPricePanel(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
+        currentComandaManager = pizzeria.getCurrentComandaManager();
         
         setBackground(new Color(180, 238, 180));
         //Imposto una griglia di una riga e una colonna: la prima per la scritta "Totale" la seconda per il prezzo
@@ -24,7 +27,7 @@ public class ComandaTotalPricePanel extends JPanel {
         
         //Istanzio le due label
         labelDescription = new JLabel("Totale comanda:");
-        labelTotalPrice = new JLabel(Double.toString(pizzeria.getCurrentComanda().calculateTotalPrice()));
+        labelTotalPrice = new JLabel(Double.toString(currentComandaManager.getCurrentComanda().calculateTotalPrice()));
         
         //Aggiungo le label al pannello
         this.add(labelDescription);
@@ -34,7 +37,7 @@ public class ComandaTotalPricePanel extends JPanel {
     }
     
     public void update(){
-        labelTotalPrice.setText(Double.toString(pizzeria.getCurrentComanda().calculateTotalPrice()));
+        labelTotalPrice.setText(Double.toString(currentComandaManager.getCurrentComanda().calculateTotalPrice()));
     }
     
     

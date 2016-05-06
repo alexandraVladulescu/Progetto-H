@@ -2,6 +2,7 @@ package gui.order_details_view;
 
 import data.Address;
 import data.Client;
+import data.CurrentComandaManager;
 import data.Pizzeria;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -96,16 +97,17 @@ public class ClientDetailsPanel extends JPanel {
     }
     
     private void setClientToComanda(){
+        CurrentComandaManager currentComandaManager = pizzeria.getCurrentComandaManager();
         Address ad = new Address(textCity.getSelectedText(), textClientAddress.getText(), 
                                    textClientNumber.getText());
         Client cl = new Client(textClientName.getText(), textClientSurname.getText(),
                                 textClientNumber.getText(), ad);
         
-        pizzeria.getCurrentComanda().setClient(cl);
-        pizzeria.confirmComanda();
+        currentComandaManager.setClientToComanda(cl);
+        currentComandaManager.confirmComanda();
         /*TODO: pizzeria.getCurrentComanda().setDeliveryTime(); 
         TODO: Printer.getPrinterSingleton().printOrder();*/
-        System.out.println(pizzeria.showComandaDetails());
+        System.out.println(currentComandaManager.showComandaDetails());
     }
     
     private void clearAllTextFields(){

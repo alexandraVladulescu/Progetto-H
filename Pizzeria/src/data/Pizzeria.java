@@ -20,14 +20,14 @@ public class Pizzeria {
 
     private ClientsManager clientManager;
     private ComandeManager comandeManager;
+    private CurrentComandaManager currentComandaManager;
     private IngredientsManager ingredientsManager;
 
-    private Comanda currentComanda;
     private MenuPizze menuPizze;
 
     public Pizzeria() throws IOException {
         comandeManager = new ComandeManager();
-        currentComanda = new Comanda();
+        currentComandaManager = new CurrentComandaManager();
         ingredientsManager = IngredientsManager.getInstance();
 
     }
@@ -70,7 +70,7 @@ public class Pizzeria {
     }
 
     public CurrentComandaManager getCurrentComandaManager() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return currentComandaManager;
     }
 
 }

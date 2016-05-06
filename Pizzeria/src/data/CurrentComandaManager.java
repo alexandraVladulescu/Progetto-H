@@ -16,7 +16,7 @@ import java.util.Observable;
  *
  * @author Francesco
  */
-public class CurrentComandaManager extends Observable{
+public class CurrentComandaManager extends Observable {
 
     private Comanda currentComanda;
     private ComandeManager comandeManager;
@@ -63,7 +63,16 @@ public class CurrentComandaManager extends Observable{
         if (p != null) {
 
             this.currentComanda.addProduct(p);
+            setChanged();
+            notifyObservers();
         }
+
+    }
+
+    public void addPizza(Pizza p) {
+        this.currentComanda.addProduct(p);
+        setChanged();
+        notifyObservers();
     }
 
     public String showComandaDetails() {
@@ -76,6 +85,8 @@ public class CurrentComandaManager extends Observable{
 
     public void removePizza(int index) throws ProductNotFoundException {
         this.currentComanda.removeProduct(index);
+        setChanged();
+        notifyObservers();
     }
 
     public void addIngredientToPizza(String ingredientName, int index) throws ProductNotFoundException, IngredientNotFoundException, CloneNotSupportedException {//si riferisce alla comanda corrente

@@ -84,7 +84,7 @@ public class PizzaLineView extends JPanel {
                 super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
                 try {
                     System.out.println(index);
-                    pizzeria.getCurrentComanda().removeProduct(index);
+                    pizzeria.getCurrentComandaManager().getCurrentComanda().removeProduct(index);
                 } catch (ProductNotFoundException ex) {
                     System.err.println("Il prodotto che vuoi eliminare non esiste");
                 }
