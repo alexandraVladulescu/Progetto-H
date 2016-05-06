@@ -15,9 +15,14 @@ import java.util.Collections;
 public class IngredientsManager {
 
     private ArrayList<Ingredient> ingredients;
+    private static IngredientsManager ingredientsManager = new IngredientsManager();
 
-    public IngredientsManager() {
+    private IngredientsManager() {
         ingredients = new ArrayList<Ingredient>();
+    }
+
+    public static IngredientsManager getInstance() {
+        return ingredientsManager;
     }
 
     public void addIngredient(Ingredient ingredient) {
@@ -49,7 +54,7 @@ public class IngredientsManager {
                 break;
             }
         }
-        if (!exists){
+        if (!exists) {
             throw new IngredientNotFoundException("L'ingrediente che vuoi eliminare non esiste nella pizzeria.");
         }
         Collections.sort(ingredients);
