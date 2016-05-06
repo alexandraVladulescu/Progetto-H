@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -16,7 +18,7 @@ import javax.swing.JScrollPane;
  * 3) Il pannello dei dettagli del cliente della comanda<br/>
  * @author Markenos
  */
-public class OrderDetailsPanel extends JPanel{
+public class OrderDetailsPanel extends JPanel implements Observer{
     private Pizzeria pizzeria;
     
     //I tre pannelli sopra descritti
@@ -29,6 +31,8 @@ public class OrderDetailsPanel extends JPanel{
 
     public OrderDetailsPanel(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
+        //Aggiungiamolo tra gli osservatori della comanda corrente
+        this.pizzeria.getCurrentComandaManager().addObserver(this);
         
         //A pizzasOrderedPanel e drinksOrderedPanel dobbiamo passare anche la dimensione di questo pannello.
         //Vedi nei relativi file il perché...
@@ -122,7 +126,9 @@ public class OrderDetailsPanel extends JPanel{
         
     }
     
-    public void update(){
+    //L'aggiornamento update avviene quando modifichiamo qualcosa nella comanda corrente tramite CurrentComandaManager
+    @Override
+    public void update(Observable o, Object arg) {
         this.pizzasOrderedPanel.update();
         this.pizzasTotalPricePanel.update();
         this.drinksTotalPricePanel.update();

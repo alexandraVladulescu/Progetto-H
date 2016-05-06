@@ -14,7 +14,7 @@ import javax.swing.JTabbedPane;
  *
  * @author Markenos
  */
-public class OrderView extends JPanel implements Observer {
+public class OrderView extends JPanel{
 
     private Pizzeria pizzeria;
 
@@ -27,7 +27,6 @@ public class OrderView extends JPanel implements Observer {
 
         this.pizzeria = pizzeria;
 
-        pizzeria.getCurrentComandaManager().addObserver(this);
 
         //Istanzio i pannelli che contiene OrderView
         pizzaButtonsPanel = new PizzaButtonsPanel(this.pizzeria);
@@ -52,11 +51,6 @@ public class OrderView extends JPanel implements Observer {
         this.add(selectProductType);
         this.add(orderDetailsPanel);
 
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
-        this.orderDetailsPanel.update();
     }
 
 }

@@ -16,7 +16,7 @@ import java.util.Observer;
  *
  * @author Francesco
  */
-public class Comanda extends Observable {
+public class Comanda {
 
     private ArrayList<Product> ordersList = new ArrayList<Product>();
     private Client client;
@@ -29,8 +29,6 @@ public class Comanda extends Observable {
 
     public void addProduct(Product p) {
         this.ordersList.add(p);
-        setChanged();
-        notifyObservers();
     }
 
     @Override
@@ -79,15 +77,11 @@ public class Comanda extends Observable {
     public void removeProduct(String nomeProdcut) throws ProductNotFoundException {
         Product prodottoTrovato = this.searchProdcutByName(nomeProdcut);
         this.ordersList.remove(prodottoTrovato);
-        setChanged();
-        notifyObservers();
     }
 
     public void removeProduct(int index) throws ProductNotFoundException {
         Product prodottoTrovato = this.searchProductByIndex(index);
         this.ordersList.remove(prodottoTrovato);
-        setChanged();
-        notifyObservers();
     }
 
     public Product searchProdcutByName(String nameProduct) throws ProductNotFoundException {
