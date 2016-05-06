@@ -45,7 +45,6 @@ public class PizzaLineView extends JPanel {
         this.pizzeria = pizzeria;
         this.index  = index;
 
-        setBackground(new Color(193, 255, 193));
         //Dalla dimenzione del genitore otteniamo la dimensione standard
         //di ogni elemento, che è Dimensione_pannello_genitore/10.
         preferredDimension.height = preferredDimension.height / 10;

@@ -15,7 +15,6 @@ public class DrinksOrderedPanel extends JPanel{
     public DrinksOrderedPanel(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
         
-        setBackground(new Color(193, 255, 193));
     }
     
     

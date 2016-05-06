@@ -35,7 +35,6 @@ public class ClientDetailsPanel extends JPanel {
 
         this.pizzeria = pizzeria;
         
-        setBackground(new Color(193, 255, 193));
         //Il layout è una griglia di 8 righe e 2 colonne
         this.setLayout(new GridLayout(8, 2));
         
@@ -76,7 +75,6 @@ public class ClientDetailsPanel extends JPanel {
         this.add(textDeliveringHour);
         
         JButton confirmButton = new JButton("OK");
-        confirmButton.setBackground(new Color(180, 238, 180));
         confirmButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
@@ -85,8 +83,7 @@ public class ClientDetailsPanel extends JPanel {
         });
         this.add(confirmButton);
         
-        JButton clearButton = new JButton("clear");
-        clearButton.setBackground(new Color(180, 238, 180));
+        JButton clearButton = new JButton("Clear");
         clearButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
