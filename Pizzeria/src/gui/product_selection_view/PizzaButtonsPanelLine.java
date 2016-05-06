@@ -64,7 +64,6 @@ public class PizzaButtonsPanelLine extends JPanel {
             tempMenuPizze = (MenuPizze) pizzeria.getMenuPizze().clone();
             Pizza pizza = tempMenuPizze.getPizze().get(externalIndex);
             pizzas[internalIndex] = new JButton(pizza.getName());
-            pizzas[internalIndex].setBackground(new Color(180, 238, 180));
             //Aggiungo il listener a ciascun pulsante rappresentante una pizza
             pizzas[internalIndex].addMouseListener(new MouseAdapter() {
 
