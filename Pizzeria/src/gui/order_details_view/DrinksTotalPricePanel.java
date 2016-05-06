@@ -14,20 +14,18 @@ import javax.swing.JPanel;
 public class DrinksTotalPricePanel extends JPanel {
     
     private Pizzeria pizzeria;
-    private CurrentComandaManager currentComandaManager;
     private JLabel labelDescription;
     private JLabel labelTotalPrice;
 
     public DrinksTotalPricePanel(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
-        currentComandaManager = pizzeria.getCurrentComandaManager();
         
         //Imposto una griglia di una riga e una colonna: la prima per la scritta "Totale" la seconda per il prezzo
         this.setLayout(new GridLayout(1,2));
         
         //Istanzio le due label
         labelDescription = new JLabel("Totale bibite:");
-        labelTotalPrice = new JLabel(Double.toString(currentComandaManager.getCurrentComanda().calculateTotalPrice()));
+        labelTotalPrice = new JLabel(Double.toString(pizzeria.getCurrentComandaManager().getCurrentComanda().calculateTotalPrice()));
         
         //Aggiungo le label al pannello
         this.add(labelDescription);
@@ -37,7 +35,7 @@ public class DrinksTotalPricePanel extends JPanel {
     }
     
     public void update(){
-        labelTotalPrice.setText(Double.toString(currentComandaManager.getCurrentComanda().calculateTotalPrice()));
+        labelTotalPrice.setText(Double.toString(pizzeria.getCurrentComandaManager().getCurrentComanda().calculateTotalPrice()));
     }
     
     

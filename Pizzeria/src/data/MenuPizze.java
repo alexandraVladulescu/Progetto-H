@@ -21,20 +21,23 @@ import java.util.Observable;
  *
  * @author User
  */
-public class MenuPizze extends Observable implements Cloneable{
+public class MenuPizze extends Observable implements Cloneable {
 
     //AcquireMenu acquireMenu;
     // private MenuPizzeReader menuReader;
     private ArrayList<Pizza> pizze;
-    private static MenuPizze menuPizze = new MenuPizze();
+    //Variabile necessaria per applicare il pattern singleton
+    //a MenuPizze
+    private static MenuPizze menuPizze;
 
     private MenuPizze() {
-
         pizze = new ArrayList<>();
     }
 
     public static MenuPizze getInstance() {
-
+        if (menuPizze == null) {
+            menuPizze = new MenuPizze();
+        }
         return menuPizze;
     }
 

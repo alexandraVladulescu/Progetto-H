@@ -21,8 +21,9 @@ public class Comanda {
     private ArrayList<Product> ordersList = new ArrayList<Product>();
     private Client client;
     private Calendar deliveryTime = new GregorianCalendar();
-    private boolean terminated=false; // Quando la comanda viene evasa lo setto a true da interfaccia ;
-    // Rimane false finchè le pizze non escono dalla pizzeria !
+    //Quando la comanda viene evasa lo setto a true da interfaccia ;
+    //Rimane false finchè le pizze non escono dalla pizzeria !
+    private boolean terminated=false; 
 
     public Comanda() {
     }
