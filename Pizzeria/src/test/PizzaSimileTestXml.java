@@ -8,6 +8,7 @@ package test;
 import data.Address;
 import data.Client;
 import data.Comanda;
+import data.CurrentComandaManager;
 import data.Pizzeria;
 import exceptions.IngredientNotFoundException;
 import exceptions.PizzaNotFoundInMenuException;
@@ -20,48 +21,49 @@ import java.io.IOException;
  * @author Francesco
  */
 public class PizzaSimileTestXml {
-     public static void main(String[] args) throws IOException, PizzaNotFoundInMenuException, ProductNotFoundException, IngredientNotFoundException, CloneNotSupportedException {
-        Pizzeria pizzeria = new Pizzeria();
 
+    public static void main(String[] args) throws IOException, PizzaNotFoundInMenuException, ProductNotFoundException, IngredientNotFoundException, CloneNotSupportedException {
+        Pizzeria pizzeria = new Pizzeria();
+        CurrentComandaManager c = pizzeria.getCurrentComandaManager();
         pizzeria.loadMenuPizza("./databases/MenuPizze.xml", FormatType.XML);
         System.out.println("CARICO DB INGREDIENTI DA MAIN\n");
-        pizzeria.loadIngredientsMenu("./databases/ingredienti.txt",FormatType.TXT);
+        pizzeria.loadIngredientsMenu("./databases/ingredienti.txt", FormatType.TXT);
 
         System.out.println("\t\t\t\t MENU PIZZE\n" + pizzeria.printMenuPizze());
         System.out.println("\t\t\t\t INGREDIENTI PRESENTI\n" + pizzeria.printAllIngredients());
 
-        pizzeria.setCurrentComanda(new Comanda());
-        pizzeria.setClientToComanda(new Client("Paperino", "bho", "0923 432665", new Address("Milano", "vialeZara", "33/b")));
-        pizzeria.addPizza("margherita");
-        pizzeria.confirmComanda();
-        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+        c.setCurrentComanda(new Comanda());
+        c.setClientToComanda(new Client("Paperino", "bho", "0923 432665", new Address("Milano", "vialeZara", "33/b")));
+        c.addPizza("margherita");
+        c.confirmComanda();
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
 
-        pizzeria.addIngredientToPizza("acciughe", 0);
-        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+        c.addIngredientToPizza("acciughe", 0);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
 
-        pizzeria.addIngredientToPizza("origano", 0);
-        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+        c.addIngredientToPizza("origano", 0);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
 
-        pizzeria.addIngredientToPizza("capperi", 0);
-        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
-         //System.out.println("\t\t\t\t MENU PIZZE\n" + pizzeria.printMenuPizze());
+        c.addIngredientToPizza("capperi", 0);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
+        //System.out.println("\t\t\t\t MENU PIZZE\n" + c.printMenuPizze());
 
-        pizzeria.addIngredientToPizza("carciofi", 0);
-        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+        c.addIngredientToPizza("carciofi", 0);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
 
-        pizzeria.addPizza("margherita");
-        pizzeria.addIngredientToPizza("prosciutto cotto", 1);
-        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
-        pizzeria.addIngredientToPizza("funghi", 1);
-        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
-        pizzeria.addIngredientToPizza("salsiccia", 1);
-        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+        c.addPizza("margherita");
+        c.addIngredientToPizza("prosciutto cotto", 1);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
+        c.addIngredientToPizza("funghi", 1);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
+        c.addIngredientToPizza("salsiccia", 1);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
 
-        pizzeria.removePizza(0);
-         System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
-         
-         pizzeria.addPizza("margherita");
-      pizzeria.addIngredientToPizza("patatine", 1);
-       System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
-}
+        c.removePizza(0);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
+
+        c.addPizza("margherita");
+        c.addIngredientToPizza("patatine", 1);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
+    }
 }

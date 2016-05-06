@@ -16,7 +16,7 @@ import exceptions.IngredientNotFoundException;
 public class IngredientsManagerTests {
 
     public static void main(String[] args) {
-        IngredientsManager i = new IngredientsManager();
+        IngredientsManager i = IngredientsManager.getInstance();
         i.addIngredient(new Ingredient("acciuga", 0.5));
         i.addIngredient(new Ingredient("wurstel", 1));
         i.addIngredient(new Ingredient("patatine", 1.5));

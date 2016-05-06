@@ -8,6 +8,7 @@ package test;
 import data.Address;
 import data.Client;
 import data.Comanda;
+import data.CurrentComandaManager;
 import data.Pizzeria;
 import exceptions.IngredientNotFoundException;
 import exceptions.PizzaNotFoundInMenuException;
@@ -23,7 +24,7 @@ public class PizzaSimileRemoveTest {
 
     public static void main(String[] args) throws IOException, PizzaNotFoundInMenuException, CloneNotSupportedException, ProductNotFoundException, IngredientNotFoundException {
         Pizzeria pizzeria = new Pizzeria();
-
+        CurrentComandaManager c = pizzeria.getCurrentComandaManager();
         pizzeria.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);
         System.out.println("CARICO DB INGREDIENTI DA MAIN\n");
         pizzeria.loadIngredientsMenu("./databases/ingredienti.txt",FormatType.TXT);
@@ -31,22 +32,22 @@ public class PizzaSimileRemoveTest {
         System.out.println("\t\t\t\t MENU PIZZE\n" + pizzeria.printMenuPizze());
         System.out.println("\t\t\t\t INGREDIENTI PRESENTI\n" + pizzeria.printAllIngredients());
 
-        pizzeria.setCurrentComanda(new Comanda());
-        pizzeria.setClientToComanda(new Client("Paperino", "bho", "0923 432665", new Address("Milano", "vialeZara", "33/b")));
+        c.setCurrentComanda(new Comanda());
+        c.setClientToComanda(new Client("Paperino", "bho", "0923 432665", new Address("Milano", "vialeZara", "33/b")));
         
-        pizzeria.addPizza("napoli");
-        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+        c.addPizza("napoli");
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
         
-        pizzeria.removeIngredientToPizza("origano", 0);
-        System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
-        pizzeria.removeIngredientToPizza("capperi", 0);
+        c.removeIngredientToPizza("origano", 0);
+        System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
+        c.removeIngredientToPizza("capperi", 0);
         
-          pizzeria.removeIngredientToPizza("acciughe", 0);
-          pizzeria.removeIngredientToPizza("capperi", 0);
-          System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+          c.removeIngredientToPizza("acciughe", 0);
+          c.removeIngredientToPizza("capperi", 0);
+          System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
          
-          pizzeria.removeIngredientToPizza("mozzarella", 0);
-           System.out.println("\t\t\t\t\tDETTAGLI\n" + pizzeria.showComandaDetails());
+          c.removeIngredientToPizza("mozzarella", 0);
+           System.out.println("\t\t\t\t\tDETTAGLI\n" + c.showComandaDetails());
          
          
     }
