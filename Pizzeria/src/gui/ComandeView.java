@@ -40,17 +40,19 @@ public class ComandeView extends JPanel implements Observer{
 
     @Override
     public void update(Observable o, Object o1) {
+        shippedComandePanel.removeAllComande();
+        waitingComandePanel.removeAllComande();
         ArrayList<Comanda> cmds = new ArrayList<>();
         cmds  = pizzeria.getComandeManager().getComande();
         for (Comanda cmd : cmds) {
             if(cmd.getTerminated()){
                 shippedComandePanel.addComanda(cmd);
-                shippedComandePanel.displayComande();
             }else{
                 waitingComandePanel.addComanda(cmd);
-                waitingComandePanel.displayComande();
             }
         }
+        shippedComandePanel.displayComande();
+        waitingComandePanel.displayComande();
     }
     
     

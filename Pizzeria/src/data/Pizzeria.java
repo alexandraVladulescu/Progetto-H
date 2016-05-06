@@ -9,13 +9,14 @@ import i_o.FormatType;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Observable;
 import java.util.Observer;
 
 /**
  *
  * @author Markenos
  */
-public class Pizzeria {
+public class Pizzeria extends Observable{
 
     private ClientsManager clientManager;
     private ComandeManager comandeManager;
@@ -80,6 +81,8 @@ public class Pizzeria {
 
     public void confirmComanda() {
         comandeManager.addComanda(currentComanda);
+        setChanged();
+        notifyObservers();
     }
 
     public void setClientToComanda(Client c) {
