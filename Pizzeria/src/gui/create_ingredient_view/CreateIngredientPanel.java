@@ -37,6 +37,10 @@ public class CreateIngredientPanel extends JPanel {
         this.add(textName);
         this.add(labelPrice);
         this.add(textPrice);
+        
+        //Impostiamo a stringa vuota il testo dei campi del form
+        textName.setText("");
+        textPrice.setText("");
 
     }
 

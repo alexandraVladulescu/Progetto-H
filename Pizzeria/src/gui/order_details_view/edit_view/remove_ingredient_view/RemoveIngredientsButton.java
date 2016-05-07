@@ -1,4 +1,4 @@
-package gui.order_details_view.edit_view;
+package gui.order_details_view.edit_view.remove_ingredient_view;
 
 import data.Pizzeria;
 import exceptions.IngredientNotFoundException;
