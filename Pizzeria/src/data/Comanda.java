@@ -16,21 +16,20 @@ import java.util.Observer;
  *
  * @author Francesco
  */
-public class Comanda extends Observable {
+public class Comanda {
 
     private ArrayList<Product> ordersList = new ArrayList<Product>();
     private Client client;
     private Calendar deliveryTime = new GregorianCalendar();
-    private boolean terminated=false; // Quando la comanda viene evasa lo setto a true da interfaccia ;
-    // Rimane false finchè le pizze non escono dalla pizzeria !
+    //Quando la comanda viene evasa lo setto a true da interfaccia ;
+    //Rimane false finchè le pizze non escono dalla pizzeria !
+    private boolean terminated=false; 
 
     public Comanda() {
     }
 
     public void addProduct(Product p) {
         this.ordersList.add(p);
-        setChanged();
-        notifyObservers();
     }
 
     @Override
@@ -79,15 +78,11 @@ public class Comanda extends Observable {
     public void removeProduct(String nomeProdcut) throws ProductNotFoundException {
         Product prodottoTrovato = this.searchProdcutByName(nomeProdcut);
         this.ordersList.remove(prodottoTrovato);
-        setChanged();
-        notifyObservers();
     }
 
     public void removeProduct(int index) throws ProductNotFoundException {
         Product prodottoTrovato = this.searchProductByIndex(index);
         this.ordersList.remove(prodottoTrovato);
-        setChanged();
-        notifyObservers();
     }
 
     public Product searchProdcutByName(String nameProduct) throws ProductNotFoundException {
