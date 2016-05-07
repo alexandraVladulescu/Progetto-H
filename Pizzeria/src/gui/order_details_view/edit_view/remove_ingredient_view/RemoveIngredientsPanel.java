@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.order_details_view.edit_view;
+package gui.order_details_view.edit_view.remove_ingredient_view;
 
 import data.Ingredient;
 import data.IngredientsManager;

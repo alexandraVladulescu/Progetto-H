@@ -5,7 +5,7 @@ import data.Pizzeria;
 import exceptions.AlreadyExistingIngredientException;
 import exceptions.IngredientNotFoundException;
 import exceptions.ProductNotFoundException;
-import gui.order_details_view.edit_view.RemoveIngredientsPanel;
+import gui.order_details_view.edit_view.remove_ingredient_view.RemoveIngredientsPanel;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
