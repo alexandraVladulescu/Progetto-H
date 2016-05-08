@@ -1,11 +1,13 @@
 package gui;
 
+import gui.comande_view.ComandeView;
 import data.Comanda;
 import data.Pizzeria;
 import gui.create_ingredient_view.CreateIngredientFrame;
-import gui.create_pizza_view.CreatePizzaFrame;
-import gui.remove_ingredient_view.RemoveIngredientsFromPizzeriaFrame;
-import gui.remove_pizza_view.RemovePizzasFromPizzeriaFrame;
+import gui.order_view.create_pizza_view.CreatePizzaFrame;
+import gui.order_view.OrderView;
+import gui.order_view.remove_ingredient_view.RemoveIngredientsFromPizzeriaFrame;
+import gui.order_view.remove_pizza_view.RemovePizzasFromPizzeriaFrame;
 import i_o.FormatType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,7 +53,6 @@ public class Launcher {
             orderView = new OrderView(this.pizzeria);
             comandeView = new ComandeView(this.pizzeria);
 
-            pizzeria.getCurrentComandaManager().addObserver(comandeView);
 
             //Permette di scegliere tra la sezione "Crea/Modifica ordine" e la sezione "Storico ordini"
             JTabbedPane selectView = new JTabbedPane();
