@@ -25,7 +25,7 @@ public class CurrentComandaManager extends Observable {
     private IngredientsManager ingredientsManager; //diventato Singleton 
     
     public CurrentComandaManager() {
-        comandeManager = new ComandeManager();
+        comandeManager = ComandeManager.getInstance();
         menuPizze = MenuPizze.getInstance();// setto il menuPizze con l'unica istanza che esiste
         ingredientsManager = IngredientsManager.getInstance();// setto il menu degli ingredienti con l'unica istanza
     }
@@ -50,6 +50,7 @@ public class CurrentComandaManager extends Observable {
 
     public void confirmComanda() {
         this.comandeManager.addComanda(currentComanda);
+        this.createComanda();
         setChanged();
         notifyObservers();
     }
@@ -69,6 +70,12 @@ public class CurrentComandaManager extends Observable {
 
     }
 
+    public ComandeManager getComandeManager() {
+        return comandeManager;
+    }
+
+    
+    
     public void addPizza(Pizza p) {
         this.currentComanda.addProduct(p);
         setChanged();

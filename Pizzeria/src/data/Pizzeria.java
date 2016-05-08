@@ -19,14 +19,12 @@ import java.util.Observer;
 public class Pizzeria {
 
     private ClientsManager clientManager;
-    private ComandeManager comandeManager;
     private CurrentComandaManager currentComandaManager;
     private IngredientsManager ingredientsManager;
 
     private MenuPizze menuPizze;
 
     public Pizzeria() throws IOException {
-        comandeManager = new ComandeManager();
         currentComandaManager = new CurrentComandaManager();
         ingredientsManager = IngredientsManager.getInstance();
 
@@ -51,10 +49,6 @@ public class Pizzeria {
 //    }
     public MenuPizze getMenuPizze() {
         return menuPizze;
-    }
-
-    public ComandeManager getComandeManager() { // Bisogna veder se serve
-        return comandeManager;
     }
 
 

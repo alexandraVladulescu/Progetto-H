@@ -20,7 +20,7 @@ public class Address {
         this.addressName = addressName;
         this.houseNumber = houseNumeber;
         this.localityName = localityName;
-        this.setInformations(" Nessuna ");
+        this.setInformations("Nessuna");
 
     }
 
@@ -64,6 +64,15 @@ public class Address {
                 + "INFORMAZIONI AGGIUNTIVE\n"
                 + this.informations + "\n";
 
+    }
+    
+    //Metodo per ritornare l'indirizzo sotto forma di un unica Stringa formattata
+    //del tipo Via Luigi Giulotto, 28, Pavia, Nessuna
+    public String printAdress(){
+        return this.getAddress() + ", "
+                + this.houseNumber + ", "
+                + this.getLocalityName() + ", "
+                + this.informations;
     }
 
 }
