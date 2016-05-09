@@ -38,7 +38,7 @@ public class RemoveIngredientsPanel extends JPanel {
             //Lavoro su una copia della pizza da modificare così da non toccare l'originale che altrimenti
             //subirebbe le modifiche qui fatte
             Pizza pizza = (Pizza) ((Pizza) (this.pizzeria.getCurrentComandaManager().
-                                                getCurrentComanda().getOrdersList().get(index))).clone();
+                                                getCurrentComanda().getPizzasList().get(index))).clone();
             ArrayList<Ingredient> ingredients = pizza.getIngredients();
             ingredients.addAll(pizza.getPlusIngredients());
 

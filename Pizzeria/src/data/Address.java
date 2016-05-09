@@ -16,6 +16,11 @@ public class Address {
     private String localityName;
     private String informations; // esempio scala/citofono
 
+    public Address() {
+    }
+
+    
+    
     public Address(String localityName, String addressName, String houseNumeber) {
         this.addressName = addressName;
         this.houseNumber = houseNumeber;
@@ -56,6 +61,12 @@ public class Address {
         this.houseNumber = houseNumber;
     }
 
+    public String getHouseNumber() {
+        return houseNumber;
+    }
+    
+    
+
     @Override
     public String toString() {
         return this.getAddress() + "\t"
@@ -74,5 +85,17 @@ public class Address {
                 + this.getLocalityName() + ", "
                 + this.informations;
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Address address = new Address();
+        address.localityName = this.localityName;
+        address.addressName = this.addressName;
+        address.houseNumber = this.houseNumber;
+        address.informations = this.informations;
+        return address;
+    }
+    
+    
 
 }

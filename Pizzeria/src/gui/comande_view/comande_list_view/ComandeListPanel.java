@@ -81,6 +81,7 @@ public class ComandeListPanel extends JPanel implements Observer, Subject{
         comandeLines.clear();
         this.removeAll();
         this.createComandeGrid();
+        this.updateUI();
     }
     
     
