@@ -1,6 +1,6 @@
 package gui.order_view.remove_pizza_view;
 
-import gui.remove_ingredient_view.*;
+
 import data.Pizzeria;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
