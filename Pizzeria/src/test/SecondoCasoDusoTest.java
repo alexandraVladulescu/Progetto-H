@@ -103,7 +103,7 @@ public class SecondoCasoDusoTest {
         System.out.println(pizzeria.printAllIngredients());
 
         System.out.println("STAMPO TUTTE LE COMANDE CHE HO\n");
-        System.out.println(pizzeria.getComandeManager().printAllComande());
+        System.out.println(pizzeria.getCurrentComandaManager().getComandeManager().printAllComande());
 
         System.out.println("Richiama Claudio e vuole modificare la capricciosa aggiungendo  ");
         System.out.println("Per tagliar la testa al toro setto currentCLient e stampo la sua comanda\n");

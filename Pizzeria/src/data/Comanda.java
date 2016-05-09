@@ -26,6 +26,8 @@ public class Comanda {
     private boolean terminated=false; 
 
     public Comanda() {
+        //Devo impostarlo a null sennò come valore di default ha la data attuale...
+        this.deliveryTime = null;
     }
 
     public void addProduct(Product p) {

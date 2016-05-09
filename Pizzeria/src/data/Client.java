@@ -35,10 +35,6 @@ public class Client {
         return telephone;
     }
 
-    public Address getIndirizzo() {
-        return address;
-    }
-
     public Address getAddress() {
         return address;
     }
