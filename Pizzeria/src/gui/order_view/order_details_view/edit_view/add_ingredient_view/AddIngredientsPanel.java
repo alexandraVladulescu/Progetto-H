@@ -39,7 +39,7 @@ public class AddIngredientsPanel extends JPanel {
             //Lavoro su una copia di IngredientManager e della pizza da modificare così da non toccare l'originale che altrimenti subirebbe le modifiche qui fatte
             IngredientsManager tempIngredientsManager = (IngredientsManager) pizzeria.getIngredientsManager().clone();
             ArrayList<Ingredient> ingredients = tempIngredientsManager.getIngredients();
-            Pizza pizza = (Pizza) ((Pizza)(pizzeria.getCurrentComandaManager().getCurrentComanda().getOrdersList().get(index))).clone();
+            Pizza pizza = (Pizza) ((Pizza)(pizzeria.getCurrentComandaManager().getCurrentComanda().getPizzasList().get(index))).clone();
             ArrayList<Ingredient> currentPizzaIngredients = new ArrayList<Ingredient>();
             currentPizzaIngredients = pizza.getIngredients();
             currentPizzaIngredients.addAll(pizza.getPlusIngredients());

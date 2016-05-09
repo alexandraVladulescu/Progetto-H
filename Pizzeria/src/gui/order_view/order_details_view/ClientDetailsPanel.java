@@ -3,7 +3,9 @@ package gui.order_view.order_details_view;
 import data.Address;
 import data.Client;
 import data.CurrentComandaManager;
+import data.CurrentComandaManagerModality;
 import data.Pizzeria;
+import exceptions.ComandaNotFoundException;
 import gui.MainFrame;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -14,6 +16,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -123,21 +127,20 @@ public class ClientDetailsPanel extends JPanel {
             }
         });
         this.add(clearButton);
-        
+
         //Impostiamo a vuote le textBox
         textCity.setText("");
         textClientAddress.setText("");
         textClientName.setText("");
-        textClientNumber.setText("");
-        textClientSurname.setText("");
         textHouseNumber.setText("");
+        textClientSurname.setText("");
+        textClientNumber.setText("");
     }
 
     private void confirmComanda() {
         //Se non abbiamo impostato l'ora di consegna della comanda, apriamo una JDialog per segnalare ciò...
         if (pizzeria.getCurrentComandaManager().getCurrentComanda().getDeliveryTime() == null) {
-            //ATTENZIONE: il metodo getParentFrame restituisce il frame genitore di questo pannello (anche se questo
-            //è contenuto a sua volta in altri pannelli...
+            //Creo una JDialog
             JDialog dialogError = new JDialog(MainFrame.getInstance(), true);
             dialogError.setTitle("Non hai scelto l'ora di consegna");
             dialogError.setLayout(new BorderLayout());
@@ -169,18 +172,23 @@ public class ClientDetailsPanel extends JPanel {
             dialogError.setVisible(true);
         } else {
             //Altrimenti controlliamo che i campi relativi al cliente non siano vuoti
-            if (!this.textClientName.getText().equals("") && !this.textClientSurname.getText().equals("") && !this.textCity.getText().equals("") && !this.textClientAddress.getText().equals("") && !this.textClientNumber.getText().equals("") && !this.textHouseNumber.getText().equals("")) {
-                
-                CurrentComandaManager currentComandaManager = pizzeria.getCurrentComandaManager();
-                Address ad = new Address(textCity.getSelectedText(), textClientAddress.getText(),
-                        textClientNumber.getText());
-                Client cl = new Client(textClientName.getText(), textClientSurname.getText(),
-                        textClientNumber.getText(), ad);
+            if (!this.textClientName.getText().equals("") && !this.textClientSurname.getText().equals("") && !this.textCity.getText().equals("") && !this.textClientAddress.getText().equals("") && !this.textHouseNumber.getText().equals("")) {
 
-                currentComandaManager.setClientToComanda(cl);
-                currentComandaManager.confirmComanda();
-                //TODO: Printer.getPrinterSingleton().printOrder();*/
-                System.out.println(currentComandaManager.showComandaDetails());
+                try {
+                    CurrentComandaManager currentComandaManager = pizzeria.getCurrentComandaManager();
+                    Address ad = new Address(textCity.getText(), textClientAddress.getText(),
+                            textHouseNumber.getText());
+                    Client cl = new Client(textClientName.getText(), textClientSurname.getText(),
+                            textHouseNumber.getText(), ad);
+
+                    currentComandaManager.setClientToComanda(cl);
+                    currentComandaManager.confirmComanda();
+                    currentComandaManager.createComanda();
+                    //TODO: Printer.getPrinterSingleton().printOrder();*/
+                    //System.out.println(currentComandaManager.showComandaDetails());     //DEBUG
+                } catch (ComandaNotFoundException ex) {
+                    System.err.println(ex.getMessage());
+                }
             } else {
                 //ATTENZIONE: il metodo getParentFrame restituisce il frame genitore di questo pannello (anche se questo
                 //è contenuto a sua volta in altri pannelli...
@@ -193,7 +201,7 @@ public class ClientDetailsPanel extends JPanel {
                 dialogError.add(BorderLayout.CENTER, labelError);
                 //Aggiungo il pulsante di ok
                 JButton buttonOk = new JButton("Ok");
-                    //In realtà non serve a molto questo pulsante in quanto basta cliccare sulla X in alto a destra per
+                //In realtà non serve a molto questo pulsante in quanto basta cliccare sulla X in alto a destra per
                 //ottenere lo stesso comportamento...diciamo che è stato fatto per questioni di "bellezza"...
                 buttonOk.addMouseListener(new MouseAdapter() {
 
@@ -207,7 +215,7 @@ public class ClientDetailsPanel extends JPanel {
                 dialogError.add(BorderLayout.SOUTH, buttonOk);
                 dialogError.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 dialogError.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 6, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 6);
-                    //Per centrarlo sullo schermo...anche se non lo centra in verita...
+                //Per centrarlo sullo schermo...anche se non lo centra in verita...
                 //Ragionamento fatto: assegno come posizione x e y la metà della dimensione dello schermo e poi
                 //tolgo a quanto trovato la metà della dimensione del frame stesso...tutto questo per centrarlo!
                 dialogError.setLocation(((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - ((int) dialogError.getSize().getWidth() / 2), ((int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - ((int) dialogError.getSize().getHeight() / 2));
@@ -222,7 +230,7 @@ public class ClientDetailsPanel extends JPanel {
         textCity.setText("");
         textClientAddress.setText("");
         textClientName.setText("");
-        textClientNumber.setText("");
+        textHouseNumber.setText("");
         textClientSurname.setText("");
         textHouseNumber.setText("");
     }
@@ -235,6 +243,22 @@ public class ClientDetailsPanel extends JPanel {
         return String.format("%02d:%02d", hours, remnantMinuts);
 
     }
+    
+    //Questo metodo update viene richiamato solamente quando siamoi in modalità di modifica di una comanda
+    //e serve per poter impostare i campi del cliente con quelli relativi alla comanda da modificare
+    public void update(){
+        //Aggiorniamo le label con i dati del cliente
+        this.textCity.setText(this.pizzeria.getCurrentComandaManager().getCurrentComanda().getClient().getAddress().getLocalityName());
+        this.textClientAddress.setText(this.pizzeria.getCurrentComandaManager().getCurrentComanda().getClient().getAddress().getAddress());
+        this.textHouseNumber.setText(this.pizzeria.getCurrentComandaManager().getCurrentComanda().getClient().getAddress().getHouseNumber());
+        this.textClientName.setText(this.pizzeria.getCurrentComandaManager().getCurrentComanda().getClient().getName());
+        this.textClientSurname.setText(this.pizzeria.getCurrentComandaManager().getCurrentComanda().getClient().getSurname());
+        this.textClientNumber.setText(this.pizzeria.getCurrentComandaManager().getCurrentComanda().getClient().getAddress().getInformations());
+        this.comboDeliveringHour.setSelectedItem(String.format(
+                "%02d:%02d",
+                this.pizzeria.getCurrentComandaManager().getCurrentComanda().getDeliveryTime().get(Calendar.HOUR_OF_DAY),
+                this.pizzeria.getCurrentComandaManager().getCurrentComanda().getDeliveryTime().get(Calendar.MINUTE)));
+    }
 
     //Questo metodo serve per ottenere il JFrame genitore in cui è contenuto questo pannello
 //    private JFrame getParentFrame() {
@@ -246,5 +270,4 @@ public class ClientDetailsPanel extends JPanel {
 //        }
 //        return (JFrame) object;
 //    }
-
 }
