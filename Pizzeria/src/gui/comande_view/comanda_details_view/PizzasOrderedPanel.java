@@ -45,7 +45,7 @@ public class PizzasOrderedPanel extends JPanel {
         //sennò avrebbe la dimenisone che avrebbe prima...
         this.pizzasLineView = new ArrayList<PizzaLineView>();
         this.updateUI();
-        for(Product pizza : pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(selectedComandaIndex).getOrdersList()){
+        for(Product pizza : pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(selectedComandaIndex).getPizzasList()){
             this.createPizzaLine((Pizza) pizza);
         }
     }

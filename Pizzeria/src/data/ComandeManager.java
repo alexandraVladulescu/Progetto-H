@@ -42,6 +42,16 @@ public class ComandeManager extends Observable {
         setChanged();
         notifyObservers();
     }
+    
+    public void removeComanda(int index) throws ComandaNotFoundException {
+        //Se l'indice passato è errato
+        if(index < 0 || index >= comande.size()){
+            throw new ComandaNotFoundException("La comanda da te cercata di indice " + index + " non esiste.");
+        }
+        this.comande.remove(index);
+        setChanged();
+        notifyObservers();
+    }
 
     public Comanda searchComandaByName(String surname) throws ComandaNotFoundException {
         Comanda c = null;
@@ -74,6 +84,12 @@ public class ComandeManager extends Observable {
             s += "\t" + c.toString() + "\n";
         }
         return s;
+    }
+    
+    public void setTerminatedByIndex(int index, boolean terminated){
+        comande.get(index).setTerminated(terminated);
+        setChanged();
+        notifyObservers();
     }
 
 }

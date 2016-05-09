@@ -1,5 +1,6 @@
 package gui.order_view.order_details_view;
 
+import data.CurrentComandaManagerModality;
 import gui.order_view.order_details_view.ClientDetailsPanel;
 import data.Pizzeria;
 import java.awt.Dimension;
@@ -132,6 +133,9 @@ public class OrderDetailsPanel extends JPanel implements Observer{
         this.pizzasTotalPricePanel.update();
         this.drinksTotalPricePanel.update();
         this.comandaTotalPricePanel.update();
+        if (this.pizzeria.getCurrentComandaManager().getModality() == CurrentComandaManagerModality.MODIFY){
+            this.clientDetailsPanel.update();
+        }
     }
     
     

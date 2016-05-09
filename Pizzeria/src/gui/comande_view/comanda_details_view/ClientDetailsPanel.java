@@ -3,10 +3,16 @@ package gui.comande_view.comanda_details_view;
 import gui.order_view.order_details_view.*;
 import data.Address;
 import data.Client;
+import data.Comanda;
 import data.CurrentComandaManager;
+import data.CurrentComandaManagerModality;
 import data.Pizzeria;
+import exceptions.ComandaNotFoundException;
 import gui.MainFrame;
+import gui.comande_view.comande_list_view.ComandeListPanel;
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -15,11 +21,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 /**
@@ -28,101 +38,343 @@ import javax.swing.JTextField;
  * @author Markenos
  */
 public class ClientDetailsPanel extends JPanel {
-    
+
     private Pizzeria pizzeria;
-    
-    private JTextField textClientName;
-    private JTextField textClientSurname;
-    private JTextField textClientAddress;
-    private JTextField textHouseNumber;
-    private JTextField textCity;
-    private JTextField textClientNumber;
-    private JTextField textDeliveringHour;
-    
+
+    private JLabel clientName;
+    private JLabel clientSurname;
+    private JLabel clientAddress;
+    private JLabel houseNumber;
+    private JLabel city;
+    private JLabel clientNumber;
+    private JLabel deliveringHour;
+    //Il pulsate che setta la comanda a terminata o non terminata
+    private JButton setShippedButton;
+
     //L'indice della comanda selezionata all'interno dell'elenco delle comande
     private int index;
-    
-    public ClientDetailsPanel(Pizzeria pizzeria) {
-        
+    //comandeListPanel ci serve perché abbiamo bisogno di un riferimento a lui in deleteComandaButton
+    private ComandeListPanel comandeListPanel;
+
+    public ClientDetailsPanel(Pizzeria pizzeria, ComandeListPanel comandeListPanel) {
+
         this.pizzeria = pizzeria;
+        this.comandeListPanel = comandeListPanel;
         //Di default l'indice è uguale a -1 (nessuna comanda selezionata
         this.index = -1;
 
-        //Il layout è una griglia di 8 righe e 2 colonne
-        this.setLayout(new GridLayout(8, 2));
-
         //Creo i vari campi con relative label
         JLabel labelClientName = new JLabel("Nome cliente");
-        this.add(labelClientName);
-        textClientName = new JTextField(5);
-        this.add(textClientName);
-        
+        this.clientName = new JLabel("");
+
         JLabel labelClientSurname = new JLabel("Cognome cliente");
-        this.add(labelClientSurname);
-        textClientSurname = new JTextField(5);
-        this.add(textClientSurname);
-        
+        clientSurname = new JLabel("");
+
         JLabel labelClientAddress = new JLabel("Indirizzo cliente");
-        this.add(labelClientAddress);
-        textClientAddress = new JTextField();
-        this.add(textClientAddress);
-        
+        clientAddress = new JLabel("");
+
         JLabel labelHouseNumber = new JLabel("Numero civico");
-        this.add(labelHouseNumber);
-        textHouseNumber = new JTextField();
-        this.add(textHouseNumber);
-        
+        houseNumber = new JLabel("");
+
         JLabel labelCity = new JLabel("Città");
-        this.add(labelCity);
-        textCity = new JTextField();
-        this.add(textCity);
-        
+        city = new JLabel("");
+
         JLabel labelClientNumber = new JLabel("Recapito");
-        this.add(labelClientNumber);
-        textClientNumber = new JTextField();
-        this.add(textClientNumber);
-        
+        clientNumber = new JLabel("");
+
         JLabel labelDeliveringHour = new JLabel("Ora consegna");
-        this.add(labelDeliveringHour);
-        textDeliveringHour = new JTextField();
-        this.add(textDeliveringHour);
-        
-        JButton setShippedButton = new JButton("");
+        deliveringHour = new JLabel("");
+
+        //Pulsante che serve per settare a evasa o non evasa la comanda
+        setShippedButton = new JButton("");
+
         setShippedButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
-                //TO DO
+                //Se c'è una comanda selezionata
+                if (index >= 0) {
+                    //Se l'odine è già stato evaso
+                    if (pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(index).getTerminated()) {
+                        //Imposta a non evaso
+                        pizzeria.getCurrentComandaManager().getComandeManager().setTerminatedByIndex(index, false);
+                        setShippedButton.setText("Non evasa");
+                    } else {
+                        //Imposta a evaso
+                        pizzeria.getCurrentComandaManager().getComandeManager().setTerminatedByIndex(index, true);
+                        setShippedButton.setText("Evasa");
+                    }
+                }
+
             }
         });
-        this.add(setShippedButton);
-        
-        JButton deleteComandaButton = new JButton("");
+
+        //Pulsante che serve per modificare la comanda corrente
+        JButton modifyComandaButton = new JButton("Modifica comanda");
+        modifyComandaButton.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //Se c'è una comanda selezionata
+                if (index >= 0) {
+                    try {
+                        super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
+                        //Mi metto in modalità di modifica comanda settando l'indice che punta alla comanda da modificare
+                        pizzeria.getCurrentComandaManager().setModality(CurrentComandaManagerModality.MODIFY);
+                        pizzeria.getCurrentComandaManager().setIndex(index);
+                        //e imposto la comanda selezionata come comanda
+                        pizzeria.getCurrentComandaManager().setCurrentComanda((Comanda) pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(index).clone());
+                        //Voglio tornare alla schermata precedente
+                        JTabbedPane tabbedPane = getParentTabbedPane();
+                        tabbedPane.setSelectedIndex(0);
+                    } catch (CloneNotSupportedException ex) {
+                        System.err.println("Errore durante la clonazione di Comanda in ClientDetailsPanel (in comande attive).");
+                    }
+                }
+
+            }
+
+        });
+        //Pulsante che serve per eliminare la comanda
+        JButton deleteComandaButton = new JButton("Delete comanda");
         deleteComandaButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
-                //TO DO
+                //Se abbiamo una comanda selezionata
+                if (getIndex() >= 0) {
+                    try {
+                        getPizzeria().getCurrentComandaManager().getComandeManager().removeComanda(index);
+                        getComandeListPanel().setSelectedComandaIndex(-1);
+                        setIndex(comandeListPanel.getSelectedComandaIndex());
+                    } catch (ComandaNotFoundException ex) {
+                        System.err.println(ex.getMessage());
+                    }
+                }
             }
         });
+
+        //Utilizzo un GridBagLayout così da poter dare un "peso" in termini di grandezza ad ogni riga della tabella
+        GridBagLayout layout = new GridBagLayout();
+        GridBagConstraints lim = new GridBagConstraints();
+        this.setLayout(layout);
+
+        //Prima riga: label nome del cliente
+        lim.gridx = 0;
+        lim.gridy = 0;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        layout.setConstraints(labelClientName, lim);
+        this.add(labelClientName);
+
+        lim.gridx = 1;
+        lim.gridy = 0;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        lim.gridx = 2;
+        layout.setConstraints(clientName, lim);
+        this.add(clientName);
+
+        //seconda riga: label congnome del cliente
+        lim.gridx = 0;
+        lim.gridy = 1;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        layout.setConstraints(labelClientSurname, lim);
+        this.add(labelClientSurname);
+
+        lim.gridx = 1;
+        lim.gridy = 1;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        lim.gridx = 2;
+        layout.setConstraints(clientSurname, lim);
+        this.add(clientSurname);
+
+        //Terza riga: label nome città del cliente
+        lim.gridx = 0;
+        lim.gridy = 2;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        layout.setConstraints(labelCity, lim);
+        this.add(labelCity);
+
+        lim.gridx = 1;
+        lim.gridy = 2;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        lim.gridx = 2;
+        layout.setConstraints(city, lim);
+        this.add(city);
+
+        //Quarta riga: label indirizzo del cliente
+        lim.gridx = 0;
+        lim.gridy = 3;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        layout.setConstraints(labelClientAddress, lim);
+        this.add(labelClientAddress);
+
+        lim.gridx = 1;
+        lim.gridy = 3;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        lim.gridx = 2;
+        layout.setConstraints(clientAddress, lim);
+        this.add(clientAddress);
+
+        //Quinta riga: label numero civico del cliente
+        lim.gridx = 0;
+        lim.gridy = 4;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        layout.setConstraints(labelHouseNumber, lim);
+        this.add(labelHouseNumber);
+
+        lim.gridx = 1;
+        lim.gridy = 4;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        lim.gridx = 2;
+        layout.setConstraints(houseNumber, lim);
+        this.add(houseNumber);
+
+        //Sesta riga: label recapito del cliente
+        lim.gridx = 0;
+        lim.gridy = 5;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        layout.setConstraints(labelClientNumber, lim);
+        this.add(labelClientNumber);
+
+        lim.gridx = 1;
+        lim.gridy = 5;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        lim.gridx = 2;
+        layout.setConstraints(clientNumber, lim);
+        this.add(clientNumber);
+
+        //Settima riga: label ora di consegna
+        lim.gridx = 0;
+        lim.gridy = 6;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        layout.setConstraints(labelDeliveringHour, lim);
+        this.add(labelDeliveringHour);
+
+        lim.gridx = 1;
+        lim.gridy = 6;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        lim.gridx = 2;
+        layout.setConstraints(deliveringHour, lim);
+        this.add(deliveringHour);
+
+        //Ottava riga: pulsanti di Evasa/Non evasa, Modifica comanda ed elimina comanda...
+        lim.gridx = 0;
+        lim.gridy = 7;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        layout.setConstraints(setShippedButton, lim);
+        this.add(setShippedButton);
+
+        lim.gridx = 1;
+        lim.gridy = 7;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        layout.setConstraints(modifyComandaButton, lim);
+        this.add(modifyComandaButton);
+
+        lim.gridx = 2;
+        lim.gridy = 7;
+        lim.weightx = 1;
+        lim.weighty = 1;
+        lim.fill = GridBagConstraints.BOTH;
+        layout.setConstraints(deleteComandaButton, lim);
         this.add(deleteComandaButton);
 
-        //Impostiamo a vuote le textBox
-        this.clearAllTextFields();
-    }
-    
-    
-    
-    private void clearAllTextFields() {
-        textCity.setText("");
-        textClientAddress.setText("");
-        textClientName.setText("");
-        textClientNumber.setText("");
-        textClientSurname.setText("");
-        textHouseNumber.setText("");
-        textDeliveringHour.setText("");
+        //Impostiamo a vuote le label
+        this.clearAllFields();
     }
 
-    public void update(int selectedComandaIndex){
-        
+    private void clearAllFields() {
+        city.setText("");
+        clientAddress.setText("");
+        clientName.setText("");
+        clientNumber.setText("");
+        clientSurname.setText("");
+        houseNumber.setText("");
+        deliveringHour.setText("");
     }
-    
+
+    public void update(int selectedComandaIndex) {
+        this.index = selectedComandaIndex;
+        //Aggiorniamo le label con i dati del cliente
+        this.city.setText(this.pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(index).getClient().getAddress().getLocalityName());
+        this.clientAddress.setText(this.pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(index).getClient().getAddress().getAddress());
+        this.houseNumber.setText(this.pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(index).getClient().getAddress().getHouseNumber());
+        this.clientName.setText(this.pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(index).getClient().getName());
+        this.clientSurname.setText(this.pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(index).getClient().getSurname());
+        this.clientNumber.setText(this.pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(index).getClient().getAddress().getInformations());
+        this.deliveringHour.setText(String.format(
+                "%02d:%02d",
+                this.pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(index).getDeliveryTime().get(Calendar.HOUR_OF_DAY),
+                this.pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(index).getDeliveryTime().get(Calendar.MINUTE)));
+        //Se c'è una comanda selezionata...
+        if (this.index >= 0) {
+            //Se l'ordine è stato terminato
+            if (pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(index).getTerminated()) {
+                setShippedButton.setText("Evasa");
+            } else {
+                setShippedButton.setText("Non evasa");
+            }
+        }
+    }
+
+    //Questo metodo serve per ottenere il JTabbedPane con le schede "Crea/Modifica ordine" e "Comande attive"
+    private JTabbedPane getParentTabbedPane() {
+        Object object = null;
+        object = this.getParent();
+        //Finché non otteniamo un JTabbedPane
+        while (!(object instanceof JTabbedPane)) {
+            object = ((JComponent) object).getParent();
+        }
+        return (JTabbedPane) object;
+    }
+
+    public Pizzeria getPizzeria() {
+        return pizzeria;
+    }
+
+    public void setPizzeria(Pizzeria pizzeria) {
+        this.pizzeria = pizzeria;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public ComandeListPanel getComandeListPanel() {
+        return comandeListPanel;
+    }
+
 }

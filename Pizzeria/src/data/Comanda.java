@@ -9,8 +9,6 @@ import exceptions.ProductNotFoundException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  *
@@ -18,34 +16,34 @@ import java.util.Observer;
  */
 public class Comanda {
 
-    private ArrayList<Product> ordersList = new ArrayList<Product>();
+    private ArrayList<Pizza> pizzasList = new ArrayList<Pizza>();
     private Client client;
     private Calendar deliveryTime = new GregorianCalendar();
     //Quando la comanda viene evasa lo setto a true da interfaccia ;
     //Rimane false finchè le pizze non escono dalla pizzeria !
-    private boolean terminated=false; 
+    private boolean terminated = false;
 
     public Comanda() {
         //Devo impostarlo a null sennò come valore di default ha la data attuale...
         this.deliveryTime = null;
     }
 
-    public void addProduct(Product p) {
-        this.ordersList.add(p);
+    public void addPizza(Pizza p) {
+        this.pizzasList.add(p);
     }
 
     @Override
     public String toString() {
         return "CLIENT >> " + this.client.toString() + "\t"
                 + "\n\nOra di Consegna " + getTime() + "\n"
-                + "\nOrdini : \n" + this.getOrderedProducts() + "\n "
+                + "\nOrdini : \n" + this.getOrderedPizzas() + "\n "
                 + "\nTotal : " + this.calculateTotalPrice();
     }
 
-    public String getOrderedProducts() {
+    public String getOrderedPizzas() {
         int index = 0;
         String s = "";
-        for (Product p : ordersList) {
+        for (Pizza p : pizzasList) {
             index++;
             s += index + ".\t" + p.toString() + "\n";
         }
@@ -54,7 +52,7 @@ public class Comanda {
 
     public double calculateTotalPrice() {
         double totalPrice = 0.0;
-        for (Product p : ordersList) {
+        for (Pizza p : pizzasList) {
             totalPrice += p.getPrice();
 
         }
@@ -77,35 +75,35 @@ public class Comanda {
         this.client = client;
     }
 
-    public void removeProduct(String nomeProdcut) throws ProductNotFoundException {
-        Product prodottoTrovato = this.searchProdcutByName(nomeProdcut);
-        this.ordersList.remove(prodottoTrovato);
+    public void removePizza(String nomePizza) throws ProductNotFoundException {
+        Pizza pizzaTrovata = this.searchPizzaByName(nomePizza);
+        this.pizzasList.remove(pizzaTrovata);
     }
 
-    public void removeProduct(int index) throws ProductNotFoundException {
-        Product prodottoTrovato = this.searchProductByIndex(index);
-        this.ordersList.remove(prodottoTrovato);
+    public void removePizza(int index) throws ProductNotFoundException {
+        Pizza pizzaTrovata = this.searchPizzaByIndex(index);
+        this.pizzasList.remove(pizzaTrovata);
     }
 
-    public Product searchProdcutByName(String nameProduct) throws ProductNotFoundException {
-        Product p = null;
-        for (Product ord : ordersList) {
-            if (ord.getName().equalsIgnoreCase(nameProduct)) {
+    public Pizza searchPizzaByName(String namePizza) throws ProductNotFoundException {
+        Pizza p = null;
+        for (Pizza ord : pizzasList) {
+            if (ord.getName().equalsIgnoreCase(namePizza)) {
                 p = ord;
                 break; //fa schifo
 
             }
         }
         if (p == null) {
-            throw new ProductNotFoundException("\t NESSUN PRODOTTO TROVATO INERENTE A : \t" + nameProduct);
+            throw new ProductNotFoundException("\t NESSUN PRODOTTO TROVATO INERENTE A : \t" + namePizza);
         }
         return p;
     }
 
-    public Product searchProductByIndex(int index) throws ProductNotFoundException {
-        Product p = null;
-        if (index < ordersList.size()) {
-            p = ordersList.get(index);
+    public Pizza searchPizzaByIndex(int index) throws ProductNotFoundException {
+        Pizza p = null;
+        if (index < pizzasList.size()) {
+            p = pizzasList.get(index);
         } else {
             throw new ProductNotFoundException("\t PRODUCT NOT FOUND FOR INDEX -->" + index);
         }
@@ -117,16 +115,39 @@ public class Comanda {
         return deliveryTime.getTime().toString();
     }
 
-    public ArrayList<Product> getOrdersList() {
-        return ordersList;
+    public ArrayList<Pizza> getPizzasList() {
+        return pizzasList;
     }
-    
-    public void terminate(){
-        terminated=true;
+
+    public void terminate() {
+        terminated = true;
     }
-    
-    public boolean getTerminated(){
+
+    public boolean getTerminated() {
         return terminated;
+    }
+
+    public void setTerminated(boolean terminated) {
+        this.terminated = terminated;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        //Creiamo una nuova comanda e settiamola uguale a this in tutti i suoi campi
+        Comanda comanda = new Comanda();
+        for (Pizza pizza : pizzasList) {
+            comanda.addPizza(pizza);
+        }
+        int year = this.deliveryTime.get(Calendar.YEAR);
+        int month = this.deliveryTime.get(Calendar.MONTH);
+        int day = this.deliveryTime.get(Calendar.DAY_OF_MONTH);
+        int hour = this.deliveryTime.get(Calendar.HOUR_OF_DAY);
+        int minuts = this.deliveryTime.get(Calendar.MINUTE);
+        comanda.deliveryTime = new GregorianCalendar(year, month, day, hour, minuts);
+        comanda.terminated = this.terminated;
+        comanda.setClient((Client) this.client.clone());
+        return comanda;
+
     }
 
 }

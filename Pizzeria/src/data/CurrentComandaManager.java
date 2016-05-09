@@ -22,21 +22,31 @@ public class CurrentComandaManager extends Observable {
     private Comanda currentComanda;
     private ComandeManager comandeManager;
     private MenuPizze menuPizze;// diventato Singleton
-    private IngredientsManager ingredientsManager; //diventato Singleton 
-    
+    private IngredientsManager ingredientsManager; //diventato Singleton
+    //Indica se siamo in modalità di creazione di una nuova comanda o se stiamo modificando una comanda già esistente (di default è CREATE)
+    private CurrentComandaManagerModality modality;
+    private int index;
+
     public CurrentComandaManager() {
         comandeManager = ComandeManager.getInstance();
         menuPizze = MenuPizze.getInstance();// setto il menuPizze con l'unica istanza che esiste
         ingredientsManager = IngredientsManager.getInstance();// setto il menu degli ingredienti con l'unica istanza
+        this.modality = CurrentComandaManagerModality.CREATE;
+        //Di default l'index è -1
+        this.index = -1;
     }
 
     public Comanda createComanda() {
         currentComanda = new Comanda();
+        setChanged();
+        notifyObservers();
         return currentComanda;// Crea la comanda e la restituisce al chiamante. NB: non viene aggiunta all'arrayList
     }
 
     public void setCurrentComanda(Comanda currentComanda) {// Setta la comanda con parametro oggetto comanda
         this.currentComanda = currentComanda;
+        setChanged();
+        notifyObservers();
     }
 
     public void setCurrentComanda(String clientSurname) throws ComandaNotFoundException {// Setta la comanda da String,
@@ -48,22 +58,52 @@ public class CurrentComandaManager extends Observable {
         return currentComanda;
     }
 
-    public void confirmComanda() {
-        this.comandeManager.addComanda(currentComanda);
-        this.createComanda();
-        setChanged();
-        notifyObservers();
+    public void confirmComanda() throws ComandaNotFoundException {
+        if (this.modality == CurrentComandaManagerModality.CREATE) {
+            this.comandeManager.addComanda(currentComanda);
+            setChanged();
+            notifyObservers();
+        } else if (this.modality == CurrentComandaManagerModality.MODIFY) { //altrimenti siamo in modalità di modifica
+            //Se l'index non è stato impostato o se è impostato ad un valore errato (cioè superiore alla dimensione massima dell'arrayList
+            //di comandeManager...
+            if (this.index < 0 || this.index >= this.comandeManager.getComande().size()){
+                throw new ComandaNotFoundException("La comanda che vuoi modificare non esiste.");
+            }
+            this.comandeManager.getComande().remove(index);
+            this.comandeManager.addComanda(currentComanda);
+            this.setModality(CurrentComandaManagerModality.CREATE);
+            this.index = -1;
+            setChanged();
+            notifyObservers();
+        }
+
     }
 
     public void setClientToComanda(Client c) {
         this.currentComanda.setClient(c);
     }
 
+    public CurrentComandaManagerModality getModality() {
+        return modality;
+    }
+
+    public void setModality(CurrentComandaManagerModality modality) {
+        this.modality = modality;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
     public void addPizza(String nomePizza) throws PizzaNotFoundInMenuException, CloneNotSupportedException {
         Pizza p = (Pizza) menuPizze.getPizzaByName(nomePizza).clone();
         if (p != null) {
 
-            this.currentComanda.addProduct(p);
+            this.currentComanda.addPizza(p);
             setChanged();
             notifyObservers();
         }
@@ -74,10 +114,8 @@ public class CurrentComandaManager extends Observable {
         return comandeManager;
     }
 
-    
-    
     public void addPizza(Pizza p) {
-        this.currentComanda.addProduct(p);
+        this.currentComanda.addPizza(p);
         setChanged();
         notifyObservers();
     }
@@ -87,17 +125,17 @@ public class CurrentComandaManager extends Observable {
     }
 
     public void removePizza(String nomePizza) throws ProductNotFoundException {
-        this.currentComanda.removeProduct(nomePizza);
+        this.currentComanda.removePizza(nomePizza);
     }
 
     public void removePizza(int index) throws ProductNotFoundException {
-        this.currentComanda.removeProduct(index);
+        this.currentComanda.removePizza(index);
         setChanged();
         notifyObservers();
     }
 
     public void addIngredientToPizza(String ingredientName, int index) throws ProductNotFoundException, IngredientNotFoundException, CloneNotSupportedException {//si riferisce alla comanda corrente
-        Pizza pizza = (Pizza) this.currentComanda.searchProductByIndex(index);
+        Pizza pizza = (Pizza) this.currentComanda.searchPizzaByIndex(index);
         Ingredient ingredient = (Ingredient) ingredientsManager.getIngredientByName(ingredientName).clone();//se viene trovato viene resituito l'ingrediente che vogliamo aggiungere
         pizza.addPlusIngredient(ingredient);//Add ingrediente all'istanza della pizza in currentComanda
         // System.out.println("\t\t\t\t 1 MENU PIZZE\n" + printMenuPizze());
@@ -119,13 +157,13 @@ public class CurrentComandaManager extends Observable {
         // System.out.println("************PIZZA PIU' SIMILE E'" + temp.get(k - 1));
         // System.out.println(">>>>>>>>>>>>>>>>>>FINE \n");
         // System.out.println("\t\t\t\t 2 MENU PIZZE\n" + printMenuPizze());
-        this.currentComanda.getOrdersList().remove(pizza);
+        this.currentComanda.getPizzasList().remove(pizza);
         //  System.out.println("\t\t\t\t 3 MENU PIZZE\n" + printMenuPizze());//RIMUOVO LA PIZZA CHE AVEVO MODIFICATO DALLA CURRENTCOMANDA
         // DEVO CONTROLLARE CHE LA POSIZIONE IN CUI SI E' CLASSIFICATA LA MIA PIZZA MODIFICATA NON SIA LA PRIMA (OVVERO K == 0)
         if (k == 0) {// SE E' LA PRIMA RIAGGIUNGO LA MIA PIZZA (FORSE CASO IMPOSSIBILE)
-            this.currentComanda.addProduct(pizza);
+            this.currentComanda.addPizza(pizza);
         } else if (pizza.equals(temp.get(k - 1))) {
-            this.currentComanda.addProduct(temp.get(k - 1));//questo ha gia i costi base degli ingred
+            this.currentComanda.addPizza(temp.get(k - 1));//questo ha gia i costi base degli ingred
 
         } else {
             int j = 0;
@@ -151,7 +189,7 @@ public class CurrentComandaManager extends Observable {
                     // System.out.println("\t\t\t\t 7 MENU PIZZE\n" + printMenuPizze());
                     temp.get(k - 1 - j).getPlusIngredients().addAll(modificata);
                     //   System.out.println("\t\t\t\t 8 MENU PIZZE\n" + printMenuPizze());
-                    this.currentComanda.addProduct(temp.get(k - j - 1));
+                    this.currentComanda.addPizza(temp.get(k - j - 1));
                     exit = true;
                 }
                 j++;
@@ -160,11 +198,11 @@ public class CurrentComandaManager extends Observable {
         //Notifichiamo agli osservatori le modifiche da noi fatte
         setChanged();
         notifyObservers();
-        
+
     }
 
     public void removeIngredientToPizza(String ingredientName, int index) throws ProductNotFoundException, IngredientNotFoundException, CloneNotSupportedException {//si riferisce alla comanda corrente
-        Pizza pizza = (Pizza) this.currentComanda.searchProductByIndex(index);
+        Pizza pizza = (Pizza) this.currentComanda.searchPizzaByIndex(index);
         Ingredient ingredient = (Ingredient) ingredientsManager.getIngredientByName(ingredientName).clone();//se viene trovato viene resituito l'ingrediente che vogliamo aggiungere
         if (!pizza.removePlusIngredient(ingredient)) { // PROVO A VEDERE SE RIMUOVER DA PLUS
             if (!pizza.removeIngredient(ingredient)) {// SE NON E' IN PLUS LO RIMUOVO DAGLI ING BASE
@@ -192,13 +230,13 @@ public class CurrentComandaManager extends Observable {
         //System.out.println("************PIZZA PIU' SIMILE E'" + temp.get(k - 1));
         // System.out.println(">>>>>>>>>>>>>>>>>>FINE \n");
         // System.out.println("\t\t\t\t 2 MENU PIZZE\n" + printMenuPizze());
-        this.currentComanda.getOrdersList().remove(pizza);
+        this.currentComanda.getPizzasList().remove(pizza);
         //  System.out.println("\t\t\t\t 3 MENU PIZZE\n" + printMenuPizze());//RIMUOVO LA PIZZA CHE AVEVO MODIFICATO DALLA CURRENTCOMANDA
         // DEVO CONTROLLARE CHE LA POSIZIONE IN CUI SI E' CLASSIFICATA LA MIA PIZZA MODIFICATA NON SIA LA PRIMA (OVVERO K == 0)
         if (k == 0) {// SE E' LA PRIMA RIAGGIUNGO LA MIA PIZZA (FORSE CASO IMPOSSIBILE)
-            this.currentComanda.addProduct(pizza);
+            this.currentComanda.addPizza(pizza);
         } else if (pizza.equals(temp.get(k - 1))) {
-            this.currentComanda.addProduct(temp.get(k - 1));//questo ha gia i costi base degli ingred
+            this.currentComanda.addPizza(temp.get(k - 1));//questo ha gia i costi base degli ingred
 
         } else {
             int j = 0;
@@ -223,7 +261,7 @@ public class CurrentComandaManager extends Observable {
                     }
                     temp.get(k - 1 - j).getPlusIngredients().addAll(modificata);
                     //   System.out.println("\t\t\t\t 8 MENU PIZZE\n" + printMenuPizze());
-                    this.currentComanda.addProduct(temp.get(k - j - 1));
+                    this.currentComanda.addPizza(temp.get(k - j - 1));
                     exit = true;
                 }
                 j++;
@@ -234,7 +272,7 @@ public class CurrentComandaManager extends Observable {
         setChanged();
         notifyObservers();
     }
-    
+
     //Metodo per ritornare l'ora di consegna della comanda corrente
     public Calendar getDeliveryTime() {
         return this.getCurrentComanda().getDeliveryTime();
