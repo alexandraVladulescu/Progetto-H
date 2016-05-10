@@ -42,7 +42,7 @@ public class Launcher {
             pizzeria.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);
 
             //Creo una nuova comanda (comportamento di default all'apertra del programma)
-            pizzeria.getCurrentComandaManager().setCurrentComanda(new Comanda());
+            pizzeria.getCurrentComandaManager().createComanda();
 
             //La finestra principale. E' un singleton!
             MainFrame mainFrame = MainFrame.getInstance();
