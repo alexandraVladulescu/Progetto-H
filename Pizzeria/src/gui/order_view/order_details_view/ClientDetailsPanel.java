@@ -3,7 +3,6 @@ package gui.order_view.order_details_view;
 import data.Address;
 import data.Client;
 import data.CurrentComandaManager;
-import data.CurrentComandaManagerModality;
 import data.Pizzeria;
 import exceptions.ComandaNotFoundException;
 import gui.MainFrame;
@@ -16,11 +15,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -190,37 +188,8 @@ public class ClientDetailsPanel extends JPanel {
                     System.err.println(ex.getMessage());
                 }
             } else {
-                //ATTENZIONE: il metodo getParentFrame restituisce il frame genitore di questo pannello (anche se questo
-                //è contenuto a sua volta in altri pannelli...
-                JDialog dialogError = new JDialog(MainFrame.getInstance(), true);
-                dialogError.setTitle("Dati cliente nulli");
-                dialogError.setLayout(new BorderLayout());
-                //Aggiungiamo il testo alla dialog
-                JLabel labelError = new JLabel("Non hai compilato il form con i dati relativi al cliente.");
-                labelError.setHorizontalAlignment(JLabel.CENTER);
-                dialogError.add(BorderLayout.CENTER, labelError);
-                //Aggiungo il pulsante di ok
-                JButton buttonOk = new JButton("Ok");
-                //In realtà non serve a molto questo pulsante in quanto basta cliccare sulla X in alto a destra per
-                //ottenere lo stesso comportamento...diciamo che è stato fatto per questioni di "bellezza"...
-                buttonOk.addMouseListener(new MouseAdapter() {
-
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
-                        dialogError.dispose();
-                    }
-
-                });
-                dialogError.add(BorderLayout.SOUTH, buttonOk);
-                dialogError.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-                dialogError.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 6, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 6);
-                //Per centrarlo sullo schermo...anche se non lo centra in verita...
-                //Ragionamento fatto: assegno come posizione x e y la metà della dimensione dello schermo e poi
-                //tolgo a quanto trovato la metà della dimensione del frame stesso...tutto questo per centrarlo!
-                dialogError.setLocation(((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - ((int) dialogError.getSize().getWidth() / 2), ((int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - ((int) dialogError.getSize().getHeight() / 2));
-
-                dialogError.setVisible(true);
+                this.createErrorDialog("Dati cliente nulli", 
+                        "Non hai compilato il form con i dati relativi al cliente.", MainFrame.getInstance(), true);
             }
         }
 
@@ -270,4 +239,38 @@ public class ClientDetailsPanel extends JPanel {
 //        }
 //        return (JFrame) object;
 //    }
+    
+    //Questo metodo serve per creare una JDialog che segnala un errore generico avente titolo title e testo text
+    private void createErrorDialog(String title, String text, JFrame owner, boolean modal) {
+        //Se l'ingrediente esiste già, apriamo una jDialog per segnalare ciò...
+        JDialog dialogError = new JDialog(owner, modal);
+        dialogError.setTitle(title);
+        dialogError.setLayout(new BorderLayout());
+        //Aggiungiamo il testo alla dialog
+        JLabel labelError = new JLabel(text);
+        labelError.setHorizontalAlignment(JLabel.CENTER);
+        dialogError.add(BorderLayout.CENTER, labelError);
+        //Aggiungo il pulsante di ok
+        JButton buttonOk = new JButton("Ok");
+                    //In realtà non serve a molto questo pulsante in quanto basta cliccare sulla X in alto a destra per
+        //ottenere lo stesso comportamento...diciamo che è stato fatto per questioni di "bellezza"...
+        buttonOk.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
+                dialogError.dispose();
+            }
+
+        });
+        dialogError.add(BorderLayout.SOUTH, buttonOk);
+        dialogError.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialogError.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 4, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 6);
+                    //Per centrarlo sullo schermo...anche se non lo centra in verita...
+        //Ragionamento fatto: assegno come posizione x e y la metà della dimensione dello schermo e poi
+        //tolgo a quanto trovato la metà della dimensione del frame stesso...tutto questo per centrarlo!
+        dialogError.setLocation(((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - ((int) dialogError.getSize().getWidth() / 2), ((int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - ((int) dialogError.getSize().getHeight() / 2));
+
+        dialogError.setVisible(true);
+    }
 }

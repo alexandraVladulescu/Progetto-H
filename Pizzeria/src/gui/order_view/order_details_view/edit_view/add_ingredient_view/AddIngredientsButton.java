@@ -22,17 +22,14 @@ public class AddIngredientsButton extends JButton {
     private Pizzeria pizzeria;
     //index è l'indice della pizza da modificare...ce lo portiamo dietro da un bel po'...
     private int index;
-    //Perchè portarci dietro il frame genitore? Così sappiamo come chiuderlo...
-    private JFrame frameGenitore;
     //Contiene il pannello contenente i checkbox degli ingredienti da aggiungere o da togliere
     //La scelta del tipo di pannello avviene a runtime passandogli da costruttore il pannello...
     private AddIngredientsPanel addIngredientsPanel;
 
-    AddIngredientsButton(String name, Pizzeria pizzeria, int index, JFrame frameGenitore, AddIngredientsPanel addIngredientsPanel) {
+    AddIngredientsButton(String name, Pizzeria pizzeria, int index, AddIngredientsPanel addIngredientsPanel) {
         this.setText(name);
         this.pizzeria = pizzeria;
         this.index = index;
-        this.frameGenitore = frameGenitore;
         this.addIngredientsPanel = addIngredientsPanel;
 
         this.addMouseListener(new MouseAdapter() {
@@ -64,7 +61,7 @@ public class AddIngredientsButton extends JButton {
                         System.err.println("Errore durante la clonazione in addIngredientToPizza");
                     }
                 }
-                frameGenitore.dispose();
+                AddIngredientFrame.getIstance().dispose();
 
             }
 
