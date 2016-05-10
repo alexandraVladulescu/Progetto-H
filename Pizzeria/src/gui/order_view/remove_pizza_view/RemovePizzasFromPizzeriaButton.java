@@ -20,15 +20,12 @@ import javax.swing.JFrame;
 public class RemovePizzasFromPizzeriaButton extends JButton {
 
     private Pizzeria pizzeria;
-    //Questa variabile serve per chiudere il frame genitore...
-    private JFrame frameGenitore;
-    //Il pannello contenente il form da cui preleviamo i dati da inserire per il nuovo ingrediente
+//Il pannello contenente il form da cui preleviamo i dati da inserire per il nuovo ingrediente
     private RemovePizzasFromPizzeriaPanel removePizzassFromPizzeriaPanel;
 
-    public RemovePizzasFromPizzeriaButton(String name, Pizzeria pizzeria, JFrame frameGenitore, RemovePizzasFromPizzeriaPanel removePizzasFromPizzeriaPanel) {
+    public RemovePizzasFromPizzeriaButton(String name, Pizzeria pizzeria, RemovePizzasFromPizzeriaPanel removePizzasFromPizzeriaPanel) {
         this.setText(name);
         this.pizzeria = pizzeria;
-        this.frameGenitore = frameGenitore;
         this.removePizzassFromPizzeriaPanel = removePizzassFromPizzeriaPanel;
         //Aggiungiamo il mouseListener per il pulsante..
         this.addMouseListener(new MouseAdapter() {
@@ -50,7 +47,7 @@ public class RemovePizzasFromPizzeriaButton extends JButton {
                             pizzeria.getMenuPizze().removePizzaFromPizzeria(pizzaName);
                         
                     }
-                    frameGenitore.dispose();
+                    RemovePizzasFromPizzeriaFrame.getIstance().dispose();
                 } catch (IOException ex) {
                     System.err.println(ex.getMessage());
                 } catch (PizzaNotFoundInMenuException ex) {

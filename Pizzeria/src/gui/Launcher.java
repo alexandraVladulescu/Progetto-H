@@ -42,7 +42,7 @@ public class Launcher {
             pizzeria.loadMenuPizza("./databases/pizze.txt", FormatType.TXT);
 
             //Creo una nuova comanda (comportamento di default all'apertra del programma)
-            pizzeria.getCurrentComandaManager().setCurrentComanda(new Comanda());
+            pizzeria.getCurrentComandaManager().createComanda();
 
             //La finestra principale. E' un singleton!
             MainFrame mainFrame = MainFrame.getInstance();
@@ -99,9 +99,7 @@ public class Launcher {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreateIngredientFrame createIngredientFrame = new CreateIngredientFrame(pizzeria);
-                createIngredientFrame.setTitle("Aggiungi un nuovo ingrediente alla pizzeria...");
-                createIngredientFrame.setVisible(true);
+                CreateIngredientFrame.getIstance().init("Aggiungi ingredienti alla pizzeria...", pizzeria);
             }
         });
     }
@@ -112,9 +110,7 @@ public class Launcher {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                RemoveIngredientsFromPizzeriaFrame removeIngredientsFromPizzeriaFrame = new RemoveIngredientsFromPizzeriaFrame(pizzeria);
-                removeIngredientsFromPizzeriaFrame.setTitle("Rimuovi ingredienti dalla pizzeria...");
-                removeIngredientsFromPizzeriaFrame.setVisible(true);
+                RemoveIngredientsFromPizzeriaFrame.getIstance().init("Rimuovi ingredienti dalla pizzeria...", pizzeria);
             }
         });
     }
@@ -124,9 +120,7 @@ public class Launcher {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreatePizzaFrame createPizzaFrame = new CreatePizzaFrame(pizzeria);
-                createPizzaFrame.setTitle("Creazione di una nuova pizza...");
-                createPizzaFrame.setVisible(true);
+                CreatePizzaFrame.getIstance().init("Creazione di una nuova pizza...", pizzeria);
             }
         });
     }
@@ -136,9 +130,7 @@ public class Launcher {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                RemovePizzasFromPizzeriaFrame removePizzasFromPizzeriaFrame = new RemovePizzasFromPizzeriaFrame(pizzeria);
-                removePizzasFromPizzeriaFrame.setTitle("Rimuovi pizze dalla pizzeria...");
-                removePizzasFromPizzeriaFrame.setVisible(true);
+                RemovePizzasFromPizzeriaFrame.getIstance().init("Rimuovi pizza dalla pizzeria...", pizzeria);
             }
         });
     }

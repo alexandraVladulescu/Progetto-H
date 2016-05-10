@@ -28,7 +28,7 @@ public class EditPizzaFrame extends JFrame {
         this.index = index;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 4, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 4);
-                //Per centrarlo sullo schermo...anche se non lo centra in verita...
+        //Per centrarlo sullo schermo...anche se non lo centra in verita...
         //Ragionamento fatto: assegno come posizione x e y la metà della dimensione dello schermo e poi
         //tolgo a quanto trovato la metà della dimensione del frame stesso...tutto questo per centrarlo!
         this.setLocation(((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - ((int) this.getSize().getWidth() / 2), ((int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - ((int) this.getSize().getHeight() / 2));
@@ -45,9 +45,7 @@ public class EditPizzaFrame extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
                 //Creo un nuovo frame per scegliere gli ingredienti da aggiungere
-                AddIngredientFrame addIngredientsFrame = new AddIngredientFrame(pizzeria, index);
-                addIngredientsFrame.setTitle("Aggiungi ingredienti alla pizza...");
-                addIngredientsFrame.setVisible(true);
+                AddIngredientFrame.getIstance().init("Aggiungi ingredienti alla pizza...", pizzeria, index);
                 dispose();
             }
             
@@ -60,9 +58,7 @@ public class EditPizzaFrame extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
                 //Creo un nuovo frame per scegliere gli ingredienti da rimuovere
-                RemoveIngredientFrame removeIngredientsFrame = new RemoveIngredientFrame(pizzeria, index);
-                removeIngredientsFrame.setTitle("Rimuovi ingredienti dalla pizza...");
-                removeIngredientsFrame.setVisible(true);
+                RemoveIngredientFrame.getIstance().init("Rimuovi ingredienti dalla pizza...", pizzeria, index);
                 dispose();
             }
             

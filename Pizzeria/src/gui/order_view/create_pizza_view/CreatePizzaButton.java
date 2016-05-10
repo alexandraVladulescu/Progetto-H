@@ -1,10 +1,7 @@
 package gui.order_view.create_pizza_view;
 
 import data.Ingredient;
-import data.Pizza;
-import gui.create_ingredient_view.*;
 import data.Pizzeria;
-import exceptions.AlreadyExistingIngredientException;
 import exceptions.AlreadyExistingPizzaException;
 import exceptions.IngredientNotFoundException;
 import java.awt.BorderLayout;
@@ -13,8 +10,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
@@ -29,17 +24,14 @@ import javax.swing.JLabel;
 public class CreatePizzaButton extends JButton {
 
     private Pizzeria pizzeria;
-    //Questa variabile serve per chiudere il frame genitore...
-    private JFrame frameGenitore;
     //Il pannello contenente il form da cui preleviamo il nome e il prezzo della pizza che vogliamo creare
     private PizzaDetailsPanel pizzaDetailsPanel;
     //Il pannello che contiene gli ingredienti presenti nella pizzeria che possiamo aggiungere alla pizza che vogliamo creare...
-    private PizzasListPanel pizzasListPanel;
+    private IngredientsListPanel pizzasListPanel;
 
-    public CreatePizzaButton(String name, Pizzeria pizzeria, JFrame frameGenitore, PizzaDetailsPanel pizzaDetailsPanel, PizzasListPanel pizzasListPanel) {
+    public CreatePizzaButton(String name, Pizzeria pizzeria, PizzaDetailsPanel pizzaDetailsPanel, IngredientsListPanel pizzasListPanel) {
         this.setText(name);
         this.pizzeria = pizzeria;
-        this.frameGenitore = frameGenitore;
         this.pizzaDetailsPanel = pizzaDetailsPanel;
         this.pizzasListPanel = pizzasListPanel;
         //Aggiungiamo il mouseListener per il pulsante..
@@ -49,7 +41,7 @@ public class CreatePizzaButton extends JButton {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
                 if (pizzaDetailsPanel.getTextName().getText().equals("") || pizzaDetailsPanel.getTextPrice().equals("")) {
-                    createErrorDialog("Campi vuoti", "Devi riempire tutti i campi del form.", frameGenitore, true);
+                    createErrorDialog("Campi vuoti", "Devi riempire tutti i campi del form.", CreatePizzaFrame.getIstance(), true);
                 } else {
                     try {
                         //La lista dei nomi degli ingredienti che vogliamo la pizza abbia
@@ -68,15 +60,15 @@ public class CreatePizzaButton extends JButton {
                         }
                         //Creo la nuova pizza
                         pizzeria.getMenuPizze().createNewPizza(pizzaDetailsPanel.getTextName().getText(), Double.parseDouble(pizzaDetailsPanel.getTextPrice().getText()), ingredients);
-                        frameGenitore.dispose();
+                        CreatePizzaFrame.getIstance().dispose();
                     } catch (IngredientNotFoundException ex) {
                         System.err.println(ex.getMessage());
                     } catch (AlreadyExistingPizzaException ex) {
-                        createErrorDialog("Pizza già esistente", ex.getMessage(), frameGenitore, true);
+                        createErrorDialog("Pizza già esistente", ex.getMessage(), CreatePizzaFrame.getIstance(), true);
                     } catch (IOException ex) {
                         System.err.println(ex.getMessage());
                     } catch (NumberFormatException ex) {
-                        createErrorDialog("Prezzo inserito errato", "Devi inserire un valore numerico per il prezzo.", frameGenitore, true);
+                        createErrorDialog("Prezzo inserito errato", "Devi inserire un valore numerico per il prezzo.", CreatePizzaFrame.getIstance(), true);
 
                     }
                 }

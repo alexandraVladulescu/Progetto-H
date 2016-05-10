@@ -2,29 +2,24 @@ package gui.order_view.create_pizza_view;
 
 import data.Ingredient;
 import data.IngredientsManager;
-import gui.create_ingredient_view.*;
 import data.Pizzeria;
-import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 /**
  * Questo pannello contiene l'elenco degli ingredienti della pizzeria
  * Tramite dei checkbox si possono scegliere quelli da aggiungere alla nuova pizza
  * @author Markenos
  */
-public class PizzasListPanel extends JPanel {
+public class IngredientsListPanel extends JPanel {
 
     private Pizzeria pizzeria;
     //Una checkbox per ciascun ingrediente presente nella pizzeria
     ArrayList<JCheckBox> checkIngredients;
 
-    public PizzasListPanel( Pizzeria pizzeria) {
+    public IngredientsListPanel( Pizzeria pizzeria) {
 
         this.pizzeria = pizzeria;
         this.checkIngredients = new ArrayList<JCheckBox>();
@@ -50,7 +45,7 @@ public class PizzasListPanel extends JPanel {
                 this.add(checkIngredient);
             }
         } catch (CloneNotSupportedException ex) {
-            System.err.println("Errore nella clonazione dell'ingredientManager in RemoveIngredientsFromPizzeriaPanel");
+            System.err.println("Errore nella clonazione dell'ingredientManager in IngredientsListPanel");
         }
     }
    
