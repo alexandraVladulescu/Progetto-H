@@ -25,15 +25,13 @@ public class CurrentComandaManager extends Observable {
     private IngredientsManager ingredientsManager; //diventato Singleton
     //Indica se siamo in modalità di creazione di una nuova comanda o se stiamo modificando una comanda già esistente (di default è CREATE)
     private CurrentComandaManagerModality modality;
-    private int index;
+    
 
     public CurrentComandaManager() {
         comandeManager = ComandeManager.getInstance();
         menuPizze = MenuPizze.getInstance();// setto il menuPizze con l'unica istanza che esiste
         ingredientsManager = IngredientsManager.getInstance();// setto il menu degli ingredienti con l'unica istanza
         this.modality = CurrentComandaManagerModality.CREATE;
-        //Di default l'index è -1
-        this.index = -1;
     }
 
     public Comanda createComanda() {
