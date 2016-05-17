@@ -79,13 +79,13 @@ public class ClientDetailsPanel extends JPanel {
                 {
                     try {
                         if (getSelectedComanda().getTerminated()) {
-                            //Imposta a non evaso
-                            pizzeria.getCurrentComandaManager().getComandeManager().getComandaById(getSelectedComanda().getId()).setTerminated(true);
-                            setShippedButton.setText("Evasa");
-                        } else {
-                            //Imposta a evaso
+                            //Imposta a non evasa
                             pizzeria.getCurrentComandaManager().getComandeManager().getComandaById(getSelectedComanda().getId()).setTerminated(false);
                             setShippedButton.setText("Non evasa");
+                        } else {
+                            //Imposta a evasa
+                            pizzeria.getCurrentComandaManager().getComandeManager().getComandaById(getSelectedComanda().getId()).setTerminated(true);
+                            setShippedButton.setText("Evasa");
                         }
                     }
                         catch (ComandaNotFoundException ex) {
@@ -383,7 +383,7 @@ public class ClientDetailsPanel extends JPanel {
                 selectedComanda.getDeliveryTime().get(Calendar.HOUR_OF_DAY),
                 selectedComanda.getDeliveryTime().get(Calendar.MINUTE)));
         //Se c'è una comanda selezionata...
-        if (selectedComanda != null) {
+        if (selectedComanda != null) {  //CONTROLLO INUTILE!!!
             //Se l'ordine è stato terminato
             if (selectedComanda.getTerminated()) {
                 setShippedButton.setText("Evasa");
