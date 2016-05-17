@@ -8,6 +8,7 @@ package gui.comande_view;
 import gui.comande_view.comande_list_view.ComandeListPanel;
 import gui.comande_view.comanda_details_view.ComandaDetailsPanel;
 import data.Pizzeria;
+import gui.comande_view.comande_list_view.ComandeListPanelLine;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
@@ -29,10 +30,8 @@ public class ComandeView extends JPanel{
         this.setLayout(new GridLayout(1,2));
         
         //Istanzio i pannelli contenuti da ComandeView
-        ComandeListPanel comandeListPanel = new ComandeListPanel(pizzeria);
-        ComandaDetailsPanel comandaDetailsPanel = new ComandaDetailsPanel(pizzeria,comandeListPanel);
-        //Aggiungiamolo tra gli osservatori di ComandeListPanel
-        comandeListPanel.registerObserver(comandaDetailsPanel);
+        ComandaDetailsPanel comandaDetailsPanel = new ComandaDetailsPanel(pizzeria);
+        ComandeListPanel comandeListPanel = new ComandeListPanel(pizzeria,comandaDetailsPanel); 
         
         //Scroller per il pannello con la lista delle comande
         JScrollPane scrollerComandeListPanel = new JScrollPane(comandeListPanel);

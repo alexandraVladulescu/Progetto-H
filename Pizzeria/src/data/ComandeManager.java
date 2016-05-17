@@ -81,12 +81,11 @@ public class ComandeManager extends Observable {
         Comanda c;
         while (i.hasNext()) {
             c = (Comanda) i.next();
-            System.out.println("id" + c.getId());
+            //System.out.println("id" + c.getId());
             if (c.getId() == id) {
                 setChanged();
                 notifyObservers();
                 return c;
-
             }
         }
         throw new ComandaNotFoundException("Comanda non trovata per id ==\t" + id);
@@ -121,12 +120,6 @@ public class ComandeManager extends Observable {
             s += "\t" + c.toString() + "\n";
         }
         return s;
-    }
-
-    public void setTerminatedByIndex(int index, boolean terminated) {
-        comande.get(index).setTerminated(terminated);
-        setChanged();
-        notifyObservers();
     }
 
 }

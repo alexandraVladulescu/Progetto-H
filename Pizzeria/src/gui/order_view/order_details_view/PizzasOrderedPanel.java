@@ -32,8 +32,8 @@ public class PizzasOrderedPanel extends JPanel {
     private void createPizzaLine(Pizza pizza){
         //Alla PizzaLineView viene passata anche la dimensione del pannello genitore
         //Leggi in PizzaLineView.java il perché di ciò...
-        //Inoltre devo passargli anche l'indice che la riga ha all'intern di pizzasLineView
-        //Ciò serve per permettere poi alla riga di autoeliminarsi quando clicco sul pulsante delete
+        //**Inoltre devo passargli anche l'indice che la riga ha all'intern di pizzasLineView**
+        //**Ciò serve per permettere poi alla riga di autoeliminarsi quando clicco sul pulsante delete**
         this.pizzasLineView.add(new PizzaLineView(pizzeria,pizza,this.getSize(),pizzasLineView.size()));
         this.add(pizzasLineView.get(pizzasLineView.size()-1));
     }
@@ -44,7 +44,7 @@ public class PizzasOrderedPanel extends JPanel {
         //sennò avrebbe la dimenisone che avrebbe prima...
         this.pizzasLineView = new ArrayList<PizzaLineView>();
         this.updateUI();
-        for(Product pizza : pizzeria.getCurrentComandaManager().getCurrentComanda().getPizzasList()){
+        for(Pizza pizza : pizzeria.getCurrentComandaManager().getCurrentComanda().getPizzasList()){
             this.createPizzaLine((Pizza) pizza);
         }
     }

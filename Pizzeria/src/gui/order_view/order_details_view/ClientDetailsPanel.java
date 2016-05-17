@@ -101,7 +101,7 @@ public class ClientDetailsPanel extends JPanel {
                         Calendar.getInstance().get(Calendar.DAY_OF_MONTH),
                         Integer.parseInt(time[0]),
                         Integer.parseInt(time[1])));
-                System.out.println(pizzeria.getCurrentComandaManager().getDeliveryTime());
+                //System.out.println(pizzeria.getCurrentComandaManager().getDeliveryTime());    //DEBUG
             }
         });
         this.add(comboDeliveringHour);
@@ -139,35 +139,7 @@ public class ClientDetailsPanel extends JPanel {
         //Se non abbiamo impostato l'ora di consegna della comanda, apriamo una JDialog per segnalare ciò...
         if (pizzeria.getCurrentComandaManager().getCurrentComanda().getDeliveryTime() == null) {
             //Creo una JDialog
-            JDialog dialogError = new JDialog(MainFrame.getInstance(), true);
-            dialogError.setTitle("Non hai scelto l'ora di consegna");
-            dialogError.setLayout(new BorderLayout());
-            //Aggiungiamo il testo alla dialog
-            JLabel labelError = new JLabel("Non hai scelto l'ora di consegna della pizza.");
-            labelError.setHorizontalAlignment(JLabel.CENTER);
-            dialogError.add(BorderLayout.CENTER, labelError);
-            //Aggiungo il pulsante di ok
-            JButton buttonOk = new JButton("Ok");
-            //In realtà non serve a molto questo pulsante in quanto basta cliccare sulla X in alto a destra per
-            //ottenere lo stesso comportamento...diciamo che è stato fatto per questioni di "bellezza"...
-            buttonOk.addMouseListener(new MouseAdapter() {
-
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
-                    dialogError.dispose();
-                }
-
-            });
-            dialogError.add(BorderLayout.SOUTH, buttonOk);
-            dialogError.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            dialogError.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 6, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 6);
-            //Per centrarlo sullo schermo...anche se non lo centra in verita...
-            //Ragionamento fatto: assegno come posizione x e y la metà della dimensione dello schermo e poi
-            //tolgo a quanto trovato la metà della dimensione del frame stesso...tutto questo per centrarlo!
-            dialogError.setLocation(((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - ((int) dialogError.getSize().getWidth() / 2), ((int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - ((int) dialogError.getSize().getHeight() / 2));
-
-            dialogError.setVisible(true);
+            this.createErrorDialog("Non hai scelto l'ora di consegna", "Non hai scelto l'ora di consegna della pizza.", MainFrame.getInstance(), true);
         } else {
             //Altrimenti controlliamo che i campi relativi al cliente non siano vuoti
             if (!this.textClientName.getText().equals("") && !this.textClientSurname.getText().equals("") && !this.textCity.getText().equals("") && !this.textClientAddress.getText().equals("") && !this.textHouseNumber.getText().equals("")) {
@@ -177,11 +149,10 @@ public class ClientDetailsPanel extends JPanel {
                     Address ad = new Address(textCity.getText(), textClientAddress.getText(),
                             textHouseNumber.getText());
                     Client cl = new Client(textClientName.getText(), textClientSurname.getText(),
-                            textHouseNumber.getText(), ad);
+                            textClientNumber.getText(), ad);
 
                     currentComandaManager.setClientToComanda(cl);
                     currentComandaManager.confirmComanda();
-                    currentComandaManager.createComanda();
                     //TODO: Printer.getPrinterSingleton().printOrder();*/
                     //System.out.println(currentComandaManager.showComandaDetails());     //DEBUG
                 } catch (ComandaNotFoundException ex) {

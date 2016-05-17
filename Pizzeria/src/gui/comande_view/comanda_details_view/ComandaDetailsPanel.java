@@ -1,5 +1,6 @@
 package gui.comande_view.comanda_details_view;
 
+import data.Comanda;
 import data.Pizzeria;
 import gui.comande_view.comande_list_view.ComandeListPanel;
 import gui.comande_view.comande_list_view.Observer;
@@ -30,7 +31,7 @@ public class ComandaDetailsPanel extends JPanel implements Observer {
     private ClientDetailsPanel clientDetailsPanel;
 
     //ComandeListPanel mi serve per passarlo poi fino al pulsante deleteComanda in ClientDetailsPanel...
-    public ComandaDetailsPanel(Pizzeria pizzeria, ComandeListPanel comandeListPanel) {
+    public ComandaDetailsPanel(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
 
         //A pizzasOrderedPanel e drinksOrderedPanel dobbiamo passare anche la dimensione di questo pannello.
@@ -40,7 +41,7 @@ public class ComandaDetailsPanel extends JPanel implements Observer {
         drinksOrderedPanel = new DrinksOrderedPanel(this.pizzeria);
         drinksTotalPricePanel = new DrinksTotalPricePanel(this.pizzeria);
         comandaTotalPricePanel = new ComandaTotalPricePanel(this.pizzeria);
-        clientDetailsPanel = new ClientDetailsPanel(this.pizzeria, comandeListPanel);
+        clientDetailsPanel = new ClientDetailsPanel(this.pizzeria);
 
         //ScrollPane per l'elenco delle pizze
         JScrollPane pizzasScrollPane = new JScrollPane(pizzasOrderedPanel);
@@ -125,17 +126,19 @@ public class ComandaDetailsPanel extends JPanel implements Observer {
     }
 
     @Override
-    public void update(int selectedComandaIndex) {
+    public void update(Comanda comanda) {
         //Se c'è un elemento selezionato...
         //Questo controllo serve per evitare un crash quando eliminiamo tutte le comande...
-        if (selectedComandaIndex >= 0) {
-            this.pizzasOrderedPanel.update(selectedComandaIndex);
-            this.pizzasTotalPricePanel.update(selectedComandaIndex);
-            this.drinksOrderedPanel.update(selectedComandaIndex);
-            this.drinksTotalPricePanel.update(selectedComandaIndex);
-            this.comandaTotalPricePanel.update(selectedComandaIndex);
-            this.clientDetailsPanel.update(selectedComandaIndex);
+        if (comanda != null) {
+            this.pizzasOrderedPanel.update(comanda);
+            this.pizzasTotalPricePanel.update(comanda);
+            this.drinksOrderedPanel.update(comanda);
+            this.drinksTotalPricePanel.update(comanda);
+            this.comandaTotalPricePanel.update(comanda);
+            this.clientDetailsPanel.update(comanda);
         }
     }
+    
+    
 
 }
