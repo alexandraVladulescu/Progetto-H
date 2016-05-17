@@ -121,5 +121,11 @@ public class ComandeManager extends Observable {
         }
         return s;
     }
+    
+    public void setTerminatedById(int id, boolean terminated) throws ComandaNotFoundException{
+        this.getComandaById(id).setTerminated(terminated);
+        setChanged();
+        notifyObservers();
+    }
 
 }
