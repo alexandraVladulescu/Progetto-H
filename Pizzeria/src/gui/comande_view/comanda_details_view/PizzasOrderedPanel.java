@@ -1,5 +1,6 @@
 package gui.comande_view.comanda_details_view;
 
+import data.Comanda;
 import gui.order_view.order_details_view.*;
 import data.Pizza;
 import data.Pizzeria;
@@ -39,13 +40,13 @@ public class PizzasOrderedPanel extends JPanel {
         this.add(pizzasLineView.get(pizzasLineView.size()-1));
     }
     
-    public void update(int selectedComandaIndex){
+    public void update(Comanda comanda){
         this.removeAll();
         //L'arrayList va riazzerata anche lei così che abbia dimensione 0 di default
         //sennò avrebbe la dimenisone che avrebbe prima...
         this.pizzasLineView = new ArrayList<PizzaLineView>();
         this.updateUI();
-        for(Product pizza : pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(selectedComandaIndex).getPizzasList()){
+        for(Product pizza : comanda.getPizzasList()){
             this.createPizzaLine((Pizza) pizza);
         }
     }

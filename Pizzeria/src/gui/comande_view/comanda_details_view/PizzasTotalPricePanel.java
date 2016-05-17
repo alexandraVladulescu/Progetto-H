@@ -1,5 +1,6 @@
 package gui.comande_view.comanda_details_view;
 
+import data.Comanda;
 import gui.order_view.order_details_view.*;
 import data.CurrentComandaManager;
 import data.Pizzeria;
@@ -34,8 +35,8 @@ public class PizzasTotalPricePanel extends JPanel {
         
     }
     
-    public void update(int selectedComandaIndex){
-        labelTotalPrice.setText(Double.toString(pizzeria.getCurrentComandaManager().getComandeManager().getComande().get(selectedComandaIndex).calculateTotalPrice()));
+    public void update(Comanda comanda){
+        labelTotalPrice.setText(Double.toString(comanda.calculateTotalPrice()));
     }
     
     

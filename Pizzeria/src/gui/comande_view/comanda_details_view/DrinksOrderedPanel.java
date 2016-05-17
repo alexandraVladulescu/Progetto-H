@@ -1,5 +1,6 @@
 package gui.comande_view.comanda_details_view;
 
+import data.Comanda;
 import gui.order_view.order_details_view.*;
 import data.Pizzeria;
 import java.awt.Color;
@@ -19,7 +20,7 @@ public class DrinksOrderedPanel extends JPanel{
     }
     
     
-    public void update(int selectedComandaIndex){
+    public void update(Comanda comanda){
         
     }
     
