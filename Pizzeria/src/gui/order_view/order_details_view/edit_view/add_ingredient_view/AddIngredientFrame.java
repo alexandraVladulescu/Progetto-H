@@ -58,6 +58,10 @@ public class AddIngredientFrame extends JFrame {
         this.setVisible(true);
     }
     
+    public static void disposeFrame(){
+        addIngredientFrame.dispose();
+        addIngredientFrame = null;
+    }
     
 
 }

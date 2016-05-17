@@ -47,7 +47,7 @@ public class RemovePizzasFromPizzeriaButton extends JButton {
                             pizzeria.getMenuPizze().removePizzaFromPizzeria(pizzaName);
                         
                     }
-                    RemovePizzasFromPizzeriaFrame.getIstance().dispose();
+                    RemovePizzasFromPizzeriaFrame.disposeFrame();
                 } catch (IOException ex) {
                     System.err.println(ex.getMessage());
                 } catch (PizzaNotFoundInMenuException ex) {

@@ -21,15 +21,12 @@ import javax.swing.JLabel;
 public class CreateIngredientButton extends JButton {
 
     private Pizzeria pizzeria;
-    //Questa variabile serve per chiudere il frame genitore...
-    private JFrame frameGenitore;
     //Il pannello contenente il form da cui preleviamo i dati da inserire per il nuovo ingrediente
     private CreateIngredientPanel createIngredientPanel;
 
-    public CreateIngredientButton(String name, Pizzeria pizzeria, JFrame frameGenitore, CreateIngredientPanel createIngredientPanel) {
+    public CreateIngredientButton(String name, Pizzeria pizzeria, CreateIngredientPanel createIngredientPanel) {
         this.setText(name);
         this.pizzeria = pizzeria;
-        this.frameGenitore = frameGenitore;
         this.createIngredientPanel = createIngredientPanel;
         //Aggiungiamo il mouseListener per il pulsante..
         this.addMouseListener(new MouseAdapter() {
@@ -39,18 +36,18 @@ public class CreateIngredientButton extends JButton {
                 super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
                 //Se abbiamo lasciato i campi nome e prezzo vuoti segnaliamo un errore con un JDialog
                 if (createIngredientPanel.getTextName().getText().equals("") || createIngredientPanel.getTextPrice().getText().equals("")) {
-                        createErrorDialog("Campi vuoti", "Devi riempire tutti i campi del form.", frameGenitore, true);
+                        createErrorDialog("Campi vuoti", "Devi riempire tutti i campi del form.", CreateIngredientFrame.getIstance(), true);
                 } else {
                     //Fa quello che deve controllando che non si verifichino delle eccezioni
                     try {
                         pizzeria.getIngredientsManager().createNewIngredient(createIngredientPanel.getTextName().getText(), Double.parseDouble(createIngredientPanel.getTextPrice().getText()));
-                        frameGenitore.dispose();
+                        CreateIngredientFrame.disposeFrame();
                     } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     } catch (AlreadyExistingIngredientException ex) {
-                        createErrorDialog("Ingrediente già esistente", ex.getMessage(), frameGenitore, true);
+                        createErrorDialog("Ingrediente già esistente", ex.getMessage(), CreateIngredientFrame.getIstance(), true);
                     } catch (NumberFormatException ex){
-                        createErrorDialog("Prezzo inserito errato", "Devi inserire un valore numerico per il prezzo.", frameGenitore, true);
+                        createErrorDialog("Prezzo inserito errato", "Devi inserire un valore numerico per il prezzo.", CreateIngredientFrame.getIstance(), true);
                     }
                 }
 

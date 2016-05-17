@@ -50,5 +50,11 @@ public class RemoveIngredientsFromPizzeriaFrame extends JFrame {
                 this.setVisible(true);
     }
     
+    //Questo metodo serve per poter fare un "refresh" dato che il frame a singleton ha un istanza statica
+    public static void disposeFrame(){
+        removeIngredientsFromPizzeriaFrame.dispose();
+        removeIngredientsFromPizzeriaFrame = null;
+    }
+    
     
 }
