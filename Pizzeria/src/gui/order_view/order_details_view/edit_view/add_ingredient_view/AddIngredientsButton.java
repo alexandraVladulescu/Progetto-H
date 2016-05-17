@@ -61,7 +61,7 @@ public class AddIngredientsButton extends JButton {
                         System.err.println("Errore durante la clonazione in addIngredientToPizza");
                     }
                 }
-                AddIngredientFrame.getIstance().dispose();
+                AddIngredientFrame.disposeFrame();
 
             }
 

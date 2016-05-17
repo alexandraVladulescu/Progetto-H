@@ -52,5 +52,11 @@ public class CreatePizzaFrame extends JFrame {
         this.setLocation(((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - ((int) this.getSize().getWidth() / 2), ((int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - ((int) this.getSize().getHeight() / 2));
         this.setVisible(true);
     }
+    
+    //Questo metodo serve per poter fare un "refresh" dato che il frame a singleton ha un istanza statica
+    public static void disposeFrame(){
+        createPizzaFrame.dispose();
+        createPizzaFrame = null;
+    }
 
 }

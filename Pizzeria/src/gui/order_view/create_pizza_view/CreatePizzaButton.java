@@ -60,7 +60,7 @@ public class CreatePizzaButton extends JButton {
                         }
                         //Creo la nuova pizza
                         pizzeria.getMenuPizze().createNewPizza(pizzaDetailsPanel.getTextName().getText(), Double.parseDouble(pizzaDetailsPanel.getTextPrice().getText()), ingredients);
-                        CreatePizzaFrame.getIstance().dispose();
+                        CreatePizzaFrame.disposeFrame();
                     } catch (IngredientNotFoundException ex) {
                         System.err.println(ex.getMessage());
                     } catch (AlreadyExistingPizzaException ex) {
