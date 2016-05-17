@@ -39,7 +39,7 @@ public class CreateIngredientFrame extends JFrame {
         CreateIngredientPanel createIngredientPanel = new CreateIngredientPanel();
         this.getContentPane().add(BorderLayout.CENTER, createIngredientPanel);
         //Aggiungo il pulsante di creazione del nuovo ingrediente
-        this.getContentPane().add(BorderLayout.SOUTH, new CreateIngredientButton("Crea ingrediente", pizzeria, this, createIngredientPanel));
+        this.getContentPane().add(BorderLayout.SOUTH, new CreateIngredientButton("Crea ingrediente", pizzeria, createIngredientPanel));
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 3, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 8);
                 //Per centrarlo sullo schermo...anche se non lo centra in verita...
@@ -47,6 +47,12 @@ public class CreateIngredientFrame extends JFrame {
         //tolgo a quanto trovato la metà della dimensione del frame stesso...tutto questo per centrarlo!
         this.setLocation(((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - ((int) this.getSize().getWidth() / 2), ((int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - ((int) this.getSize().getHeight() / 2));
         this.setVisible(true);
+    }
+    
+    //Questo metodo serve per poter fare un "refresh" dato che il frame a singleton ha un istanza statica
+    public static void disposeFrame(){
+        createIngredientFrame.dispose();
+        createIngredientFrame = null;
     }
 
 }

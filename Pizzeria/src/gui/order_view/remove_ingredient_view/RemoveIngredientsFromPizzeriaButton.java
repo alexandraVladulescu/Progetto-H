@@ -44,7 +44,7 @@ public class RemoveIngredientsFromPizzeriaButton extends JButton {
                             pizzeria.getIngredientsManager().removeIngredientFromPizzeria(ingredientName);
                         
                     }
-                    RemoveIngredientsFromPizzeriaFrame.getIstance().dispose();
+                    RemoveIngredientsFromPizzeriaFrame.disposeFrame();
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 } catch (IngredientNotFoundException ex) {

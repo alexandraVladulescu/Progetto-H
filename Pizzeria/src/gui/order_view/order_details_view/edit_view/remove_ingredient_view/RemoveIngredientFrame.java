@@ -45,7 +45,7 @@ public class RemoveIngredientFrame extends JFrame {
         //Aggiungo scroller al frame
         this.getContentPane().add(BorderLayout.CENTER, scrollerRemoveIngredientsPanel);
         //Aggiungo anche il pulsante per confermare la rimozione degli ingredienti selezionati
-        this.getContentPane().add(BorderLayout.SOUTH, new RemoveIngredientsButton("Rimuovi ingredienti", pizzeria, index, this, removeIngredientsPanel));
+        this.getContentPane().add(BorderLayout.SOUTH, new RemoveIngredientsButton("Rimuovi ingredienti", pizzeria, index, removeIngredientsPanel));
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 4, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
                 //Per centrarlo sullo schermo...anche se non lo centra in verita...
@@ -54,6 +54,11 @@ public class RemoveIngredientFrame extends JFrame {
         this.setLocation(((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - ((int) this.getSize().getWidth() / 2), ((int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - ((int) this.getSize().getHeight() / 2));
         this.setVisible(true);
 
+    }
+    
+    public static void disposeFrame(){
+        removeIngredientFrame.dispose();
+        removeIngredientFrame = null;
     }
 
 }
