@@ -50,22 +50,21 @@ public class SecondoCasoDuso2Test {
         System.out.println("\t\tDETAILS\n" + c.showComandaDetails());
         c.confirmComanda();
 
-       // c.createComanda();
+        // c.createComanda();
         c.addPizza("chips");
         c.addPizza("trevisana");
         c.setClientToComanda(new Client("Francesco", "BBking", "00084738", new Address("ll", "opo", "528")));
         c.setDeliveryTime(new GregorianCalendar(Locale.ENGLISH));
-       
 
         System.out.println("\t\tDETAILS\n" + c.showComandaDetails());
 
-         c.confirmComanda();
-         
-        System.out.println("\t\t\t\t\t\t TUTTE LE COMANDE\n" + ComandeManager.getInstance().printAllComande());
+        c.confirmComanda();
+
+        System.out.println("\t\t\t\t\t\t TUTTE LE COMANDE\n" + c.printAllComande());
 //
         c.setModality(CurrentComandaManagerModality.MODIFY);
 //        
-        c.setCurrentComanda(ComandeManager.getInstance().getComandaById(1));
+        c.setCurrentComanda(c.getComandaById(1));
         System.out.println("\t\tDETAILS\n" + c.showComandaDetails());
 //         
 //         
@@ -75,10 +74,8 @@ public class SecondoCasoDuso2Test {
         c.confirmComanda();
 
 ////        
-        System.out.println("\t\t\t\t\t\t TUTTE LE COMANDE\n" + ComandeManager.getInstance().printAllComande());
+        System.out.println("\t\t\t\t\t\t TUTTE LE COMANDE\n" + c.printAllComande());
         System.out.println(c.getComandeBySurname("BBking").toString());
-        
-       
 
     }
 }

@@ -80,11 +80,11 @@ public class ClientDetailsPanel extends JPanel {
                     try {
                         if (getSelectedComanda().getTerminated()) {
                             //Imposta a non evasa
-                            pizzeria.getCurrentComandaManager().getComandeManager().setTerminatedById(selectedComanda.getId(), false);
+                            pizzeria.getCurrentComandaManager().setTerminatedById(selectedComanda.getId(), false);
                             setShippedButton.setText("Non evasa");
                         } else {
                             //Imposta a evasa
-                            pizzeria.getCurrentComandaManager().getComandeManager().setTerminatedById(selectedComanda.getId(), true);
+                            pizzeria.getCurrentComandaManager().setTerminatedById(selectedComanda.getId(), true);
                             setShippedButton.setText("Evasa");
                         }
                     }

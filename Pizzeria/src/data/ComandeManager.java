@@ -16,18 +16,9 @@ public class ComandeManager extends Observable {
     private ArrayList<Comanda> comande;
     //Variabile statica singleton
     private int count = -1;
-    private static ComandeManager comandeManager;
 
-    private ComandeManager() {
+    public ComandeManager() {
         comande = new ArrayList<Comanda>();
-    }
-
-    //Metodo utilizzato per il pattern singleton
-    public static ComandeManager getInstance() {
-        if (comandeManager == null) {
-            comandeManager = new ComandeManager();
-        }
-        return comandeManager;
     }
 
     public int generateId() {
@@ -120,12 +111,6 @@ public class ComandeManager extends Observable {
             s += "\t" + c.toString() + "\n";
         }
         return s;
-    }
-    
-    public void setTerminatedById(int id, boolean terminated) throws ComandaNotFoundException{
-        this.getComandaById(id).setTerminated(terminated);
-        setChanged();
-        notifyObservers();
     }
 
 }

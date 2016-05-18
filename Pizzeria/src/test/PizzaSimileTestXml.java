@@ -10,6 +10,7 @@ import data.Client;
 import data.Comanda;
 import data.CurrentComandaManager;
 import data.Pizzeria;
+import exceptions.ComandaNotFoundException;
 import exceptions.IngredientNotFoundException;
 import exceptions.PizzaNotFoundInMenuException;
 import exceptions.ProductNotFoundException;
@@ -22,7 +23,7 @@ import java.io.IOException;
  */
 public class PizzaSimileTestXml {
 
-    public static void main(String[] args) throws IOException, PizzaNotFoundInMenuException, ProductNotFoundException, IngredientNotFoundException, CloneNotSupportedException {
+    public static void main(String[] args) throws IOException, PizzaNotFoundInMenuException, ProductNotFoundException, IngredientNotFoundException, CloneNotSupportedException, ComandaNotFoundException {
         Pizzeria pizzeria = new Pizzeria();
         CurrentComandaManager c = pizzeria.getCurrentComandaManager();
         pizzeria.loadMenuPizza("./databases/MenuPizze.xml", FormatType.XML);

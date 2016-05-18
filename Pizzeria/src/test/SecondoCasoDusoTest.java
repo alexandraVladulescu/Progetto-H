@@ -9,6 +9,7 @@ import data.Address;
 import data.Client;
 import data.Comanda;
 import data.CurrentComandaManager;
+import data.CurrentComandaManagerModality;
 import data.Ingredient;
 import data.IngredientsManager;
 import data.Pizzeria;
@@ -78,10 +79,10 @@ public class SecondoCasoDusoTest {
         System.out.println(c.showComandaDetails());
         c.confirmComanda();
         System.out.println("\t \t CHIAMA IL CLIENTE DI PRIMA CHE VUOLE TOGLIERE LA MARGHERITA E AGGIUNGERE UNA CAPRICCIOSA \t \t \n");
-        c.setCurrentComanda("Rossi");
+       c.setModality(CurrentComandaManagerModality.MODIFY);
+       c.setCurrentComanda(c.getComandaById(0));
         System.out.println(c.showComandaDetails());
-        c.removePizza("Margherita");
-
+        
         System.out.println("RIASSUNTO COMANDA \n");
         System.out.println(c.showComandaDetails());
 
@@ -107,7 +108,7 @@ public class SecondoCasoDusoTest {
 
         System.out.println("Richiama Claudio e vuole modificare la capricciosa aggiungendo  ");
         System.out.println("Per tagliar la testa al toro setto currentCLient e stampo la sua comanda\n");
-        c.setCurrentComanda("Cusano");
+       // c.setCurrentComanda("Cusano");
         System.out.println(c.getCurrentComanda());
 
         System.out.println("\t\t\t AGGIUNGO INGREDIENTE ACCIUGA \n");
