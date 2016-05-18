@@ -25,10 +25,9 @@ public class CurrentComandaManager extends Observable {
     private IngredientsManager ingredientsManager; //diventato Singleton
     //Indica se siamo in modalità di creazione di una nuova comanda o se stiamo modificando una comanda già esistente (di default è CREATE)
     private CurrentComandaManagerModality modality;
-    
 
     public CurrentComandaManager() {
-        comandeManager = ComandeManager.getInstance();
+        comandeManager = new ComandeManager();
         menuPizze = MenuPizze.getInstance();// setto il menuPizze con l'unica istanza che esiste
         ingredientsManager = IngredientsManager.getInstance();// setto il menu degli ingredienti con l'unica istanza
         this.modality = CurrentComandaManagerModality.CREATE;
@@ -72,14 +71,14 @@ public class CurrentComandaManager extends Observable {
             //Se sono qui son i MODIFY vuol dire che devo fare prima il remove
 //             System.out.println("id"+currentComanda.getId());
             this.comandeManager.removeComandaById(currentComanda.getId());
-           
+
             this.setModality(CurrentComandaManagerModality.CREATE);
         }
         //In ogni caso devo aggiungere la currentComanda
         this.comandeManager.addComanda(currentComanda);
 //        DOPO QUALSIASI CONFIRM CREO GIA' UNA NUOVA COMANDA ALTRIMENTI MI RIMANE SETTATA LA CURRENT COMANDA
 //        CON QUELLA PRECEDENTE
-       this.createComanda();
+        this.createComanda();
         setChanged();
         notifyObservers();
 
@@ -181,7 +180,7 @@ public class CurrentComandaManager extends Observable {
                     modificata.removeAll(temp.get(k - 1 - j).getIngredients());
                     //   System.out.println("MODIFICATA DENTRO L IF 2 "+modificata.toString());
                     // System.out.println("\t\t\t\t 7 MENU PIZZE\n" + printMenuPizze());
-                     for (Ingredient m : modificata) { // devo settare i prezzi degli ingredienti che ho aggiunto in piu
+                    for (Ingredient m : modificata) { // devo settare i prezzi degli ingredienti che ho aggiunto in piu
                         m.setPrice(ingredientsManager.getIngredientByName(m.getName()).getPrice());
                     }
                     temp.get(k - 1 - j).getPlusIngredients().addAll(modificata);
@@ -280,6 +279,28 @@ public class CurrentComandaManager extends Observable {
         this.getCurrentComanda().setDeliveryTime(data);
         setChanged();
         notifyObservers();
+    }
+
+    public void setTerminatedById(int id, boolean terminated) throws ComandaNotFoundException {
+        this.comandeManager.getComandaById(id).setTerminated(terminated);
+        setChanged();
+        notifyObservers();
+    }
+
+    public Comanda getComandaById(int id) throws ComandaNotFoundException {
+        return this.comandeManager.getComandaById(id);
+    }
+
+    public void removeComandaByid(int id) throws ComandaNotFoundException {
+        this.comandeManager.removeComandaById(id);
+    }
+
+    public ArrayList<Comanda> searchComandaBySurname(String surname) throws ComandaNotFoundException {
+        return this.comandeManager.searchComandaBySurname(surname);
+    }
+
+    public String printAllComande() {
+        return this.comandeManager.printAllComande();
     }
 
 }

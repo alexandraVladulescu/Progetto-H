@@ -12,6 +12,7 @@ import data.CurrentComandaManager;
 import data.Pizza;
 import exceptions.PizzaNotFoundInMenuException;
 import data.Pizzeria;
+import exceptions.ComandaNotFoundException;
 import i_o.FormatType;
 import java.io.IOException;
 
@@ -21,7 +22,7 @@ import java.io.IOException;
  */
 public class TestPrimoCasoDUso {
 
-    public static void main(String[] args) throws IOException, CloneNotSupportedException {
+    public static void main(String[] args) throws IOException, CloneNotSupportedException, ComandaNotFoundException {
         
         
         System.out.println("ISTANZIO PIZZERIA E CARICO I MENU PRESENTI \n");
