@@ -36,10 +36,11 @@ public class Comanda {
     @Override
     public String toString() {
         return "CLIENT >> " + this.client.toString() + "\t"
+                 +"\nID : " + this.getId() 
                 + "\n\nOra di Consegna " + getTime() + "\n"
                 + "\nOrdini : \n" + this.getOrderedPizzas() + "\n "
                 + "\nTotal : " + this.calculateTotalPrice()+ "\n "
-                +"\nID : " + this.getId();
+               ;
     }
 
     public String getOrderedPizzas() {
