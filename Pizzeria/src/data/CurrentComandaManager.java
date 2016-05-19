@@ -302,5 +302,5 @@ public class CurrentComandaManager extends Observable {
     public String printAllComande() {
         return this.comandeManager.printAllComande();
     }
-
+   
 }

@@ -78,7 +78,7 @@ PIZZAIOLA	5.0
 pomodoro	mozzarella	scamorza
 PORCINI	6.0
 pomodoro	mozzarella	funghi porcini
-PROSCIUGIO	5.0
+PROSCIUTTO	5.0
 pomodoro	mozzarella	prosciutto cotto
 PUGLIESE	5.5
 pomodoro	mozzarella	cipolla	grana
