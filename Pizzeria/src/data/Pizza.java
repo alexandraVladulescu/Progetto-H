@@ -17,11 +17,23 @@ public class Pizza extends Product implements Comparable<Pizza>, Cloneable {
     private ArrayList<Ingredient> ingredients;
     private ArrayList<Ingredient> plusIngredients;
 
-    public Pizza(String name, double price) {
+    public Pizza(DescriptionPizza d) throws CloneNotSupportedException {
+        //QUANDO ISTANZIO UNA PIZZA GLI PASSO IL DESCRIPTION E FACCIO QUELLO CHE DEVO;
+        //SAREBBE MEGLIO DELEGARE QUALCUNO CHE SI OCCUPI DI QUESTE "COPIE"
+        super(d.getName(), d.getPrice());
+        ingredients = new ArrayList<Ingredient>();
+        for (Ingredient ingredient : d.getIngredients()) {
+            this.addIngredient((Ingredient) ingredient.clone());
+        }
+
+        plusIngredients = new ArrayList<>();
+
+    }
+
+    private Pizza(String name, double price) {// QUESTO SI USA SOLO PER IL CLONE
         super(name, price);
         ingredients = new ArrayList<Ingredient>();
         plusIngredients = new ArrayList<>();
-
     }
 
     public void setIngredients(ArrayList<Ingredient> ingredients) {
@@ -59,7 +71,13 @@ public class Pizza extends Product implements Comparable<Pizza>, Cloneable {
     public void addPlusIngredient(Ingredient ingredient) {
         plusIngredients.add(ingredient);
     }
- public boolean removeIngredient(Ingredient ingredient) {
+
+    public void addPlusIngredients(ArrayList<Ingredient> plus) {
+
+        this.plusIngredients.addAll(plus);
+    }
+
+    public boolean removeIngredient(Ingredient ingredient) {
         return ingredients.remove(ingredient);
     }
 
@@ -67,6 +85,7 @@ public class Pizza extends Product implements Comparable<Pizza>, Cloneable {
 
         return plusIngredients.remove(ingredient);
     }
+
     @Override
     public int compareTo(Pizza t) {// Oridna in ordine alfabetico a-z
         return this.getName().compareToIgnoreCase(t.getName());
@@ -77,14 +96,14 @@ public class Pizza extends Product implements Comparable<Pizza>, Cloneable {
         return super.getName();
     }
 
-    public String getFullName(){
+    public String getFullName() {
         String s = super.getName();
-        for(Ingredient ingredient: plusIngredients){
-            s += " + " +  ingredient.getName();
+        for (Ingredient ingredient : plusIngredients) {
+            s += " + " + ingredient.getName();
         }
         return s;
     }
-    
+
     @Override
     public double getPrice() {
         double plusPrice = 0;
@@ -131,39 +150,36 @@ public class Pizza extends Product implements Comparable<Pizza>, Cloneable {
 
     }
 
-    public static class ComparatorPizza implements Comparator<Pizza> {
-
-        public ComparatorPizza() {
-        }
-
-        @Override
-        public int compare(Pizza p1, Pizza p2) {
-            ArrayList<Ingredient> tempListIngredient = (ArrayList<Ingredient>) p1.getIngredients().clone();
-            tempListIngredient.addAll((ArrayList<Ingredient>) p1.getPlusIngredients().clone());
-            ArrayList<Ingredient> p1ListCopy = (ArrayList<Ingredient>) p1.getIngredients().clone();
-            p1ListCopy.addAll((ArrayList<Ingredient>) p1.getPlusIngredients().clone());
-            ArrayList<Ingredient> p2ListCopy = (ArrayList<Ingredient>) p2.getIngredients().clone();
-            p2ListCopy.addAll((ArrayList<Ingredient>) p2.getPlusIngredients().clone());
-
-            p1ListCopy.removeAll(p2ListCopy);// rimuovo dalla lista copiata di p1
-            p2ListCopy.removeAll(tempListIngredient); // rimuovo dalla lista copiata di p2
-            if (p1ListCopy.size() > p2ListCopy.size()) {
-                return 1;
-            } else if (p1ListCopy.size() < p2ListCopy.size()) {
-                return -1;
-            } else {
-                if (p1.getPrice() > p2.getPrice()) {
-                    return 1;
-                } else if (p1.getPrice() < p2.getPrice()) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            }
-        }
-
-    }
-
-    
-    
+//    public static class ComparatorPizza implements Comparator<Pizza> {
+//
+//        public ComparatorPizza() {
+//        }
+//
+//        @Override
+//        public int compare(Pizza p1, Pizza p2) {
+//            ArrayList<Ingredient> tempListIngredient = (ArrayList<Ingredient>) p1.getIngredients().clone();
+//            tempListIngredient.addAll((ArrayList<Ingredient>) p1.getPlusIngredients().clone());
+//            ArrayList<Ingredient> p1ListCopy = (ArrayList<Ingredient>) p1.getIngredients().clone();
+//            p1ListCopy.addAll((ArrayList<Ingredient>) p1.getPlusIngredients().clone());
+//            ArrayList<Ingredient> p2ListCopy = (ArrayList<Ingredient>) p2.getIngredients().clone();
+//            p2ListCopy.addAll((ArrayList<Ingredient>) p2.getPlusIngredients().clone());
+//
+//            p1ListCopy.removeAll(p2ListCopy);// rimuovo dalla lista copiata di p1
+//            p2ListCopy.removeAll(tempListIngredient); // rimuovo dalla lista copiata di p2
+//            if (p1ListCopy.size() > p2ListCopy.size()) {
+//                return 1;
+//            } else if (p1ListCopy.size() < p2ListCopy.size()) {
+//                return -1;
+//            } else {
+//                if (p1.getPrice() > p2.getPrice()) {
+//                    return 1;
+//                } else if (p1.getPrice() < p2.getPrice()) {
+//                    return 1;
+//                } else {
+//                    return 0;
+//                }
+//            }
+//        }
+//
+//    }
 }

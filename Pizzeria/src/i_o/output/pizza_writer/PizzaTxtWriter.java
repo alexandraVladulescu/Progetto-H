@@ -1,5 +1,6 @@
 package i_o.output.pizza_writer;
 
+import data.DescriptionPizza;
 import i_o.output.ingredient_writer.*;
 import data.Ingredient;
 import data.Pizza;
@@ -20,11 +21,11 @@ public class PizzaTxtWriter implements PizzaWriterFactory {
     private FileWriter f;
     private PrintWriter printWriter;
     //La lista delle pizze da scrivere sul file
-    private ArrayList<Pizza> pizzas;
+    private ArrayList<DescriptionPizza> pizzas;
     //L'indice della pizza che sta per essere scritta su file
     private int index;
 
-    public PizzaTxtWriter(String path, ArrayList<Pizza> pizzas) throws IOException {
+    public PizzaTxtWriter(String path, ArrayList<DescriptionPizza> pizzas) throws IOException {
         f = new FileWriter(path);
         printWriter = new PrintWriter(f);
         this.pizzas = pizzas;

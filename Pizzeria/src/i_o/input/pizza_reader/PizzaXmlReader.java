@@ -5,6 +5,7 @@
  */
 package i_o.input.pizza_reader;
 
+import data.DescriptionPizza;
 import data.Ingredient;
 import data.Pizza;
 import data.Product;
@@ -34,7 +35,7 @@ public class PizzaXmlReader implements PizzaReaderFactory {
     }
 
     @Override
-    public Pizza getNextProduct() throws IOException {//RICORDARE CHE QUESTO VIENE RICHIAMATO PER SECONDO
+    public DescriptionPizza getNextProduct() throws IOException {//RICORDARE CHE QUESTO VIENE RICHIAMATO PER SECONDO
         Node pizza = pizzaList.item(indexList);
         //Livello <pizza><all children>
         NodeList attrpizza = pizza.getChildNodes();
@@ -45,7 +46,7 @@ public class PizzaXmlReader implements PizzaReaderFactory {
 
         NodeList ingredients = attrpizza.item(2).getChildNodes();
 
-        Pizza newPizza = new Pizza(name, Double.valueOf(price));
+        DescriptionPizza newPizza = new DescriptionPizza(name, Double.valueOf(price));
 
         for (int i = 0; i < ingredients.getLength(); i++) {
             String ingName = ingredients.item(i).getFirstChild().getNodeValue().trim();
