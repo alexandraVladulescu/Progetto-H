@@ -25,7 +25,7 @@ public class MenuPizze extends Observable implements Cloneable {
 
     //AcquireMenu acquireMenu;
     // private MenuPizzeReader menuReader;
-    private ArrayList<Pizza> pizze;
+    private ArrayList<DescriptionPizza> pizze;
     //Variabile necessaria per applicare il pattern singleton
     //a MenuPizze
     private static MenuPizze menuPizze;
@@ -40,16 +40,16 @@ public class MenuPizze extends Observable implements Cloneable {
         }
         return menuPizze;
     }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        MenuPizze mP = new MenuPizze();
-        for (Pizza p : pizze) {
-            mP.pizze.add((Pizza) p.clone());
-        }
-        return mP;
-
-    }
+//
+//    @Override
+//    public Object clone() throws CloneNotSupportedException {
+//        MenuPizze mP = new MenuPizze();
+//        for (DescriptionPizza p : pizze) {
+//            mP.pizze.add((DescriptionPizza) p.clone());
+//        }
+//        return mP;
+//
+//    }
 // ./databases/pizze.txt
     //./databases/MenuPizze.xml
 
@@ -78,13 +78,13 @@ public class MenuPizze extends Observable implements Cloneable {
     public void createNewPizza(String name, double price, ArrayList<Ingredient> ingredients) throws AlreadyExistingPizzaException, IOException {
         //Effettuiamo un controllo: se esiste già una pizza con questo nome lanciamo un eccezione
         //in quanto non possono esistere due pizze aventi lo stesso nome
-        for (Pizza p : pizze) {
+        for (DescriptionPizza p : pizze) {
             if (name.equalsIgnoreCase(p.getName())) {
                 throw new AlreadyExistingPizzaException("Esiste già una pizza con il nome " + name);
             }
         }
         //Creiamo la pizza da inserire nel file
-        Pizza pizza = new Pizza(name, price);
+        DescriptionPizza pizza = new DescriptionPizza(name, price);
         for (Ingredient ingredient : ingredients) {
             pizza.addIngredient(ingredient);
         }
@@ -103,7 +103,7 @@ public class MenuPizze extends Observable implements Cloneable {
     public void removePizzaFromPizzeria(String name) throws PizzaNotFoundInMenuException, IOException {
         //Questa variabile boolean serve per sapere se la pizza che vogliamo elimianare esiste o no nella pizzeria...
         boolean exists = false;
-        for (Pizza pizza : pizze) {
+        for (DescriptionPizza pizza : pizze) {
             if (pizza.getName().equalsIgnoreCase(name)) {
                 pizze.remove(pizza);
                 exists = true;
@@ -121,13 +121,13 @@ public class MenuPizze extends Observable implements Cloneable {
         this.notifyObservers();
     }
 
-    public ArrayList<Pizza> printAllPizzas() {
+    public ArrayList<DescriptionPizza> printAllPizzas() {
         return pizze;
     }
 
-    public Pizza getPizzaByName(String name) throws PizzaNotFoundInMenuException {
-        Pizza p = null;
-        for (Pizza pizza : pizze) {
+    public DescriptionPizza getPizzaByName(String name) throws PizzaNotFoundInMenuException {
+        DescriptionPizza p = null;
+        for (DescriptionPizza pizza : pizze) {
             if (pizza.getName().equalsIgnoreCase(name)) {
                 //return pizza;
                 p = pizza;
@@ -143,8 +143,12 @@ public class MenuPizze extends Observable implements Cloneable {
         return pizze.size();
     }
 
-    public ArrayList<Pizza> getPizze() {
+    public ArrayList<DescriptionPizza> getPizze() {
         return pizze;
+    }
+
+    public DescriptionPizza getDescriptionPizzaByIndex(int index) {
+        return this.pizze.get(index);
     }
 
 }
