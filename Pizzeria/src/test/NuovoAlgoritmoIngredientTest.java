@@ -69,6 +69,9 @@ public class NuovoAlgoritmoIngredientTest {
         c.setModality(CurrentComandaManagerModality.MODIFY);
         c.setCurrentComanda(c.getComandaById(0));
         c.removeIngredientToPizza("prosciutto cotto", 0);
+        c.removeIngredientToPizza("funghi", 1);
+        c.addIngredientToPizza("gorgonzola", 1);
+        c.addIngredientToPizza("patatine", 1);
         System.out.println("RIASSUNTO COMANDA \n");
         System.out.println(c.showComandaDetails());
         c.confirmComanda();
