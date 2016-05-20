@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package i_o.input.pizza_reader;
+import data.DescriptionPizza;
 import data.Pizza;
 
 import data.Product;
@@ -15,7 +16,7 @@ import java.io.IOException;
  */
 public interface PizzaReaderFactory {
     
-    abstract Pizza getNextProduct() throws IOException;
+    abstract DescriptionPizza getNextProduct() throws IOException;
     abstract boolean hasNextProduct() throws IOException;
     
 }

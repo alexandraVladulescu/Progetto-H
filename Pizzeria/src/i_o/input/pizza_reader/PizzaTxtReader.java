@@ -30,17 +30,17 @@ public class PizzaTxtReader implements PizzaReaderFactory {
     }
 
     @Override
-    public Pizza getNextProduct() throws IOException {
+    public DescriptionPizza getNextProduct() throws IOException {
         String[] firstLine;
         String[] secondLine;
         firstLine = line.split("\t");
         secondLine = buffer.readLine().split("\t");// legge la seconda riga per gli ingredienti
-        Pizza pizza = new Pizza(firstLine[0], Double.parseDouble(firstLine[1]));
+        DescriptionPizza DPizza = new DescriptionPizza(firstLine[0], Double.parseDouble(firstLine[1]));
         for (String ingredientLine : secondLine) {
-            pizza.addIngredient(new Ingredient(ingredientLine));
+            DPizza.addIngredient(new Ingredient(ingredientLine));
         }
        
-        return pizza;
+        return DPizza;
 
     }
 

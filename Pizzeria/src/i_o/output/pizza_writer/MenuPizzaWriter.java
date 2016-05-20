@@ -1,5 +1,6 @@
 package i_o.output.pizza_writer;
 
+import data.DescriptionPizza;
 import i_o.output.ingredient_writer.*;
 import data.Ingredient;
 import data.Pizza;
@@ -21,7 +22,7 @@ public class MenuPizzaWriter {
     //Scegliamo il writer apposito a seconda che vogliamo lavorare con file Xml o con file di testo...
     //Passiamo come parametri il path del file da scrivere, il tipo di file da scrivere (txt o xml) e la lista delle pizze
     // che vogliamo scrivere...
-     public PizzaWriterFactory getFilePizzaWriter(String path,FormatType type, ArrayList<Pizza> pizzas) throws IOException {
+     public PizzaWriterFactory getFilePizzaWriter(String path,FormatType type, ArrayList<DescriptionPizza> pizzas) throws IOException {
          PizzaWriterFactory filePizzaWriter ;
         switch (type) {
             case TXT :
