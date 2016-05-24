@@ -33,6 +33,10 @@ public class ComandeView extends JPanel{
         ComandaDetailsPanel comandaDetailsPanel = new ComandaDetailsPanel(pizzeria);
         ComandeListPanel comandeListPanel = new ComandeListPanel(pizzeria,comandaDetailsPanel); 
         
+        //Aggiunto ComandeListPanel come Observer di CurrentCOmandaManager !! 
+        pizzeria.getCurrentComandaManager().addObserver(comandeListPanel);
+        
+        
         //Scroller per il pannello con la lista delle comande
         JScrollPane scrollerComandeListPanel = new JScrollPane(comandeListPanel);
         scrollerComandeListPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
