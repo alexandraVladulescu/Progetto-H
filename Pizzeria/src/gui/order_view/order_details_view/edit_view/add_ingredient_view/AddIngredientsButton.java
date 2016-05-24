@@ -62,7 +62,9 @@ public class AddIngredientsButton extends JButton {
                     }
                 }
                 AddIngredientFrame.disposeFrame();
-
+                //Senza questa riga di codice il pannello di aggiunta di ingredienti
+                //visualizzava ogni volta gli ingredienti della pizza originale
+                addIngredientsPanel.createIngredientsLine();
             }
 
         });
