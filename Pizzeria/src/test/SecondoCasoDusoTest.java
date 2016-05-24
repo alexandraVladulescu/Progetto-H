@@ -131,6 +131,9 @@ public class SecondoCasoDusoTest {
         c.addIngredientToPizza("acciughe", 0);// PERCHè è DIVENTATA LA PRIMA NELLA LISTA
         c.addIngredientToPizza("salsiccia", c.getCurrentComanda().getPizzasList().size() - 1);//PERCHè AD OGNI MODIFICA LA RIAGGIUNGO PER ULTIMA
         c.addIngredientToPizza("prosciutto cotto",c.getCurrentComanda().getPizzasList().size()-2 );
+        c.addIngredientToPizza("brie", c.getCurrentComanda().getPizzasList().size() - 1);
+        c.addIngredientToPizza("mais", c.getCurrentComanda().getPizzasList().size() - 1);
+         c.addIngredientToPizza("brie",c.getCurrentComanda().getPizzasList().size()-2 );
         System.out.println("\t\t\tSTAMPO LA COMANDA \n");
 
         System.out.println(c.showComandaDetails());
