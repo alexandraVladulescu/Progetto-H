@@ -11,7 +11,7 @@ import java.util.Observable;
  *
  * @author Markenos
  */
-public class ComandeManager extends Observable {
+public class ComandeManager extends Observable  {
 
     private ArrayList<Comanda> comande;
     //Variabile statica singleton
@@ -29,7 +29,7 @@ public class ComandeManager extends Observable {
 
     public void addComanda(Comanda c) {
         this.comande.add(c);
-        setChanged();
+       setChanged();
         notifyObservers();
 
     }
