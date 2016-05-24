@@ -198,11 +198,9 @@ public class CurrentComandaManager extends Observable {
             //NB : UTILIZZO FORSE IMPROPRIO DELL HASPMAP MA FUNZIONALE
             //MI FACCIO RIDARE IL KEYSET TANTO CE N'E' SOLO UNA DENTRO
             HashMap<DescriptionPizza, ArrayList<Ingredient>> bestCoppia = calculatesBest(candidate, allIngredients);
-            System.out.println("______________________________________"+allIngredients.toString());
             DescriptionPizza key = bestCoppia.keySet().iterator().next();
             Pizza newPizza = new Pizza(key); // creo una nuova pizza tramite la key che è una descriptionPizza
             newPizza.addPlusIngredients(bestCoppia.get(key));//aggiungo gli ingredienti che mi mancano
-            // System.out.println("____________________________PIZZA FINALE:"+newPizza.toString());
             this.currentComanda.addPizza(newPizza);//aggiungo la pizza
             setChanged();
             notifyObservers();
