@@ -53,6 +53,7 @@ public class RemoveIngredientsButton extends JButton {
                         //Perché faccio quello che faccio sotto? Perché l'algoritmo che aggiunge l'ingrediente alla pizza, dopo averlo aggiunto
                         //mette la pizza modificata in fondo alla comanda...quindi il suo index cambia a size()-1...
                         setIndex(pizzeria.getCurrentComandaManager().getCurrentComanda().getPizzasList().size()-1);
+                        
                     } catch (ProductNotFoundException ex) {
                         System.err.println("La pizza a cui vuoi rimuovere l'ingrediente non esiste nella comanda corrente");
                     } catch (IngredientNotFoundException ex) {
@@ -62,6 +63,9 @@ public class RemoveIngredientsButton extends JButton {
                     }
                 }
                 RemoveIngredientFrame.disposeFrame();
+                //Senza questa riga di codice il pannello di rimozione ingredienti
+                //visualizzava ogni volta gli ingredienti della pizza originale
+                removeIngredientsPanel.createIngredientsLine();
 
             }
 

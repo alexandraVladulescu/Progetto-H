@@ -34,7 +34,7 @@ public class AddIngredientsPanel extends JPanel {
 
     }
 
-    private void createIngredientsLine() {
+    public void createIngredientsLine() {
         try {
             //Lavoro su una copia di IngredientManager e della pizza da modificare così da non toccare l'originale che altrimenti subirebbe le modifiche qui fatte
             IngredientsManager tempIngredientsManager = (IngredientsManager) pizzeria.getIngredientsManager().clone();
