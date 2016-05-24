@@ -1,6 +1,7 @@
 package gui.order_view.remove_pizza_view;
 
 
+import data.DescriptionPizza;
 import data.Ingredient;
 import data.IngredientsManager;
 import data.MenuPizze;
@@ -36,20 +37,13 @@ public class RemovePizzasFromPizzeriaPanel extends JPanel {
     }
  
      private void createPizzasLine() {
-        try {
-            //Lavoro su una copia di MenuPizze così da non modificare l'originale che sennò subirebbe le modifiche fatte qui
-            MenuPizze tempMenuPizze = (MenuPizze) pizzeria.getMenuPizze().clone();
-            ArrayList<Pizza> pizzas = tempMenuPizze.getPizze();
-
-            //Per ogni ingrediente contenuto nella pizzeria...
-            for (int i = 0; i < pizzas.size(); i++) {
-                JCheckBox checkPizza = new JCheckBox(pizzas.get(i).getName());
-                checkPizzas.add(checkPizza);
-                this.add(checkPizza);
-            }
-        } catch (CloneNotSupportedException ex) {
-            System.err.println("Errore nella clonazione di MenuPizze in RemovePizzasFromPizzeriaPanel");
-        }
+         MenuPizze tempMenuPizze = MenuPizze.getInstance();
+         ArrayList<DescriptionPizza> pizzas = tempMenuPizze.getPizze();
+         for (int i = 0; i < pizzas.size(); i++) {
+             JCheckBox checkPizza = new JCheckBox(pizzas.get(i).getName());
+             checkPizzas.add(checkPizza);
+             this.add(checkPizza);
+         }
     }
 
     public ArrayList<JCheckBox> getCheckPizzas() {
