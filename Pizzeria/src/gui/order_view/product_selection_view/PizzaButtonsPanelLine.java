@@ -1,5 +1,6 @@
 package gui.order_view.product_selection_view;
 
+import data.DescriptionPizza;
 import data.MenuPizze;
 import data.Pizza;
 import data.Pizzeria;
@@ -13,8 +14,8 @@ import javax.swing.JPanel;
 
 /**
  * Questa classe rappresenta una riga all'interno di PizzasPanel. Una riga
- * contiene fino ad un massimo di 5 pizze. Per ogni pizza in questa linea è
- * presente un pulsante.
+ contiene fino ad un massimo di 5 pizze. Per ogni pizzaDescription in questa linea è
+ presente un pulsante.
  *
  * @author Markenos
  */
@@ -51,33 +52,27 @@ public class PizzaButtonsPanelLine extends JPanel {
     }
 
     public void addPizzaButton(int externalIndex) {
-        //Lavoro su una copia del menù, altrimenti modifico sempre e solo la stessa pizza!
+        //Lavoro su una copia del menù, altrimenti modifico sempre e solo la stessa pizzaDescription!
         MenuPizze tempMenuPizze;
-        try {
-            tempMenuPizze = (MenuPizze) pizzeria.getMenuPizze().clone();
-            Pizza pizza = tempMenuPizze.getPizze().get(externalIndex);
-            pizzas[internalIndex] = new JButton(pizza.getName());
-            //Aggiungo il listener a ciascun pulsante rappresentante una pizza
-            pizzas[internalIndex].addMouseListener(new MouseAdapter() {
-
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    super.mouseClicked(e);
-                    try {
-                        pizzeria.getCurrentComandaManager().addPizza((Pizza)pizza.clone());
-                    } catch (CloneNotSupportedException ex) {
-                        System.err.println("Errore durante la clonazione della pizza in PizzasLinePanel");
-                    }
-                    System.out.println("Pizza aggiunta: " + pizza.getFullName()); //ai fini di debug...
-
+        tempMenuPizze = MenuPizze.getInstance();
+        DescriptionPizza pizzaDescription = tempMenuPizze.getPizze().get(externalIndex);
+        pizzas[internalIndex] = new JButton(pizzaDescription.getName());
+        pizzas[internalIndex].addMouseListener(new MouseAdapter() {
+            
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                try {
+                    pizzeria.getCurrentComandaManager().addPizza(new Pizza(pizzaDescription));
+                } catch (CloneNotSupportedException ex) {
+                    System.err.println("Errore durante la clonazione della pizza in PizzasLinePanel");
                 }
-
-            });
-            this.add(pizzas[internalIndex]);
-            this.internalIndex += 1;
-        } catch (CloneNotSupportedException ex) {
-            System.err.println("Errore nella clonazione del MenùPizze durante la creazione di PizzasPanel...");
-        }
+                System.out.println("Pizza aggiunta: " + pizzaDescription.getFullName()); //ai fini di debug...
+            }
+            
+        });
+        this.add(pizzas[internalIndex]);
+        this.internalIndex += 1;
 
     }
 
