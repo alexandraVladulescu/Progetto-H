@@ -31,13 +31,15 @@ public class RemoveIngredientFrame extends JFrame {
     private Pizzeria pizzeria;
     //L'indice della pizza da modificare
     private int index;
+    
+    private RemoveIngredientsPanel removeIngredientsPanel;
 
     public void init(String title, Pizzeria pizzeria, int index) {
         this.pizzeria = pizzeria;
         this.index = index;
         this.setTitle(title);
         //Creo il pannello interno
-        RemoveIngredientsPanel removeIngredientsPanel = new RemoveIngredientsPanel(pizzeria, index);
+        removeIngredientsPanel = new RemoveIngredientsPanel(pizzeria, index);
         //Creo lo scroller per tale pannello
         JScrollPane scrollerRemoveIngredientsPanel = new JScrollPane(removeIngredientsPanel);
         //Voglio visualizzare sempre la barra verticale di scorrimento

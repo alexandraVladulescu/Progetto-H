@@ -201,7 +201,6 @@ public class CurrentComandaManager extends Observable {
             DescriptionPizza key = bestCoppia.keySet().iterator().next();
             Pizza newPizza = new Pizza(key); // creo una nuova pizza tramite la key che è una descriptionPizza
             newPizza.addPlusIngredients(bestCoppia.get(key));//aggiungo gli ingredienti che mi mancano
-            // System.out.println("____________________________PIZZA FINALE:"+newPizza.toString());
             this.currentComanda.addPizza(newPizza);//aggiungo la pizza
             setChanged();
             notifyObservers();
@@ -225,11 +224,12 @@ public class CurrentComandaManager extends Observable {
             runTimeIngredient.removeAll(candidata.getIngredients());
             priceTemp = candidata.getPrice();
             //devo calcolare il prezzo aggiungivo di tutti gli ingredienti che aggiungerei
+             rimanentiPlus.clear();
             for (Ingredient ingredient : runTimeIngredient) {
                 //mi faccio calcolare il prezzo aggiuntivo interrogando ingredients manager
                 //perchè all'interno di allIngredients potrebbe esser settato a zero in caso
                 //fosse già presente come ingrediente base!
-                rimanentiPlus.clear();
+               
                 rimanentiPlus.add(this.ingredientsManager.getIngredientByName(ingredient.getName()));
                 priceTemp = priceTemp + this.ingredientsManager.getIngredientByName(ingredient.getName()).getPrice();
             }
@@ -257,6 +257,7 @@ public class CurrentComandaManager extends Observable {
         ArrayList<Ingredient> allIngredients = pizza.getIngredients();
         allIngredients.addAll(pizza.getPlusIngredients());
         allIngredients.add(ingredient);
+      //  System.out.println("_______________________________________"+allIngredients.toString());
         //
         ////
         ///

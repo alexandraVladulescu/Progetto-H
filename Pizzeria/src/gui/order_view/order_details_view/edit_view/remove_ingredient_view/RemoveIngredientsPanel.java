@@ -33,7 +33,7 @@ public class RemoveIngredientsPanel extends JPanel {
 
     }
 
-    private void createIngredientsLine() {
+    public void createIngredientsLine() {
         try {
             //Lavoro su una copia della pizza da modificare così da non toccare l'originale che altrimenti
             //subirebbe le modifiche qui fatte
