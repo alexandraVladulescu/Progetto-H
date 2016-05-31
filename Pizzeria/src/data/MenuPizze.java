@@ -21,7 +21,7 @@ import java.util.Observable;
  *
  * @author User
  */
-public class MenuPizze extends Observable implements Cloneable {
+public class MenuPizze extends Observable {
 
     //AcquireMenu acquireMenu;
     // private MenuPizzeReader menuReader;
